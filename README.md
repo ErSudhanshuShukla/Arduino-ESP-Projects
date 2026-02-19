@@ -13,14 +13,22 @@ Unlike standard hardware projects, this collection focuses heavily on **Smart Co
 ## 📂 Project Categories
 Each category contains multiple hands-on projects with source code, photos, and short documentation.
 
-- 🏠 Home Automation & Smart Living  
-- 🛡️ Safety & Security Systems  
-- 📏 Measurement & Environmental Monitoring  
-- 🤖 Robotics & Vehicles  
-- 🌱 Agriculture & Nature  
-- 🎮 Fun, Games & Visuals  
-- 🔧 Assistive & Utilities  
-  
+### 🔧 Arduino Projects
+- 🏠 [Home_Automation](./Arduino_Projects/Home_Automation/)
+- 🛡️ [Safety_Security](./Arduino_Projects/Safety_Security/)
+- 📏 [Measurement_Monitoring](./Arduino_Projects/Measurement_Monitoring/)
+- 🚗 [Vehicles_Automation](./Arduino_Projects/Vehicles_Automation/)
+- 🎮 [Fun_Games_Visuals](./Arduino_Projects/Fun_Games_Visuals/)
+- 🌱 [Agriculture_Nature](./Arduino_Projects/Agriculture_Nature/)
+- ♿ [Assistive_Utility](./Arduino_Projects/Assistive_Utility/)
+
+### 🌐 ESP8266 IoT Projects
+- 🏠 [Smart_Home_IoT](./ESP_IoT_Projects/Smart_Home_IoT/)
+- 🛡️ [Security_Safety_IoT](./ESP_IoT_Projects/Security_Safety_IoT/)
+- 📏 [Monitoring_Environment_IoT](./ESP_IoT_Projects/Monitoring_Environment_IoT/)
+- 🤖 [Robotics_IoT](./ESP_IoT_Projects/Robotics_IoT/)
+- 🌱 [Agriculture_IoT](./ESP_IoT_Projects/Agriculture_IoT/)
+
 ## 🧰 Hardware & Component Stack
 These projects were built using a wide range of hardware components:
 
