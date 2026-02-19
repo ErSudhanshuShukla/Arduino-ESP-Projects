@@ -16,7 +16,7 @@ Unlike standard hardware projects, this collection focuses heavily on **Smart Co
 * Each category contains projects organized by domain.  
 * Click on a category to explore individual project folders that include source code, documentation, and demo photos.
 
-### 🔧 Arduino Projects
+### 🔧 [Arduino Projects](./Arduino_Projects/)
 - 🏠 [Home_Automation](./Arduino_Projects/Home_Automation/)
 - 🛡️ [Safety_Security](./Arduino_Projects/Safety_Security/)
 - 📏 [Measurement_Monitoring](./Arduino_Projects/Measurement_Monitoring/)
@@ -25,7 +25,7 @@ Unlike standard hardware projects, this collection focuses heavily on **Smart Co
 - 🌱 [Agriculture_Nature](./Arduino_Projects/Agriculture_Nature/)
 - ♿ [Assistive_Utility](./Arduino_Projects/Assistive_Utility/)
 
-### 🌐 ESP8266 IoT Projects
+### 🌐 [ESP8266 IoT Projects](./ESP_IoT_Projects/)
 - 🏠 [Smart_Home_IoT](./ESP_IoT_Projects/Smart_Home_IoT/)
 - 🛡️ [Security_Safety_IoT](./ESP_IoT_Projects/Security_Safety_IoT/)
 - 📏 [Monitoring_Environment_IoT](./ESP_IoT_Projects/Monitoring_Environment_IoT/)
