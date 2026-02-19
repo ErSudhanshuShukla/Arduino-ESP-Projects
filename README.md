@@ -11,33 +11,13 @@ Unlike standard hardware projects, this collection focuses heavily on **Smart Co
 * **🤖 Automation:** Smart logic implemented for automatic decision-making without human intervention.
 
 ## 📂 Project Categories
-The projects are organized into distinct folders based on their real-world application:
-
-### 🏠 Home Automation & Smart Living
-* **Arduino:** Smart Door (Keypad/Servo), Automatic Street Light, Humidity Control Fan.
-* **ESP (IoT):** Wi-Fi Home Automation, IoT Street Light.
-
-### 🛡️ Safety & Security Systems
-* **Arduino:** Laser Security Alarm, Motion Detection (PIR), Fire & Earthquake Alerts.
-* **ESP (IoT):** IoT-based Smoke, Fire, and Security Alarms with phone notifications.
-
-### 📏 Measurement & Environmental Monitoring
-* **Arduino:** Air Quality Monitor, Smart Distance Meter, Weather Station, Sound Level Meter.
-* **ESP (IoT):** Real-time Indoor Environment & Water Level Monitoring.
-
-### 🤖 Robotics & Vehicles
-* **Arduino:** Obstacle Avoiding Car, Bluetooth Car, RFID Toll System.
-* **ESP (IoT):** Wi-Fi Controlled IoT Car.
-
-### 🌱 Agriculture & Nature
-* **Arduino:** Soil Moisture Alert, Plant Irrigation System.
-* **ESP (IoT):** Smart IoT Plant Irrigation.
-
-### 🎮 Fun, Games & Visuals
-* **Arduino Only:** Dino Game, Piano, Music Rhythm Light System, Smart Bluetooth Display.
-
-### 🔧 Assistive & Utilities
-* **Arduino:** Blind Stick, Electronic Voting System.
+- 🏠 Home Automation & Smart Living  
+- 🛡️ Safety & Security Systems  
+- 📏 Measurement & Environmental Monitoring  
+- 🤖 Robotics & Vehicles  
+- 🌱 Agriculture & Nature  
+- 🎮 Fun, Games & Visuals  
+- 🔧 Assistive & Utilities  
 
 ## 🧰 Hardware & Component Stack
 These projects were built using a wide range of hardware components:
