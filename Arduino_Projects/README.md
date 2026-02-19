@@ -25,5 +25,7 @@ Each project folder contains:
 ## 💻 Software Used
 - Arduino IDE
 
+---
 ✨ Feel free to explore individual project folders for detailed documentation, code, and demo photos.
+
 
