@@ -1,18 +1,12 @@
-# 🏠 Smart Home IoT (ESP8266)
+# 🏠 Smart Home IoT
 
-This category contains IoT-based home automation projects built using **ESP8266 (NodeMCU)** for **remote control**, **real-time monitoring**, and **smart appliance automation** over Wi-Fi.
+This category contains IoT-based home automation projects built using ESP8266 (NodeMCU) for remote control, real-time monitoring, and smart appliance automation over Wi-Fi.
 
 ## 📂 Projects in this Category
 - IoT Home Automation  
 - IoT Street Light  
 
-## 📁 Inside Each Project Folder
-Each project folder contains:
-- 📄 `README.md` – Project overview, required components, dependencies, circuit connections, and working principle  
-- 💻 `code/` – ESP8266 source code  
-- 🖼️ `photos/` – Demo images of the prototype  
-
-## 🛠️ Board Used
-- ESP8266 (NodeMCU)
-
-These projects demonstrate practical smart-home use cases using Wi-Fi connectivity and sensor/relay-based control.
+## 🌍 Real-world Use Cases
+- Remote control of home appliances using a mobile app  
+- Automatic control of street/home lights based on conditions or schedules 
+- Prototype development for smart home automation solutions
