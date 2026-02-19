@@ -1,16 +1,20 @@
-# 🤖 Robotics & Vehicles
+# 🚗 Vehicles & Automation
 
-This category contains Arduino-based projects focused on mobile robotics, vehicle control, and automation using sensors and wireless control.
+This category contains Arduino-based projects focused on smart vehicles, traffic control systems, and automation related to transportation and mobility.
 
 ## 📂 Projects in this Category
 - Bluetooth Car  
 - Obstacle Avoiding Car  
+- Line Follower Car  
 - RFID Toll System  
 - Smart Parking Alert System  
 - Wired Joystick Control Car  
+- Traffic Lights  
+- Speed Measurement System  
 
 ## 🌍 Real-world Use Cases
-- Remote and wired control of small robotic vehicles  
-- Obstacle detection and avoidance for autonomous robots  
-- Demonstrating RFID-based access and toll concepts  
-- Building prototypes for smart parking and vehicle automation  
+- Building and controlling smart vehicles and robotic cars  
+- Line-following automation for basic autonomous navigation  
+- Demonstrating traffic signal control systems  
+- Measuring vehicle speed using sensors  
+- Prototyping smart parking and toll automation systems  
