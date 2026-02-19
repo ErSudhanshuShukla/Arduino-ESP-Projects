@@ -1,18 +1,13 @@
-# 🌱 Agriculture & Nature (Arduino)
+# 🌱 Agriculture & Nature
 
-This category contains Arduino-based projects focused on **smart agriculture**, **irrigation automation**, and **environment-aware control**.
+This category contains Arduino-based projects focused on smart agriculture, irrigation automation, and environment-aware control systems.
 
 ## 📂 Projects in this Category
 - Plant Irrigation System  
 - Soil Moisture Alert  
 
-## 📁 Inside Each Project Folder
-Each project folder contains:
-- 📄 `README.md` – Project overview, required components, dependencies, circuit connections, and working principle  
-- 💻 `code/` – Arduino `.ino` source code  
-- 🖼️ `photos/` – Demo images of the prototype  
-
-## 🛠️ Board Used
-- Arduino UNO
-
-These projects demonstrate practical use-cases of sensors and automation in agriculture and environmental monitoring.
+## 🌍 Real-world Use Cases
+- Automatic watering of plants based on soil moisture level  
+- Monitoring soil conditions for home gardens or small farms  
+- Reducing water wastage through sensor-based irrigation  
+- Educational prototypes for smart agriculture concepts  
