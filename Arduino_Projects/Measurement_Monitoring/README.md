@@ -10,12 +10,11 @@ This category contains Arduino-based projects focused on sensing, measurement, a
 - Smart Object Counter  
 - Smart Radar System  
 - Sound Level Meter  
-- Speed Measurement System  
 - Water Level Indicator  
 - Weather Station  
 
 ## 🌍 Real-world Use Cases
 - Monitoring air quality and environmental conditions  
-- Measuring distance, speed, and object count in real time  
+- Measuring distance and object count in real time  
 - Water level monitoring to prevent overflow or dry run  
 - Educational prototypes for sensor-based measurement systems  
