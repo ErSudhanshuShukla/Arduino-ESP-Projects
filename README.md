@@ -50,6 +50,4 @@ These projects were built using a wide range of hardware components:
 * **Telegram API** (Push Notifications)
 
 ---
-*✨ Feel free to explore the projects to review the code structure, hardware integration, and implementation approach*
-
-> Focus areas: Embedded Systems, IoT, Core Electronics, Rapid Prototyping (cardboard + 3D printed parts)
+*Explore the projects to review the code structure, hardware integration, and implementation approach.*
