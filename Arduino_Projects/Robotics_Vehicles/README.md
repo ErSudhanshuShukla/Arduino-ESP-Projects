@@ -1,6 +1,6 @@
-# 🤖 Robotics & Vehicles (Arduino)
+# 🤖 Robotics & Vehicles
 
-This category contains Arduino-based projects focused on **mobile robotics**, **vehicle control**, and **automation using sensors and wireless control**.
+This category contains Arduino-based projects focused on mobile robotics, vehicle control, and automation using sensors and wireless control.
 
 ## 📂 Projects in this Category
 - Bluetooth Car  
@@ -9,13 +9,8 @@ This category contains Arduino-based projects focused on **mobile robotics**, **
 - Smart Parking Alert System  
 - Wired Joystick Control Car  
 
-## 📁 Inside Each Project Folder
-Each project folder contains:
-- 📄 `README.md` – Project overview, required components, dependencies, circuit connections, and working principle  
-- 💻 `code/` – Arduino `.ino` source code  
-- 🖼️ `photos/` – Demo images of the prototype  
-
-## 🛠️ Board Used
-- Arduino UNO
-
-These projects demonstrate practical robotics concepts such as motor control, obstacle detection, and wireless vehicle control.
+## 🌍 Real-world Use Cases
+- Remote and wired control of small robotic vehicles  
+- Obstacle detection and avoidance for autonomous robots  
+- Demonstrating RFID-based access and toll concepts  
+- Building prototypes for smart parking and vehicle automation  
