@@ -20,5 +20,11 @@ Each project folder contains:
 ## 🛠️ Board Used
 - ESP8266 (NodeMCU)
 
+## 💻 Software Used
+- Arduino IDE (ESP8266 core)
+- Blynk App (IoT dashboard & remote control)
+- Telegram Bot API (push notifications)
+
 ✨ Explore individual project folders for detailed documentation, code, and demo photos.  
 Happy building with IoT! 🚀
+
