@@ -1,6 +1,6 @@
-# 🛡️ Safety & Security (Arduino)
+# 🛡️ Safety & Security
 
-This category contains Arduino-based projects focused on **safety systems**, **security monitoring**, and **alert mechanisms** for real-world scenarios.
+This category contains Arduino-based projects focused on safety systems, security monitoring, and alert mechanisms for real-world scenarios.
 
 ## 📂 Projects in this Category
 - Earthquake Alert System  
@@ -12,13 +12,8 @@ This category contains Arduino-based projects focused on **safety systems**, **s
 - Smart Keypad Lock  
 - Smoke Alarm  
 
-## 📁 Inside Each Project Folder
-Each project folder contains:
-- 📄 `README.md` – Project overview, required components, dependencies, circuit connections, and working principle  
-- 💻 `code/` – Arduino `.ino` source code  
-- 🖼️ `photos/` – Demo images of the prototype  
-
-## 🛠️ Board Used
-- Arduino UNO
-
-These projects showcase practical safety and security solutions using sensors, alarms, and access control mechanisms.
+## 🌍 Real-world Use Cases
+- Early warning systems for fire, smoke, and earthquakes  
+- Intrusion detection and security alerts for homes or labs  
+- Access control using keypad-based locking systems  
+- Safety automation prototypes for real-world scenarios  
