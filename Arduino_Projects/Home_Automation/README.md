@@ -1,6 +1,6 @@
-# 🏠 Home Automation (Arduino)
+# 🏠 Home Automation
 
-This category contains Arduino-based projects focused on **smart home automation**, **sensor-based control**, and **appliance automation**.
+This category contains Arduino-based projects focused on smart home automation, sensor-based control, and appliance automation.
 
 ## 📂 Projects in this Category
 - Automatic Street Light  
@@ -15,13 +15,8 @@ This category contains Arduino-based projects focused on **smart home automation
 - Smart Stair Light  
 - Touch Sensor Light  
 
-## 📁 Inside Each Project Folder
-Each project folder contains:
-- 📄 `README.md` – Project overview, required components, dependencies, circuit connections, and working principle  
-- 💻 `code/` – Arduino `.ino` source code  
-- 🖼️ `photos/` – Demo images of the prototype  
-
-## 🛠️ Board Used
-- Arduino UNO
-
-These projects demonstrate practical smart-home use cases using sensors, actuators, and embedded logic.
+## 🌍 Real-world Use Cases
+- Automatic control of home lights and appliances  
+- Remote control of devices using Bluetooth  
+- Touch and sound-based control for smart homes  
+- Building low-cost smart home automation prototypes  
