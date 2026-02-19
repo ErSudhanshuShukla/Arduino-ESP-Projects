@@ -1,9 +1,9 @@
 # 🛠️ Basics to Advanced Arduino & ESP8266 IoT Projects Collection
 
-![GitHub repo size](https://img.shields.io/github/repo-size/ErSudhanshuShukla/Arduino-ESP-Projects)
-![GitHub language](https://img.shields.io/github/languages/top/ErSudhanshuShukla/Arduino-ESP-Projects)
 ![GitHub stars](https://img.shields.io/github/stars/ErSudhanshuShukla/Arduino-ESP-Projects?style=social)
-![Last commit](https://img.shields.io/github/last-commit/ErSudhanshuShukla/Arduino-ESP-Projects)
+![Last commit](https://img.shields.io/github/last-commit/ErSudhanshuShukla/Arduino-ESP-Projects?style=flat)
+![GitHub repo size](https://img.shields.io/github/repo-size/ErSudhanshuShukla/Arduino-ESP-Projects?style=flat)
+![Top language](https://img.shields.io/github/languages/top/ErSudhanshuShukla/Arduino-ESP-Projects?style=flat)
 
 Welcome to my comprehensive repository of Electronics and IoT projects! This collection features over **50+ practical implementations** developed using **Arduino UNO** and **ESP8266 (NodeMCU)**.
 
