@@ -12,7 +12,7 @@ Unlike standard hardware projects, this collection focuses heavily on **Smart Co
 
 ## 📂 Project Categories
 
-### 🚀 How to Navigate This Repo
+🚀 How to Navigate This Repo
 Each category contains projects organized by domain.  
 Click on a category to explore individual project folders that include source code, documentation, and demo photos.
 
