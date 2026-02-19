@@ -12,9 +12,9 @@ Unlike standard hardware projects, this collection focuses heavily on **Smart Co
 
 ## 📂 Project Categories
 
-🚀 How to Navigate This Repo
-* Each category contains projects organized by domain.  
-* Click on a category to explore individual project folders that include source code, documentation, and demo photos.
+> 🔎 **How to Navigate**
+> - Each category contains projects organized by domain
+> - Click on a category to explore individual project folders with code, docs, and demo photos
 
 ### 🔧 [Arduino Projects](./Arduino_Projects/)
 - 🏠 [Home_Automation](./Arduino_Projects/Home_Automation/)
