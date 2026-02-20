@@ -2,8 +2,6 @@
 
 This project automatically controls a fan using a relay module based on real-time humidity and temperature values measured by a DHT11 sensor. The system helps maintain comfortable environmental conditions by turning the fan ON/OFF based on predefined thresholds.
 
----
-
 ## 🧩 Required Components
 - Arduino UNO  
 - DHT11 Temperature & Humidity Sensor (Module)  
@@ -11,26 +9,24 @@ This project automatically controls a fan using a relay module based on real-tim
 - DC Fan / AC Fan (via relay)  
 - Jumper Wires  
 - Breadboard  
-
----
-
+  
 ## 🔌 Connections
-
-### ✅ DHT11 Sensor
+  
+### DHT11 Sensor
 | DHT11 Pin | Arduino Pin |
 |-----------|-------------|
 | VCC       | 5V          |
 | GND       | GND         |
 | DATA      | Pin 2       |
 
-### ✅ Relay Module
+### Relay Module
 | Relay Pin | Arduino Pin |
 |-----------|-------------|
 | IN        | Pin 3       |
 | VCC       | 5V          |
 | GND       | GND         |
 
-### ✅ Fan (via Relay)
+### Fan (via Relay)
 | Fan Wire | Relay Terminal |
 |----------|----------------|
 | Live / + | COM            |
@@ -40,12 +36,8 @@ This project automatically controls a fan using a relay module based on real-tim
 > If you are controlling an AC fan, ensure proper insulation and safety precautions.  
 > Use an opto-isolated relay module and avoid touching live terminals.
 
----
-
 ## 💻 Software Used
 - Arduino IDE  
-
----
 
 ## 📚 Dependencies
 Install the following libraries from Arduino Library Manager:
@@ -56,13 +48,9 @@ Install the following libraries from Arduino Library Manager:
 - **Adafruit Unified Sensor**  
   https://github.com/adafruit/Adafruit_Sensor  
 
----
-
 ## 📁 Project Files
 - 💻 **Source Code:** `Humidity_Control_Fan.ino`  
 - 📸 **Project Image:** `Humidity_Control_Fan.jpg`  
-
----
 
 ## ⚙️ Working
 
@@ -80,16 +68,12 @@ Install the following libraries from Arduino Library Manager:
 > - LOW  → Fan ON  
 > - HIGH → Fan OFF  
 
----
-
 ## 📸 Demo
 <p align="center">
   <img src="./photos/Humidity_Control_Fan.jpg" width="500" alt="Humidity Control Fan Prototype"/>
   <br/>
   <em>Prototype mounted on cardboard with DHT11 sensor, relay module, and Arduino UNO.</em>
 </p>
-
----
 
 ## 🌍 Real-world Use Cases
 - Automatic room ventilation  
@@ -98,13 +82,9 @@ Install the following libraries from Arduino Library Manager:
 - School / college mini projects  
 - Smart home automation demos  
 
----
-
 ## 🚀 Future Improvements
 - Add LCD/OLED display for live readings  
 - Add IoT connectivity (ESP8266 / ESP32)  
 - Add adjustable thresholds (buttons / potentiometer)  
 - Add hysteresis to avoid frequent ON/OFF switching  
-- Add data logging  
-
----
+- Add data logging 
