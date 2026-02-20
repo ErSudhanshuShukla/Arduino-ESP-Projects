@@ -1,4 +1,4 @@
-# 💨 Humidity & Temperature Based Fan Control (Arduino)
+# 💨 Humidity & Temperature Based Fan Control
 
 This project automatically controls a fan using a relay module based on real-time humidity and temperature values measured by a DHT11 sensor. The system helps maintain comfortable environmental conditions by turning the fan ON/OFF based on predefined thresholds.
 
@@ -15,34 +15,30 @@ This project automatically controls a fan using a relay module based on real-tim
 ---
 
 ## 🔌 Connections
-- **DHT11 VCC** → Arduino **5V**  
-- **DHT11 GND** → Arduino **GND**  
-- **DHT11 DATA** → Arduino **Pin 2**  
 
-- **Relay IN** → Arduino **Pin 3**  
-- **Relay VCC** → **5V**  
-- **Relay GND** → **GND**  
+### ✅ DHT11 Sensor
+| DHT11 Pin | Arduino Pin |
+|-----------|-------------|
+| VCC       | 5V          |
+| GND       | GND         |
+| DATA      | Pin 2       |
 
-- **Fan** → Connected via relay **NO** & **COM** terminals  
+### ✅ Relay Module
+| Relay Pin | Arduino Pin |
+|-----------|-------------|
+| IN        | Pin 3       |
+| VCC       | 5V          |
+| GND       | GND         |
 
-> ⚠️ **Safety Note:** If you are controlling an AC fan, ensure proper insulation and safety precautions. Use a relay module with opto-isolation and avoid touching live terminals.
+### ✅ Fan (via Relay)
+| Fan Wire | Relay Terminal |
+|----------|----------------|
+| Live / + | COM            |
+| Load     | NO             |
 
----
-
-## ⚙️ Working
-- The DHT11 sensor measures **humidity (%)** and **temperature (°C)**.  
-- Arduino reads sensor values every **2 seconds**.  
-- If **humidity > 60%** and **temperature > 20°C**, the relay activates and the fan turns **ON**.  
-- Otherwise, the fan remains **OFF**.  
-- Live readings and fan status are displayed on the **Serial Monitor** for monitoring and debugging.
-
----
-
-## 🌍 Real-world Use Cases
-- Automatic ventilation in rooms and laboratories  
-- Humidity-based exhaust fan control  
-- Smart environment control systems  
-- Educational automation and IoT prototypes  
+> ⚠️ **Safety Note:**  
+> If you are controlling an AC fan, ensure proper insulation and safety precautions.  
+> Use an opto-isolated relay module and avoid touching live terminals.
 
 ---
 
@@ -52,28 +48,63 @@ This project automatically controls a fan using a relay module based on real-tim
 ---
 
 ## 📚 Dependencies
-- [Adafruit DHT Sensor Library](https://github.com/adafruit/DHT-sensor-library)  
-- [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor)
+Install the following libraries from Arduino Library Manager:
+
+- **Adafruit DHT Sensor Library**  
+  https://github.com/adafruit/DHT-sensor-library  
+
+- **Adafruit Unified Sensor**  
+  https://github.com/adafruit/Adafruit_Sensor  
 
 ---
 
 ## 📁 Project Files
-- 💻 **Source Code:** [Humidity_Control_Fan.ino](./code/Humidity_Control_Fan.ino)  
-- 📸 **Project Photo:** [Humidity_Control_Fan.jpg](./photos/Humidity_Control_Fan.jpg)
+- 💻 **Source Code:** `Humidity_Control_Fan.ino`  
+- 📸 **Project Image:** `Humidity_Control_Fan.jpg`  
+
+---
+
+## ⚙️ Working
+
+- The DHT11 sensor measures:
+  - **Humidity (%)**
+  - **Temperature (°C)**
+- Arduino reads sensor values every **2 seconds**.
+- The fan turns **ON** when:
+  - **Humidity > 60%**
+  - **Temperature > 20°C**
+- Otherwise, the fan remains **OFF**.
+- Live readings and fan status are displayed on the **Serial Monitor**.
+
+> ℹ️ **Relay Logic (Active LOW):**  
+> - LOW  → Fan ON  
+> - HIGH → Fan OFF  
 
 ---
 
 ## 📸 Demo
-![Humidity Control Fan](./photos/Humidity_Control_Fan.jpg)
+<p align="center">
+  <img src="./photos/Humidity_Control_Fan.jpg" width="500" alt="Humidity Control Fan Prototype"/>
+  <br/>
+  <em>Prototype mounted on cardboard with DHT11 sensor, relay module, and Arduino UNO.</em>
+</p>
+
+---
+
+## 🌍 Real-world Use Cases
+- Automatic room ventilation  
+- Humidity-based exhaust fan  
+- Smart environment control  
+- School / college mini projects  
+- Smart home automation demos  
 
 ---
 
 ## 🚀 Future Improvements
 - Add LCD/OLED display for live readings  
-- Add IoT connectivity for remote monitoring  
-- Add adjustable thresholds using potentiometer or buttons  
-- Implement hysteresis to prevent frequent ON/OFF switching  
+- Add IoT connectivity (ESP8266 / ESP32)  
+- Add adjustable thresholds (buttons / potentiometer)  
+- Add hysteresis to avoid frequent ON/OFF switching  
+- Add data logging  
 
 ---
-## 📄 License
-This project is shared for educational purposes. You may use and modify it for personal and academic projects.
