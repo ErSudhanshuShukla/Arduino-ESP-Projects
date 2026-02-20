@@ -6,7 +6,7 @@ Projects are organized by domain to showcase practical applications of **core el
 ## 📂 Categories
 
 <details>
-  <summary>🌱 <a href="./Arduino_Projects/Agriculture_Nature/">Agriculture_Nature</a></summary>
+  <summary>🌱 <a href="./Agriculture_Nature/">Agriculture_Nature</a></summary>
 
   >
  - Plant Irrigation System
@@ -14,7 +14,7 @@ Projects are organized by domain to showcase practical applications of **core el
 </details>
 
 <details>
-  <summary>♿ <a href="./Arduino_Projects/Assistive_Utility/">Assistive_Utility</a></summary>
+  <summary>♿ <a href="./Assistive_Utility/">Assistive_Utility</a></summary>
 
   >
 - Blind Stick
@@ -22,7 +22,7 @@ Projects are organized by domain to showcase practical applications of **core el
 </details>
 
 <details>
-  <summary>🎮 <a href="./Arduino_Projects/Fun_Games_Visuals/">Fun_Games_Visuals</a></summary>
+  <summary>🎮 <a href="./Fun_Games_Visuals/">Fun_Games_Visuals</a></summary>
 
 >
 - Dino Game  
@@ -34,7 +34,7 @@ Projects are organized by domain to showcase practical applications of **core el
 </details>
 
 <details>
-  <summary>🏠 <a href="./Arduino_Projects/Home_Automation/">Home_Automation</a></summary>
+  <summary>🏠 <a href="./Home_Automation/">Home_Automation</a></summary>
 
 >
 - Automatic Street Light  
@@ -51,7 +51,7 @@ Projects are organized by domain to showcase practical applications of **core el
 </details>
 
 <details>
-  <summary>📏 <a href="./Arduino_Projects/Measurement_Monitoring/">Measurement_Monitoring</a></summary>
+  <summary>📏 <a href="./Measurement_Monitoring/">Measurement_Monitoring</a></summary>
 
 >
 - Air Quality Monitor  
@@ -66,7 +66,7 @@ Projects are organized by domain to showcase practical applications of **core el
 </details>
 
 <details>
-  <summary>🛡️ <a href="./Arduino_Projects/Safety_Security/">Safety_Security</a></summary>
+  <summary>🛡️ <a href="./Safety_Security/">Safety_Security</a></summary>
 
 >
 - Earthquake Alert System  
@@ -80,7 +80,7 @@ Projects are organized by domain to showcase practical applications of **core el
 </details>
 
 <details>
-  <summary>🚗 <a href="./Arduino_Projects/Vehicles_Automation/">Vehicles_Automation</a></summary>
+  <summary>🚗 <a href="./Vehicles_Automation/">Vehicles_Automation</a></summary>
 
 >
 - Bluetooth Car  
@@ -100,6 +100,3 @@ Projects are organized by domain to showcase practical applications of **core el
 - Arduino IDE
   
 ---
-✨ Explore each project folder for detailed documentation, source code, and demo photos.
-
-
