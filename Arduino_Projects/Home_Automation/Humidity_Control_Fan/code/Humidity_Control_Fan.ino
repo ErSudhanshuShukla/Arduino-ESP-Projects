@@ -49,8 +49,8 @@ void loop() {
   // ---------------- FAN CONTROL LOGIC ----------------
   // Turn ON fan only if:
   // 1. Humidity is greater than 60%
-  // 2. Temperature is above 20°C
-  if (humidity > 60 && temperature > 20) {
+  // 2. Temperature is above 25°C
+  if (humidity > 60 && temperature > 25) {
     digitalWrite(relay, LOW);   // Relay ON (Fan ON)
     Serial.println("Fan: ON");
   } else {
