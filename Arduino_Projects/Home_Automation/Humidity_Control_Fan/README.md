@@ -87,4 +87,3 @@ Install the following libraries from Arduino Library Manager:
 - Add IoT connectivity (ESP8266 / ESP32)  
 - Add adjustable thresholds (buttons / potentiometer) 
 - Add data logging
-
