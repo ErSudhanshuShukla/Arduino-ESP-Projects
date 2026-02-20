@@ -8,7 +8,6 @@ This project automatically controls a fan using a relay module based on real-tim
 - 1-Channel Relay Module (Active LOW)  
 - DC Fan / AC Fan (via relay)  
 - Jumper Wires  
-- Breadboard  
   
 ## 🔌 Connections
   
@@ -85,7 +84,5 @@ Install the following libraries from Arduino Library Manager:
 ## 🚀 Future Improvements
 - Add LCD/OLED display for live readings  
 - Add IoT connectivity (ESP8266 / ESP32)  
-- Add adjustable thresholds (buttons / potentiometer)  
-- Add hysteresis to avoid frequent ON/OFF switching  
-- Add data logging 
-
+- Add adjustable thresholds (buttons / potentiometer) 
+- Add data logging
