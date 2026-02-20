@@ -7,7 +7,8 @@ This project automatically controls a fan using a relay module based on real-tim
 - DHT11 Temperature & Humidity Sensor (Module)  
 - 1-Channel Relay Module (Active LOW)  
 - DC Fan / AC Fan (via relay)  
-- Jumper Wires  
+- Jumper Wires
+- Custom Prototyping Baseplate with 3D printed Mounts 
   
 ## 🔌 Connections
   
@@ -68,10 +69,10 @@ Install the following libraries from Arduino Library Manager:
 > - HIGH → Fan OFF  
 
 ## 📸 Demo
+
+*Hardware prototype featuring an Arduino UNO, DHT11 sensor, and relay module secured on a custom prototyping baseplate with 3D-printed mounts.*
 <p align="center">
-  <img src="./photos/Humidity_Control_Fan.jpg" width="500" alt="Humidity Control Fan Prototype"/>
-  <br/>
-  <em>Prototype mounted on cardboard with DHT11 sensor, relay module, and Arduino UNO.</em>
+  <img src="./photos/Humidity_Control_Fan.jpg" width="400" alt="Humidity Control Fan Prototype"/>
 </p>
 
 ## 🌍 Real-world Use Cases
@@ -86,3 +87,4 @@ Install the following libraries from Arduino Library Manager:
 - Add IoT connectivity (ESP8266 / ESP32)  
 - Add adjustable thresholds (buttons / potentiometer) 
 - Add data logging
+
