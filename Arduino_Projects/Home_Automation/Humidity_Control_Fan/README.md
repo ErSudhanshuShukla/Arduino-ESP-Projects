@@ -49,8 +49,8 @@ Install the following libraries from Arduino Library Manager:
   https://github.com/adafruit/Adafruit_Sensor  
 
 ## 📁 Project Files
-- 💻 **Source Code:** `Humidity_Control_Fan.ino`  
-- 📸 **Project Image:** `Humidity_Control_Fan.jpg`  
+- 💻 **Source Code:** [Humidity_Control_Fan.ino](./code/Humidity_Control_Fan.ino)
+- 📸 **Project Photo:** [Humidity_Control_Fan.jpg](./photos/Humidity_Control_Fan.jpg)
 
 ## ⚙️ Working
 
@@ -88,3 +88,4 @@ Install the following libraries from Arduino Library Manager:
 - Add adjustable thresholds (buttons / potentiometer)  
 - Add hysteresis to avoid frequent ON/OFF switching  
 - Add data logging 
+
