@@ -60,7 +60,7 @@ Install the following libraries from Arduino Library Manager:
 - Arduino reads sensor values every **2 seconds**.
 - The fan turns **ON** when:
   - **Humidity > 60%**
-  - **Temperature > 20°C**
+  - **Temperature > 25°C**
 - Otherwise, the fan remains **OFF**.
 - Live readings and fan status are displayed on the **Serial Monitor**.
 
@@ -87,3 +87,4 @@ Install the following libraries from Arduino Library Manager:
 - Add IoT connectivity (ESP8266 / ESP32)  
 - Add adjustable thresholds (buttons / potentiometer) 
 - Add data logging
+
