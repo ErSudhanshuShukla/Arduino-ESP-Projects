@@ -35,7 +35,7 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 
 ## 📸 Demo
 <p align="left">
-  <img src="./photos/Automatic_Street_Light.jpg" width="400" alt="LDR Automatic Light Prototype"/>
+  <img src="./photos/Automatic_Street_Light.jpg" width="300" alt="LDR Automatic Light Prototype"/>
 </p>
 
 ## ⚙️ Working
@@ -50,6 +50,7 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - Introduce adaptive brightness control based on ambient light levels  
 - Support high-power lighting through isolated relay control  
 - Extend the system with IoT connectivity for remote monitoring and analytics
+
 
 
 
