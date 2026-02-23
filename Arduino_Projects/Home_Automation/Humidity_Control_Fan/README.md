@@ -17,48 +17,48 @@ This project automatically controls a fan using a relay module based on real-tim
 <table>
   <thead>
     <tr>
-      <th>Component</th>
-      <th>Component Pin</th>
-      <th>Arduino Pin</th>
+      <th align="center">Component</th>
+      <th align="center">Component Pin</th>
+      <th align="center">Arduino Pin</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3"><b>DHT11 Module</b></td>
-      <td>VCC</td>
-      <td>5V</td>
+      <td rowspan="3" align="center"><b>DHT11 Module</b></td>
+      <td align="center">VCC</td>
+      <td align="center">5V</td>
     </tr>
     <tr>
-      <td>GND</td>
-      <td>GND</td>
+      <td align="center">GND</td>
+      <td align="center">GND</td>
     </tr>
     <tr>
-      <td>DATA</td>
-      <td>Pin 2</td>
+      <td align="center">DATA</td>
+      <td align="center">Pin 2</td>
     </tr>
     <tr>
-      <td rowspan="3"><b>Relay Module</b></td>
-      <td>IN</td>
-      <td>Pin 3</td>
+      <td rowspan="3" align="center"><b>Relay Module</b></td>
+      <td align="center">IN</td>
+      <td align="center">Pin 3</td>
     </tr>
     <tr>
-      <td>VCC</td>
-      <td>5V</td>
+      <td align="center">VCC</td>
+      <td align="center">5V</td>
     </tr>
     <tr>
-      <td>GND</td>
-      <td>GND</td>
+      <td align="center">GND</td>
+      <td align="center">GND</td>
     </tr>
   </tbody>
 </table>
 
 ### 2. Appliance Connection (Fan via Relay)
 | Fan Wire | Relay Terminal |
-| :--- | :--- |
+| :---: | :---: |
 | Live / + | COM |
 | Load | NO |
 
-> ⚠️ **Safety Note:**  
+> ⚠️ **Safety Note:**
 > - Connect the fan through a relay module, not directly to Arduino.
 > - Be careful while working with AC loads.
 
@@ -102,5 +102,3 @@ Install the following libraries from Arduino Library Manager:
 - Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring.  
 - Provide user-configurable thresholds via buttons or potentiometer.  
 - Implement data logging for historical analysis.  
-
-
