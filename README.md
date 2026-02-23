@@ -62,12 +62,11 @@ These projects were built using a wide range of hardware components:
 * **Communication:** HC-05 Bluetooth Modules.  
 * **Power:** 18650 Li-ion Cells with Holders.  
 
-## 🛠️ Prototyping, Tools & Mechanical
-- **Custom Prototyping Baseplate** (with 3D-printed mounts)  
-- **3D-Printed Parts** – for component mounting, alignment, and mechanical fit testing  
-- **3D Design Resources:** Custom designs and community models from [Thingiverse](https://www.thingiverse.com/) 
-- **Electronics Prototyping:** Breadboards, Zero PCBs (Perfboards), Jumper Wires  
-- **Assembly Tools:** Soldering Iron, Hot Glue Gun
+## 🛠️ Prototyping & Tools  
+* **3D-Printed Parts** (mounting & fit testing)  
+* **3D Model Reference:** [**Thingiverse**](https://www.thingiverse.com)
+* **Electronics Prototyping:** Breadboard, Perfboard (Zero PCB), Jumper Wires
+* **Tools:** Soldering Iron, Hot Glue Gun
   
 ## 💻 Software Used
 * **Arduino IDE** (C++ Programming)  
