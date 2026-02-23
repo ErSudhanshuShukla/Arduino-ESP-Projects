@@ -14,14 +14,43 @@ This project automatically controls a fan using a relay module based on real-tim
 ## 🔌 Connections
 
 ### 1. Control Circuit (Arduino & Modules)
-| Component | Component Pin | Arduino Pin |
-| :--- | :--- | :--- |
-| **DHT11 Sensor** | VCC | 5V |
-| **DHT11 Sensor** | GND | GND |
-| **DHT11 Sensor** | DATA | Pin 2 |
-| **Relay Module** | IN | Pin 3 |
-| **Relay Module** | VCC | 5V |
-| **Relay Module** | GND | GND |
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Component Pin</th>
+      <th>Arduino Pin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3"><b>DHT11 Module</b></td>
+      <td>VCC</td>
+      <td>5V</td>
+    </tr>
+    <tr>
+      <td>GND</td>
+      <td>GND</td>
+    </tr>
+    <tr>
+      <td>DATA</td>
+      <td>Pin 2</td>
+    </tr>
+    <tr>
+      <td rowspan="3"><b>Relay Module</b></td>
+      <td>IN</td>
+      <td>Pin 3</td>
+    </tr>
+    <tr>
+      <td>VCC</td>
+      <td>5V</td>
+    </tr>
+    <tr>
+      <td>GND</td>
+      <td>GND</td>
+    </tr>
+  </tbody>
+</table>
 
 ### 2. Appliance Connection (Fan via Relay)
 | Fan Wire | Relay Terminal |
@@ -73,4 +102,5 @@ Install the following libraries from Arduino Library Manager:
 - Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring.  
 - Provide user-configurable thresholds via buttons or potentiometer.  
 - Implement data logging for historical analysis.  
+
 
