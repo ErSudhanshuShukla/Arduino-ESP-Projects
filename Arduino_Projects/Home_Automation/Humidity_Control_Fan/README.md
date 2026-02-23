@@ -4,7 +4,7 @@ This project automatically controls a fan using a relay module based on real-tim
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
-- 1 X DHT11 (Module)  
+- 1 x DHT11 (Module)  
 - 1 x Single Channel Relay Module (Active LOW) 
 - 1 x DC Fan / AC Fan (via relay)  
 - Breadboard & Jumper Wires
@@ -69,6 +69,7 @@ Install the following libraries from Arduino Library Manager:
 - Add IoT connectivity (ESP8266 / ESP32)  
 - Add adjustable thresholds (buttons / potentiometer) 
 - Add data logging
+
 
 
 
