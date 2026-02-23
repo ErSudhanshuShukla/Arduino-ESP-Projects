@@ -1,4 +1,4 @@
-# 💨 Humidity & Temperature Based Fan Control
+# 🪭 Humidity & Temperature Based Fan Control
 
 This project automatically controls a fan using a relay module based on real-time humidity and temperature values measured by a DHT11 sensor. The system helps maintain comfortable environmental conditions by turning the fan ON/OFF based on predefined thresholds.
 
@@ -9,7 +9,7 @@ This project automatically controls a fan using a relay module based on real-tim
 - 1 x DC Fan / AC Fan (via relay)  
 - Breadboard & Jumper Wires
 - USB Cable / Power Supply 
-- 3D Model (Reference): [Thingiverse](https://www.thingiverse.com) 
+- 3D Model (Reference): [**Thingiverse**](https://www.thingiverse.com) 
   
 ## 🔌 Connections
 
@@ -29,13 +29,12 @@ This project automatically controls a fan using a relay module based on real-tim
 > Use an opto-isolated relay module and avoid touching live terminals.
 
 ## 💻 Software Used
-- Arduino IDE  
+- [**Arduino IDE**](https://www.arduino.cc/en/software/)
 
 ## 📚 Dependencies
 Install the following libraries from Arduino Library Manager:
 
-- [**Adafruit DHT Sensor Library**](https://github.com/adafruit/DHT-sensor-library) 
-
+- [**Adafruit DHT Sensor Library**](https://github.com/adafruit/DHT-sensor-library)
 - [**Adafruit Unified Sensor**](https://github.com/adafruit/Adafruit_Sensor)  
 
 ## 📁 Project Files
@@ -69,3 +68,4 @@ Install the following libraries from Arduino Library Manager:
 - Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring  
 - Provide user-configurable thresholds via buttons or potentiometer  
 - Implement data logging for historical analysis  
+
