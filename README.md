@@ -11,9 +11,11 @@ This repository showcases a progression from basic circuit building to advanced 
 
 ## 🚀 Key Features & IoT Integrations
 Unlike standard hardware projects, this collection focuses heavily on **Smart Connectivity**:
-* **📱 Telegram App Integration:** Custom bots configured to send **Instant Push Notifications** and critical alerts (e.g., "Fire Detected!", "Water Tank Full") directly to smartphones.
-* **📊 Blynk IoT Platform:** Utilized for creating visual dashboards to **monitor sensor data** live and **control appliances** (Lights, Fans, Motors) remotely via Wi-Fi.
-* **🤖 Automation:** Smart logic implemented for automatic decision-making without human intervention.
+* **📱 Telegram Bot Integration:** Custom bots configured to send **instant push notifications** and critical alerts (e.g., "Fire Detected!", "Water Tank Full") directly to smartphones.
+* **📊 Blynk IoT Platform:** Used to create visual dashboards to **monitor sensor data** live and **control appliances** (lights, fans, motors) remotely over Wi-Fi.
+* **🔵 Bluetooth Control (HC-05):** Mobile app–based control for Bluetooth-enabled projects such as **Smart Display** and **Bluetooth Car** using Serial Bluetooth Terminal.
+* **📶 Wi-Fi Enabled IoT:** Remote monitoring and control over Wi-Fi for projects like **IoT Car**, **IoT Home Automation**, and sensor-based IoT systems using ESP8266.
+* **🤖 Automation:** Smart logic for automatic decision-making without human intervention.
 
 ## 📂 Project Categories
 
@@ -62,9 +64,10 @@ These projects were built using a wide range of hardware components:
 * **Prototyping:** Breadboards, Zero PCBs, and Jumper Wires.
 
 ## 💻 Software Used
-* **Arduino IDE** (C++ Programming)
-* **Blynk App** (IoT Dashboard)
-* **Telegram API** (Push Notifications)
+* **Arduino IDE** (C++ Programming)  
+* **Blynk App** (IoT Dashboard)  
+* **Telegram Bot API** (Push notifications & alerts)  
+* **Serial Bluetooth Terminal (Android App)** (Bluetooth communication with HC-05 modules)
 
 ---
 *Explore the projects to review the code structure, hardware integration, and implementation approach.*
