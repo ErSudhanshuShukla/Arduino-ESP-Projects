@@ -7,12 +7,12 @@
 
 Welcome to my comprehensive repository of Electronics and IoT projects! This collection features over **50+ practical implementations** developed using **Arduino UNO** and **ESP8266 (NodeMCU)**.
 
-This repository showcases a progression from basic circuit building to advanced IoT solutions for real-time monitoring and remote control.
+This repository showcases a progression from basic circuit building to advanced IoT solutions for real-time monitoring and remote control applications.
 
 ## 🚀 Key Features & IoT Integrations
 Unlike standard hardware projects, this collection focuses heavily on **Smart Connectivity**:
 * **📱 Telegram Bot Integration:** Custom bots configured to send **instant push notifications** and critical alerts (e.g., "Fire Detected!", "Water Tank Full") directly to smartphones.
-* **📊 Blynk IoT Platform:** Used to create visual dashboards to **monitor sensor data** live and **control appliances** (lights, fans, motors) remotely over Wi-Fi.
+* **📊 Blynk IoT Platform:** Used to create visual dashboards to **monitor sensor data** live and **control appliances** (Lights, Fans, Motors) remotely over Wi-Fi.
 * **🔵 Bluetooth Control (HC-05):** Mobile app–based control for Bluetooth-enabled projects such as **Smart Display** and **Bluetooth Car** using Serial Bluetooth Terminal.
 * **📶 Wi-Fi Enabled IoT:** Remote monitoring and control over Wi-Fi for projects like **IoT Car**, **IoT Home Automation**, and sensor-based IoT systems using ESP8266.
 * **🤖 Automation:** Smart logic for automatic decision-making without human intervention.
