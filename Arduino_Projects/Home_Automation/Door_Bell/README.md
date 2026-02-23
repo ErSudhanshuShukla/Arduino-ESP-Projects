@@ -13,12 +13,35 @@ When the button is pressed, a short doorbell melody is played.
   
 ## 🔌 Connections
 
-| Component | Component Pin | Arduino Pin |
-| :--- | :--- | :--- |
-| **Push Button** | One side | Pin 9 |
-| **Push Button** | Other side | GND |
-| **Buzzer** | + (Signal) | Pin 11 |
-| **Buzzer** | - (GND) | GND |
+<table>
+  <thead>
+    <tr>
+      <th align="center">Component</th>
+      <th align="center">Component Pin</th>
+      <th align="center">Arduino Pin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" align="center"><b>Push Button</b></td>
+      <td align="center">One side</td>
+      <td align="center">Pin 9</td>
+    </tr>
+    <tr>
+      <td align="center">Other side</td>
+      <td align="center">GND</td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center"><b>Buzzer</b></td>
+      <td align="center">+ (Signal)</td>
+      <td align="center">Pin 11</td>
+    </tr>
+    <tr>
+      <td align="center">- (GND)</td>
+      <td align="center">GND</td>
+    </tr>
+  </tbody>
+</table>
 
 > ℹ️ **Note:** Using `INPUT_PULLUP`, so the button is **Active LOW**
 > - Not pressed → HIGH  
@@ -50,3 +73,4 @@ When the button is pressed, a short doorbell melody is played.
 - Support multiple selectable ringtones. 
 - Wireless trigger using RF/Bluetooth/Wi-Fi.
 - Enclosure for safe, permanent installation.
+
