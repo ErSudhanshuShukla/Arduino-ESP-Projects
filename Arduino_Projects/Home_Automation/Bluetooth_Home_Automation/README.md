@@ -15,15 +15,47 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 ## 🔌 Connections
 
 ### 1. Control Circuit (Arduino & Modules)
-| Component | Component Pin | Arduino Pin |
-| :--- | :--- | :--- |
-| **HC-05 BT Module**| VCC | 5V |
-| **HC-05 BT Module**| GND | GND |
-| **HC-05 BT Module**| TXD | RX (Pin 0) |
-| **HC-05 BT Module**| RXD | TX (Pin 1) |
-| **Relay Module** | IN | Pin 8 |
-| **Relay Module** | VCC | 5V |
-| **Relay Module** | GND | GND |
+<table>
+  <thead>
+    <tr>
+      <th align="center">Component</th>
+      <th align="center">Component Pin</th>
+      <th align="center">Arduino Pin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4" align="center"><b>HC-05 BT Module</b></td>
+      <td align="center">VCC</td>
+      <td align="center">5V</td>
+    </tr>
+    <tr>
+      <td align="center">GND</td>
+      <td align="center">GND</td>
+    </tr>
+    <tr>
+      <td align="center">TXD</td>
+      <td align="center">RX (Pin 0)</td>
+    </tr>
+    <tr>
+      <td align="center">RXD</td>
+      <td align="center">TX (Pin 1)</td>
+    </tr>
+    <tr>
+      <td rowspan="3" align="center"><b>Relay Module</b></td>
+      <td align="center">IN</td>
+      <td align="center">Pin 8</td>
+    </tr>
+    <tr>
+      <td align="center">VCC</td>
+      <td align="center">5V</td>
+    </tr>
+    <tr>
+      <td align="center">GND</td>
+      <td align="center">GND</td>
+    </tr>
+  </tbody>
+</table>
 
 > ⚠️ **Important (HC-05 RX Voltage):**
 > - Use a voltage divider (1kΩ + 2kΩ) to step down Arduino TX (5V) to ~3.3V for HC-05 RX.
@@ -33,7 +65,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 
 ### 2. Appliance Connection (AC / High Power Side)
 | Appliance Wire | Relay Terminal |
-| :--- | :--- |
+| :---: | :---: |
 | Live / + | COM |
 | Load | NO |
 
@@ -76,6 +108,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - Create a custom Android app UI.  
 - Add password/PIN for security.  
 - Add Wi-Fi (ESP8266/ESP32) for internet control.  
+
 
 
 
