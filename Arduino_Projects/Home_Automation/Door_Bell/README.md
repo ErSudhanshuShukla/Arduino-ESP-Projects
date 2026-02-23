@@ -9,7 +9,7 @@ When the button is pressed, a short doorbell melody is played.
 - 1 x Buzzer  
 - Breadboard & Jumper Wires
 - USB Cable / Power Supply 
-- 3D Model (Reference): [Thingiverse](https://www.thingiverse.com) 
+- 3D Model (Reference): [**Thingiverse**](https://www.thingiverse.com) 
   
 ## 🔌 Connections
 
@@ -25,7 +25,7 @@ When the button is pressed, a short doorbell melody is played.
 > - Pressed → LOW
 
 ## 💻 Software Used
-- Arduino IDE  
+- [**Arduino IDE**](https://www.arduino.cc/en/software/)
 
 ## 📁 Project Files
 - 💻 [**Source Code**](./code/Door_Bell.ino) 
@@ -50,3 +50,4 @@ When the button is pressed, a short doorbell melody is played.
 - Support multiple selectable ringtones  
 - Wireless trigger using RF/Bluetooth/Wi-Fi  
 - Enclosure for safe, permanent installation  
+
