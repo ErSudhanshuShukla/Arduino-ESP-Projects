@@ -1,3 +1,10 @@
+/**************************************************
+ *  Title   : Humidity Control Fan
+ *  Author  : Sudhanshu Shukla
+ *  GitHub  : https://github.com/ErSudhanshuShukla
+ *  License : Released under MIT License
+ **************************************************/
+
 #include <DHT.h>   // Library for DHT temperature & humidity sensor
 
 #define DHTPIN 2        // Digital pin where DHT11 data pin is connected
