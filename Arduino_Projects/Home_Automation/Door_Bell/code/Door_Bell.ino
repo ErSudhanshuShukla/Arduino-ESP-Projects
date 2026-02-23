@@ -1,3 +1,10 @@
+/**************************************************
+ *  Title   : Door Bell
+ *  Author  : Sudhanshu Shukla
+ *  GitHub  : https://github.com/ErSudhanshuShukla
+ *  License : Released under MIT License
+ **************************************************/
+
 int button = 9;      // Push button connected to digital pin 9
 int buzzer = 11;    // Buzzer connected to digital pin 11
 
