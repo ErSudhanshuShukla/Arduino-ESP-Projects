@@ -53,6 +53,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - 💻 [**Source Code**](./code/Bluetooth_Home_Automation.ino)  
 - 📸 [**Project Photo**](./photos/Bluetooth_Home_Automation.jpg)
 
+## 📸 Demo
 <p align="left">
   <img src="./photos/Bluetooth_Home_Automation.jpg" width="300" alt="Bluetooth Home Automation Prototype"/>
 </p>
@@ -75,5 +76,6 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - Create a custom Android app UI.  
 - Add password/PIN for security.  
 - Add Wi-Fi (ESP8266/ESP32) for internet control.  
+
 
 
