@@ -14,13 +14,39 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 
 ## 🔌 Connections
 
-| Component | Component Pin | Arduino Pin |
-| :--- | :--- | :--- |
-| **LDR Sensor Module** | VCC | 5V |
-| **LDR Sensor Module** | GND | GND |
-| **LDR Sensor Module** | DO (Digital Out) | Pin 2 |
-| **LED** | Anode (+) via 220Ω Resistor | Pin 10 |
-| **LED** | Cathode (-) | GND |
+<table>
+  <thead>
+    <tr>
+      <th align="center">Component</th>
+      <th align="center">Component Pin</th>
+      <th align="center">Arduino Pin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3" align="center"><b>LDR Sensor Module</b></td>
+      <td align="center">VCC</td>
+      <td align="center">5V</td>
+    </tr>
+    <tr>
+      <td align="center">GND</td>
+      <td align="center">GND</td>
+    </tr>
+    <tr>
+      <td align="center">DO (Digital Out)</td>
+      <td align="center">Pin 2</td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center"><b>LED</b></td>
+      <td align="center">Anode (+) via 220Ω Resistor</td>
+      <td align="center">Pin 10</td>
+    </tr>
+    <tr>
+      <td align="center">Cathode (-)</td>
+      <td align="center">GND</td>
+    </tr>
+  </tbody>
+</table>
 
 > ⚠️ **Important:**  
 > - Always connect a **220Ω resistor in series with the LED** to limit current and prevent LED damage.
