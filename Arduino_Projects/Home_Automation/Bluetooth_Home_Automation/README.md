@@ -14,7 +14,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 
 ## 🔌 Connections
 
-### 1. Control Circuit (Arduino & Modules)
+*1. Control Circuit (Arduino & Modules)*
 <table>
   <thead>
     <tr>
@@ -63,7 +63,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 > ℹ️ **Note:**
 > - Temporarily disconnect TX and RX (Pins 0 and 1) while uploading code to the Arduino, otherwise upload will fail.
 
-### 2. Appliance Connection (AC / High Power Side)
+*2. Appliance Connection (AC / High Power Side)*
 | Appliance Wire | Relay Terminal |
 | :---: | :---: |
 | Live / + | COM |
@@ -108,6 +108,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - Create a custom Android app UI.  
 - Add password/PIN for security.  
 - Add Wi-Fi (ESP8266/ESP32) for internet control.  
+
 
 
 
