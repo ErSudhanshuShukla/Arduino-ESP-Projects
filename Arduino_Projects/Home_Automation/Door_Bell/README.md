@@ -46,9 +46,7 @@ When the button is pressed, a short doorbell melody is played.
 </p>
  
 ## 🚀 Future Improvements
-- Add LED/LCD status indicator  
-- Support multiple selectable ringtones  
-- Wireless trigger using RF/Bluetooth/Wi-Fi  
-- Enclosure for safe, permanent installation  
-
-
+- Add LED/LCD status indicator.
+- Support multiple selectable ringtones. 
+- Wireless trigger using RF/Bluetooth/Wi-Fi.
+- Enclosure for safe, permanent installation.
