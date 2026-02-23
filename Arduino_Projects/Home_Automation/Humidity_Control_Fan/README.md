@@ -25,8 +25,8 @@ This project automatically controls a fan using a relay module based on real-tim
 | **Fan (via Relay)** | Load | NO (Relay Terminal) |
 
 > ⚠️ **Safety Note:**  
-> If you are controlling an AC fan, ensure proper insulation and safety precautions.  
-> Use an opto-isolated relay module and avoid touching live terminals.
+> - Connect the fan through a relay module, not directly to Arduino.
+> - Be careful while working with AC loads.
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)
@@ -68,4 +68,5 @@ Install the following libraries from Arduino Library Manager:
 - Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring  
 - Provide user-configurable thresholds via buttons or potentiometer  
 - Implement data logging for historical analysis  
+
 
