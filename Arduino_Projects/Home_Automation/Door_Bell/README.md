@@ -4,40 +4,34 @@ This project demonstrates a simple **Arduino-based doorbell system** using a **p
 When the button is pressed, a short doorbell melody is played.
 
 ## 🧩 Required Components
-- Arduino UNO  
-- Push Button  
-- Buzzer  
-- Jumper Wires  
-- Custom prototyping baseplate with 3D-printed mounts  
-- USB Cable / Power Supply  
-
+- 1 x Arduino UNO  
+- 1 x Push Button  
+- 1 x Buzzer  
+- Breadboard & Jumper Wires
+- USB Cable / Power Supply 
+- 3D Model (Reference): [Thingiverse](https://www.thingiverse.com) 
+  
 ## 🔌 Connections
 
-### Push Button
-| Button Pin | Arduino Pin |
-|------------|-------------|
-| One side   | Pin 9       |
-| Other side | GND         |
+| Component | Component Pin | Arduino Pin |
+| :--- | :--- | :--- |
+| **Push Button** | One side | Pin 9 |
+| **Push Button** | Other side | GND |
+| **Buzzer** | + (Signal) | Pin 11 |
+| **Buzzer** | - (GND) | GND |
 
-> ℹ️ Using `INPUT_PULLUP`, so the button is **Active LOW**  
+> ℹ️ **Note:** Using `INPUT_PULLUP`, so the button is **Active LOW**
 > - Not pressed → HIGH  
-> - Pressed → LOW  
-
-### Buzzer
-| Buzzer Pin | Arduino Pin |
-|------------|-------------|
-| + (Signal) | Pin 11      |
-| - (GND)    | GND         |
+> - Pressed → LOW
 
 ## 💻 Software Used
 - Arduino IDE  
 
 ## 📁 Project Files
-- 💻 **Source Code:** [Door_Bell.ino](./code/Door_Bell.ino)  
-- 📸 **Project Photo:** [Door_Bell.jpg](./photos/Door_Bell.jpg)  
-
+- 💻 [**Source Code**](./code/Door_Bell.ino) 
+- 📸 [**Project Photo**](./photos/Door_Bell.jpg)
+ 
 ## ⚙️ Working
-
 - The push button is connected using the **internal pull-up resistor**.  
 - Arduino continuously monitors the button state.  
 - On a **valid button press (HIGH → LOW transition)**:
@@ -47,18 +41,10 @@ When the button is pressed, a short doorbell melody is played.
 
 ## 📸 Demo
 
-*Hardware prototype featuring an Arduino UNO mounted on a cardboard base with a push button and buzzer.*
-
-<p align="center">
+<p align="left">
   <img src="./photos/Door_Bell.jpg" width="400" alt="Arduino Door Bell Prototype"/>
 </p>
-
-## 🌍 Real-world Use Cases
-- Residential doorbell system prototype  
-- Office or lab calling bell  
-- Electronics exhibition demonstration  
-- Basic human–machine interface (HMI) example  
-
+ 
 ## 🚀 Future Improvements
 - Add LED/LCD status indicator  
 - Support multiple selectable ringtones  
