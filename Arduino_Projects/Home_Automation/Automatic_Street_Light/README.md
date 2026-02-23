@@ -46,12 +46,7 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - Live sensor status is displayed on the **Serial Monitor**.
 
 ## 🚀 Future Improvements
-- Provide user-configurable light sensitivity calibration  
-- Introduce adaptive brightness control based on ambient light levels  
-- Support high-power lighting through isolated relay control  
-- Extend the system with IoT connectivity for remote monitoring and analytics
-
-
-
-
-
+- Provide user-configurable light sensitivity calibration.  
+- Introduce adaptive brightness control based on ambient light levels. 
+- Support high-power lighting through isolated relay control. 
+- Extend the system with IoT connectivity for remote monitoring and analytics.
