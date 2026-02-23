@@ -13,16 +13,21 @@ This project automatically controls a fan using a relay module based on real-tim
   
 ## 🔌 Connections
 
-| Component | Component Pin / Wire | Connection (Arduino / Relay) |
+### 1. Control Circuit (Arduino & Modules)
+| Component | Component Pin | Arduino Pin |
 | :--- | :--- | :--- |
-| **DHT11 Sensor** | VCC | 5V (Arduino) |
-| **DHT11 Sensor** | GND | GND (Arduino) |
-| **DHT11 Sensor** | DATA | Pin 2 (Arduino) |
-| **Relay Module** | IN | Pin 3 (Arduino) |
-| **Relay Module** | VCC | 5V (Arduino) |
-| **Relay Module** | GND | GND (Arduino) |
-| **Fan (via Relay)** | Live / + | COM (Relay Terminal) |
-| **Fan (via Relay)** | Load | NO (Relay Terminal) |
+| **DHT11 Sensor** | VCC | 5V |
+| **DHT11 Sensor** | GND | GND |
+| **DHT11 Sensor** | DATA | Pin 2 |
+| **Relay Module** | IN | Pin 3 |
+| **Relay Module** | VCC | 5V |
+| **Relay Module** | GND | GND |
+
+### 2. Appliance Connection (Fan via Relay)
+| Fan Wire | Relay Terminal |
+| :--- | :--- |
+| Live / + | COM |
+| Load | NO |
 
 > ⚠️ **Safety Note:**  
 > - Connect the fan through a relay module, not directly to Arduino.
@@ -68,3 +73,4 @@ Install the following libraries from Arduino Library Manager:
 - Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring.  
 - Provide user-configurable thresholds via buttons or potentiometer.  
 - Implement data logging for historical analysis.  
+
