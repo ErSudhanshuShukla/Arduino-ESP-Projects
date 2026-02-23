@@ -35,11 +35,11 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
     </tr>
     <tr>
       <td align="center">TXD</td>
-      <td align="center">RX (Pin 0)</td>
+      <td align="center">RX (0)</td>
     </tr>
     <tr>
       <td align="center">RXD</td>
-      <td align="center">TX (Pin 1)</td>
+      <td align="center">TX (1)</td>
     </tr>
     <tr>
       <td rowspan="3" align="center"><b>Relay Module</b></td>
@@ -108,6 +108,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - Create a custom Android app UI.  
 - Add password/PIN for security.  
 - Add Wi-Fi (ESP8266/ESP32) for internet control.  
+
 
 
 
