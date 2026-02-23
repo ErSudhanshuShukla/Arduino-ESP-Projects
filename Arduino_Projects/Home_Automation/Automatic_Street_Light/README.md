@@ -23,7 +23,8 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 | **LED** | Cathode (-) | GND |
 
 > ⚠️ **Important:**  
-> Always connect a **220Ω resistor in series with the LED** to limit current and prevent LED damage.
+> - Always connect a **220Ω resistor in series with the LED** to limit current and prevent LED damage.
+> - Adjust the LDR module potentiometer to set sensitivity.
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)
@@ -49,5 +50,6 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - Introduce adaptive brightness control based on ambient light levels  
 - Support high-power lighting through isolated relay control  
 - Extend the system with IoT connectivity for remote monitoring and analytics
+
 
 
