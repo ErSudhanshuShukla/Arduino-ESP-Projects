@@ -8,8 +8,9 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - 1 x LDR Sensor Module  
 - 1 x White LED  
 - 1 x 220Ω Resistor (current limiting for LED)  
-- Breadboard & Jumper Wires  
-- USB Cable / Power Supply  
+- Breadboard & Jumper Wires
+- USB Cable / Power Supply 
+- 3D Model (Reference): [Thingiverse](https://www.thingiverse.com)  
 
 ## 🔌 Connections
 
@@ -48,3 +49,4 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - Introduce adaptive brightness control based on ambient light levels  
 - Support high-power lighting through isolated relay control  
 - Extend the system with IoT connectivity for remote monitoring and analytics
+
