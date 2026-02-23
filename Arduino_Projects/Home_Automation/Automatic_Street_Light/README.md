@@ -14,7 +14,7 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 
 ## 🔌 Connections
 
-| Component | Component Pin / Connection | Arduino Pin |
+| Component | Component Pin | Arduino Pin |
 | :--- | :--- | :--- |
 | **LDR Sensor Module** | VCC | 5V |
 | **LDR Sensor Module** | GND | GND |
@@ -50,6 +50,7 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - Introduce adaptive brightness control based on ambient light levels  
 - Support high-power lighting through isolated relay control  
 - Extend the system with IoT connectivity for remote monitoring and analytics
+
 
 
 
