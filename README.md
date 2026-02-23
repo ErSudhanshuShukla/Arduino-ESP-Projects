@@ -44,24 +44,28 @@ Unlike standard hardware projects, this collection focuses heavily on **Smart Co
 These projects were built using a wide range of hardware components:
 
 ### 🧠 Microcontrollers
-* **Arduino UNO:** The core brain for standalone embedded systems.
-* **ESP8266:** For Wi-Fi connectivity and IoT cloud communication.
+* **Arduino UNO:** The core brain for standalone embedded systems.  
+* **ESP8266:** For Wi-Fi connectivity and IoT cloud communication.  
 
 ### 📡 Sensors & Input Modules
-* **Gas & Safety:** MQ-2 (Smoke), MQ-3 (Alcohol), MQ-135 (Air Quality), Fire Sensors.
-* **Environment:** DHT11 (Temp/Humidity), BMP280 (Pressure), Raindrop Sensors, Soil Moisture Sensors.
-* **Motion & Distance:** Ultrasonic Sensors, PIR Motion Sensors, LDR, Tilt Sensors.
-* **Input Devices:** 4x4 Keypad Module, Joystick Module, Touch Sensors.
+* **Gas & Safety:** MQ-2 (Smoke), MQ-3 (Alcohol), MQ-135 (Air Quality), Fire Sensors.  
+* **Environment:** DHT11 (Temp/Humidity), BMP280 (Pressure), Raindrop Sensors, Soil Moisture Sensors.  
+* **Motion & Distance:** Ultrasonic Sensors, PIR Motion Sensors, LDR, Tilt Sensors.  
+* **Input Devices:** 4x4 Keypad Module, Joystick Module, Touch Sensors.  
 
 ### ⚙️ Actuators & Output
-* **Motors & Drivers:** DC Motors with L298N/L293D Drivers, Servo Motors (SG90).
-* **Visuals & Audio:** 16x2 LCD Displays, LEDs (Red, Green, Yellow, White), Buzzers.
-* **Switching:** Relay Modules (for controlling AC appliances), Water Pumps.
+* **Motors & Drivers:** DC Motors with L298N/L293D Drivers, Servo Motors (SG90).  
+* **Visuals & Audio:** 16x2 LCD Displays, LEDs (Red, Green, Yellow, White), Buzzers.  
+* **Switching:** Relay Modules (for controlling AC appliances), Water Pumps.  
 
 ### 🔌 Power & Connectivity
-* **Communication:** HC-05 Bluetooth Modules.
-* **Power:** 18650 Li-ion Cells with Holders.
-* **Prototyping:** Breadboards, Zero PCBs, and Jumper Wires.
+* **Communication:** HC-05 Bluetooth Modules.  
+* **Power:** 18650 Li-ion Cells with Holders.  
+
+### 🛠️ Prototyping & Mechanical
+* **Custom Prototyping Baseplate** (with 3D-printed mounts)  
+* **3D Printed Parts** (for component mounting, alignment, and mechanical fit testing)  
+* **Prototyping Tools:** Breadboards, Zero PCBs, and Jumper Wires  
 
 ## 💻 Software Used
 * **Arduino IDE** (C++ Programming)  
