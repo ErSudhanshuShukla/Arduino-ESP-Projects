@@ -1,3 +1,10 @@
+/**************************************************
+ *  Title   : Automatic Street Light
+ *  Author  : Sudhanshu Shukla
+ *  GitHub  : https://github.com/ErSudhanshuShukla
+ *  License : Released under MIT License
+ **************************************************/
+
 int sensor = 2;   // Digital pin 2 connected to LDR module output
 int led = 10;     // Digital pin 10 connected to LED
 
