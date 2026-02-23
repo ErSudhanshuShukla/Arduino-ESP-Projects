@@ -64,9 +64,7 @@ Install the following libraries from Arduino Library Manager:
 </p>
 
 ## 🚀 Future Improvements
-- Add LCD/OLED display for real-time readings  
-- Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring  
-- Provide user-configurable thresholds via buttons or potentiometer  
-- Implement data logging for historical analysis  
-
-
+- Add LCD/OLED display for real-time readings.  
+- Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring.  
+- Provide user-configurable thresholds via buttons or potentiometer.  
+- Implement data logging for historical analysis.  
