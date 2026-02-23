@@ -1,4 +1,4 @@
-# 🔔 Arduino Door Bell
+# 🔔 Door Bell
 
 This project demonstrates a simple **Arduino-based doorbell system** using a **push button and buzzer**.  
 When the button is pressed, a short doorbell melody is played.
@@ -73,4 +73,5 @@ When the button is pressed, a short doorbell melody is played.
 - Support multiple selectable ringtones. 
 - Wireless trigger using RF/Bluetooth/Wi-Fi.
 - Enclosure for safe, permanent installation.
+
 
