@@ -98,3 +98,4 @@ Projects are organized by domain to showcase practical applications of **core el
 
 ## 💻 Software Used
 - Arduino IDE
+- Serial Bluetooth Terminal (Android App)
