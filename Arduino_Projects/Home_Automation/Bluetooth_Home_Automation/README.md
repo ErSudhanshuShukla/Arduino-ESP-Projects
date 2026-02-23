@@ -14,7 +14,8 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 
 ## 🔌 Connections
 
-| Component | Component Pin / Wire | Connection (Arduino / Relay) |
+### 1. Control Circuit (Arduino & Modules)
+| Component | Component Pin | Arduino Pin |
 | :--- | :--- | :--- |
 | **HC-05 BT Module**| VCC | 5V |
 | **HC-05 BT Module**| GND | GND |
@@ -23,18 +24,22 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 | **Relay Module** | IN | Pin 8 |
 | **Relay Module** | VCC | 5V |
 | **Relay Module** | GND | GND |
-| **Appliance (via Relay)** | Live / + | COM (Relay Terminal) |
-| **Appliance (via Relay)** | Load | NO (Relay Terminal) |
 
 > ⚠️ **Important (HC-05 RX Voltage):**
 > - Use a voltage divider (1kΩ + 2kΩ) to step down Arduino TX (5V) to ~3.3V for HC-05 RX.
 
-> ⚠️ **Safety:**  
-> - Connect the Appliance through a relay module, not directly to Arduino.
-> - Be careful while working with AC loads.
-
 > ℹ️ **Note:**
 > - Temporarily disconnect TX and RX (Pins 0 and 1) while uploading code to the Arduino, otherwise upload will fail.
+
+### 2. Appliance Connection (AC / High Power Side)
+| Appliance Wire | Relay Terminal |
+| :--- | :--- |
+| Live / + | COM |
+| Load | NO |
+
+> ⚠️ **Safety:**
+> - Connect the Appliance through a relay module, not directly to Arduino.
+> - Be careful while working with AC loads.
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)  
@@ -70,3 +75,4 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - Create a custom Android app UI.  
 - Add password/PIN for security.  
 - Add Wi-Fi (ESP8266/ESP32) for internet control.  
+
