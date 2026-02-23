@@ -10,7 +10,7 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - 1 x 220Ω Resistor (current limiting for LED)  
 - Breadboard & Jumper Wires
 - USB Cable / Power Supply 
-- 3D Model (Reference): [Thingiverse](https://www.thingiverse.com)  
+- 3D Model (Reference): [**Thingiverse**](https://www.thingiverse.com)  
 
 ## 🔌 Connections
 
@@ -26,8 +26,8 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 > Always connect a **220Ω resistor in series with the LED** to limit current and prevent LED damage.
 
 ## 💻 Software Used
-- Arduino IDE  
-
+- [**Arduino IDE**](https://www.arduino.cc/en/software/)
+    
 ## 📁 Project Files
 - 💻 [**Source Code**](./code/Automatic_Street_Light.ino)  
 - 📸 [**Project Photo**](./photos/Automatic_Street_Light.jpg)
@@ -49,4 +49,5 @@ The LED automatically turns **ON in darkness** and **OFF in bright light**, base
 - Introduce adaptive brightness control based on ambient light levels  
 - Support high-power lighting through isolated relay control  
 - Extend the system with IoT connectivity for remote monitoring and analytics
+
 
