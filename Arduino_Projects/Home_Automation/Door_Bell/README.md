@@ -42,7 +42,7 @@ When the button is pressed, a short doorbell melody is played.
 ## 📸 Demo
 
 <p align="left">
-  <img src="./photos/Door_Bell.jpg" width="400" alt="Arduino Door Bell Prototype"/>
+  <img src="./photos/Door_Bell.jpg" width="300" alt="Arduino Door Bell Prototype"/>
 </p>
  
 ## 🚀 Future Improvements
@@ -50,4 +50,5 @@ When the button is pressed, a short doorbell melody is played.
 - Support multiple selectable ringtones  
 - Wireless trigger using RF/Bluetooth/Wi-Fi  
 - Enclosure for safe, permanent installation  
+
 
