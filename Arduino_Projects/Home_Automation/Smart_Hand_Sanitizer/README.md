@@ -56,7 +56,6 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
 </table>
 
 *2. Appliance Connection (DC Water Pump via Relay)*
-
 <table>
   <thead>
     <tr>
@@ -110,3 +109,4 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
 - Add adjustable dispensing time using a potentiometer.  
 - Add refill level indicator using a float sensor.
 - Integrate ESP8266/ESP32 for usage tracking or alerts.
+
