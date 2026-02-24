@@ -85,8 +85,7 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
   - If the light is **ON** → it turns **OFF**  
 - A small delay is used to avoid multiple triggers from one clap.
 
-## 🚀 Future Improvements
-- Add sensitivity calibration for different environments.  
+## 🚀 Future Improvements  
 - Support **single-clap / double-clap** actions.  
 - Integrate IoT control using **ESP8266 / ESP32**.  
 - Add status display using **LED / OLED / LCD**.
