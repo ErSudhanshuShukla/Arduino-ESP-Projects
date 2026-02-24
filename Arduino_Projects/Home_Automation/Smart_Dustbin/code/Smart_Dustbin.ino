@@ -1,40 +1,46 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Dustbin
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <Servo.h>    // Library to control servo motor
+
+Servo lid;           // Servo object to control dustbin lid
+
+#define trig 3       // Ultrasonic sensor Trigger pin
+#define echo 2       // Ultrasonic sensor Echo pin
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  pinMode(trig, OUTPUT);   // Set trigger pin as OUTPUT
+  pinMode(echo, INPUT);   // Set echo pin as INPUT
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  lid.attach(4);          // Attach servo motor to pin 4
+  lid.write(0);          // Initial position: Lid closed
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // Generate ultrasonic pulse
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+
+  // Measure echo pulse duration
+  long duration = pulseIn(echo, HIGH);
+  int distance = duration * 0.034 / 2;   // Convert time to distance (in cm)
+
+  // Control lid based on distance
+  if (distance > 0 && distance < 20) {
+    lid.write(90);   // Open lid when a person is near
+    delay(1000);     // Keep lid open for 1 second
+  } 
+  else {
+    lid.write(0);    // Close lid when no person is detected
   }
 }
