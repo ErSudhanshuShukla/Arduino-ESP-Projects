@@ -1,40 +1,39 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Hand Sanitizer
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// Pin definitions
+int IR_PIN = 9;        // IR sensor digital output pin
+int RELAY_PIN = 8;     // Relay control pin (connected to pump)
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  pinMode(IR_PIN, INPUT);       // Configure IR sensor as input
+  pinMode(RELAY_PIN, OUTPUT);   // Configure relay as output
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  digitalWrite(RELAY_PIN, HIGH); // Relay OFF initially (active LOW relay)
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  Serial.begin(9600);           // Start serial communication for debugging
+  Serial.println("Smart Hand Sanitizer Ready");
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int sensorValue = digitalRead(IR_PIN);  // Read IR sensor state
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // IR sensor outputs LOW when a hand is detected
+  if (sensorValue == LOW) {
+    digitalWrite(RELAY_PIN, LOW);   // Turn pump ON
+    Serial.println("Hand detected - Pump ON");
+
+    delay(1500);                    // Run pump for 1.5 seconds
+
+    digitalWrite(RELAY_PIN, HIGH);  // Turn pump OFF
+    Serial.println("Pump OFF");
+
+    delay(1000);                    // Small delay to avoid repeated triggering
   }
 }
