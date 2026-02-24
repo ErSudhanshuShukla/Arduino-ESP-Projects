@@ -55,11 +55,24 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
 </table>
 
 *2. Appliance Connection (via Relay)*
-
-| Appliance Wire | Relay Terminal |
-| :---: | :---: |
-| Live / + | COM |
-| Load | NO |
+<table>
+  <thead>
+    <tr>
+      <th align="center">Appliance Wire</th>
+      <th align="center">Relay Terminal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">Live / +</td>
+      <td align="center">COM</td>
+    </tr>
+    <tr>
+      <td align="center">Load</td>
+      <td align="center">NO</td>
+    </tr>
+  </tbody>
+</table>
 
 > ⚠️ **Safety Note:**  
 > - Connect the appliance through a relay module, not directly to Arduino.  
@@ -89,3 +102,4 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
 - Support **single-clap / double-clap** actions.  
 - Integrate IoT control using **ESP8266 / ESP32**.  
 - Add status display using **LED / OLED / LCD**.
+
