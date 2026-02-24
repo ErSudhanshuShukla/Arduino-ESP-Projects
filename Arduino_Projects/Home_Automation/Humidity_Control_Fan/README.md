@@ -53,11 +53,24 @@ This project automatically controls a fan using a relay module based on real-tim
 </table>
 
 *2. Appliance Connection (Fan via Relay)*
-
-| Fan Wire | Relay Terminal |
-| :---: | :---: |
-| Live / + | COM |
-| Load | NO |
+<table>
+  <thead>
+    <tr>
+      <th align="center">Fan Wire</th>
+      <th align="center">Relay Terminal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">Live / +</td>
+      <td align="center">COM</td>
+    </tr>
+    <tr>
+      <td align="center">Load</td>
+      <td align="center">NO</td>
+    </tr>
+  </tbody>
+</table>
 
 > ⚠️ **Safety Note:**
 > - Connect the fan through a relay module, not directly to Arduino.
@@ -103,4 +116,5 @@ Install the following libraries from Arduino Library Manager:
 - Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring.  
 - Provide user-configurable thresholds via buttons or potentiometer.  
 - Implement data logging for historical analysis.  
+
 
