@@ -1,40 +1,32 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Plant Irrigation System
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+int soil = A0;     // Soil moisture sensor connected to analog pin A0
+int relay = 8;     // Relay module connected to digital pin 8 (water pump control)
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  pinMode(relay, OUTPUT);     
+  digitalWrite(relay, HIGH);   // Pump OFF initially (Active LOW relay logic)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  Serial.begin(9600);          // Start Serial Monitor for debugging
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int value = analogRead(soil);   // Read soil moisture sensor value (0–1023)
+  Serial.println(value);         // Print moisture value on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // If soil is dry (low moisture value), turn pump ON
+  if (value < 500) {
+    digitalWrite(relay, LOW);    // Dry soil → Pump ON (Active LOW)
+  } else {
+    digitalWrite(relay, HIGH);   // Wet soil → Pump OFF (Active LOW)
   }
+
+  delay(500);   // Small delay to avoid rapid switching
 }
