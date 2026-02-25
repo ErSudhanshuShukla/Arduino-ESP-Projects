@@ -53,6 +53,10 @@ When a **person touches the sensor**, the light **toggles ON/OFF**.
   </tbody>
 </table>
 
+> ℹ️ **Relay Note:**  
+> - This project is configured for an **Active LOW relay module**.  
+> - If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
+
 *2. Appliance Connection (via Relay)*
 <table>
   <thead>
@@ -100,3 +104,4 @@ When a **person touches the sensor**, the light **toggles ON/OFF**.
 - Add LED indicator for light status.  
 - Add mobile app control using Bluetooth/Wi-Fi.  
 - Use a multi-relay module to control multiple lights.
+
