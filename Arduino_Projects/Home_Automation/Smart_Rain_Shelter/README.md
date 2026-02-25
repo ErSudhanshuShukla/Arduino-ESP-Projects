@@ -1,7 +1,7 @@
-# ☔ Smart Rain Shelter
+# ☔ Smart Rain Shelter (Clothes Protection System)
 
-This project demonstrates a simple **Smart Rain Shelter system** using a **rain sensor module** and a **servo motor** with Arduino.  
-When **rain is detected**, the shelter **automatically closes** to protect items, and when there is **no rain**, the shelter **opens automatically**.
+This project demonstrates a **Smart Rain Shelter system for protecting clothes** using a **rain sensor module** and a **servo motor** with Arduino.  
+When **rain is detected**, the system **automatically moves the clothes hanger rod into the shelter** to protect clothes from rain, and when there is **no rain**, the clothes hanger rod **moves back outside** for drying.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -73,11 +73,11 @@ When **rain is detected**, the shelter **automatically closes** to protect items
 
 ## ⚙️ Working
 - The rain sensor outputs **LOW** when water droplets are detected on the sensor plate.  
-- Arduino reads the sensor state and controls the servo motor.  
+- Arduino reads the sensor state and controls the servo motor connected to the **clothes hanger rod mechanism**.  
 - When **rain is detected**:  
-  - The shelter **closes automatically**.  
+  - The motor **moves the clothes hanger rod inside the shelter**, bringing the clothes under cover.  
 - When **no rain is detected**:  
-  - The shelter **opens automatically**.  
+  - The motor **moves the clothes hanger rod back outside** for drying. 
 
 ## 🚀 Future Improvements
 - Add adjustable rain sensitivity using potentiometer.  
