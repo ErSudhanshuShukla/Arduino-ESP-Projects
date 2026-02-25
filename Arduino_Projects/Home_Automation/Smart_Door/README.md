@@ -40,7 +40,7 @@ When a person comes near the door (within a set distance), the door **automatica
       <td align="center">Pin 10</td>
     </tr>
     <tr>
-      <td rowspan="3" align="center"><b>Servo Motor</b></td>
+      <td rowspan="3" align="center"><b>Servo Motor (SG90)</b></td>
       <td align="center">Signal</td>
       <td align="center">Pin 8</td>
     </tr>
@@ -87,3 +87,4 @@ When a person comes near the door (within a set distance), the door **automatica
 - Add RFID / keypad for access control.  
 - Integrate ESP8266/ESP32 for IoT-based door control.  
 - Add buzzer/LED for status indication.
+
