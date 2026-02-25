@@ -1,40 +1,34 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Soil Moisture Alert
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+int sensorPin = A0;   // Soil moisture sensor connected to analog pin A0
+int buzzer = 11;     // Buzzer connected to digital pin 11
+int led = 12;        // LED connected to digital pin 12
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
-
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  pinMode(buzzer, OUTPUT);   // Set buzzer pin as OUTPUT
+  pinMode(led, OUTPUT);      // Set LED pin as OUTPUT
+  Serial.begin(9600);        // Start Serial Monitor for debugging
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int moisture = analogRead(sensorPin);  // Read soil moisture value (0–1023)
+  Serial.println(moisture);              // Print moisture value on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // If soil is dry (value above threshold), alert user
+  if (moisture < 650) {
+    digitalWrite(buzzer, LOW);   // Buzzer OFF (soil is wet)
+    digitalWrite(led, LOW);      // LED OFF
+  } else {
+    digitalWrite(buzzer, HIGH);  // Buzzer ON (soil is dry)
+    digitalWrite(led, HIGH);     // LED ON
   }
+
+  delay(500);   // Small delay to stabilize readings
 }
