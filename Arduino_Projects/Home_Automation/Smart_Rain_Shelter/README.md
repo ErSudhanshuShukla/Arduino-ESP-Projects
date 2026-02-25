@@ -23,7 +23,7 @@ When **rain is detected**, the system **automatically moves the clothes hanger r
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3" align="center"><b>Rain Sensor</b></td>
+      <td rowspan="3" align="center"><b>Rain Sensor Module</b></td>
       <td align="center">VCC</td>
       <td align="center">5V</td>
     </tr>
@@ -84,3 +84,4 @@ When **rain is detected**, the system **automatically moves the clothes hanger r
 - Add weather API integration using ESP8266/ESP32.  
 - Add LCD/OLED display for rain status.  
 - Add manual override button for open/close control.
+
