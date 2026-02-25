@@ -7,7 +7,7 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
 - 1 x Arduino UNO  
 - 1 x IR Sensor Module  
 - 1 x Single Channel Relay Module (Active LOW)  
-- 1 x DC Water Pump  
+- 1 x DC Mini Water Pump  
 - 2 x 18650 Li-ion Cells with Holder  
 - Pipes / Tubes for liquid flow  
 - Breadboard & Jumper Wires  
@@ -71,7 +71,7 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
       <td align="center">Relay COM</td>
     </tr>
     <tr>
-      <td rowspan="2" align="center"><b>DC Water Pump</b></td>
+      <td rowspan="2" align="center"><b>Water Pump</b></td>
       <td align="center">Positive (+)</td>
       <td align="center">Relay NO</td>
     </tr>
@@ -109,4 +109,5 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
 - Add adjustable dispensing time using a potentiometer.  
 - Add refill level indicator using a float sensor.
 - Integrate ESP8266/ESP32 for usage tracking or alerts.
+
 
