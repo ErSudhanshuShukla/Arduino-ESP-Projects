@@ -8,13 +8,12 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - 1 x HC-05 Bluetooth Module  
 - 1 x Single Channel Relay Module (Active LOW)  
 - 1 x Load (DC bulb / AC appliance via relay)  
-- Breadboard & Jumper Wires
-- USB Cable / Power Supply 
-- 3D Model (Reference): [**Thingiverse**](https://www.thingiverse.com)    
+- Breadboard & Jumper Wires  
+- USB Cable / Power Supply  
+- 3D Model (Reference): [**Thingiverse**](https://www.thingiverse.com)
 
 ## 🔌 Connections
 
-*1. Control Circuit (Arduino & Modules)*
 <table>
   <thead>
     <tr>
@@ -35,11 +34,11 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
     </tr>
     <tr>
       <td align="center">TXD</td>
-      <td align="center">RX (0)</td>
+      <td align="center">Pin 2 (Arduino RX)</td>
     </tr>
     <tr>
       <td align="center">RXD</td>
-      <td align="center">TX (1)</td>
+      <td align="center">Pin 3 (Arduino TX)</td>
     </tr>
     <tr>
       <td rowspan="3" align="center"><b>Relay Module</b></td>
@@ -57,15 +56,15 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
   </tbody>
 </table>
 
-> ⚠️ **HC-05 Wiring & Upload Notes:**  
+> ⚠️ **HC-05 Wiring Notes:**  
 > - Use a **voltage divider (1kΩ + 2kΩ)** to step down Arduino TX (5V) to ~3.3V for **HC-05 RX**.  
-> - Temporarily disconnect **TX/RX (Pins 0 & 1)** while uploading code to the Arduino.
+> - HC-05 uses **3.3V logic** on RX; direct 5V may damage the module.
 
 > ℹ️ **Relay Note:**  
 > - This project is configured for an **Active LOW relay module**.  
 > - If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
 
-*2. Appliance Connection (AC / High Power Side)*
+*2. Appliance Connection (AC / High Power Side)*  
 <table>
   <thead>
     <tr>
@@ -85,18 +84,18 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
   </tbody>
 </table>
 
-> ⚠️ **Safety:**
-> - Connect the Appliance through a relay module, not directly to Arduino.
+> ⚠️ **Safety:**  
+> - Connect the appliance through a relay module, not directly to Arduino.  
 > - Be careful while working with AC loads.
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)  
 - [**Serial Bluetooth Terminal (Android)**](https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&pcampaignid=web_share)
 
-> 📲 **Commands:**
+> 📲 **Commands:**  
 > - Send **`1`** → Relay ON  
 > - Send **`0`** → Relay OFF
-    
+
 ## 📁 Project Files
 - 💻 [**Source Code**](./code/Bluetooth_Home_Automation.ino)  
 - 📸 [**Project Photo**](./photos/Bluetooth_Home_Automation.jpg)
@@ -109,7 +108,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 ## ⚙️ Working
 - The HC-05 module pairs with the smartphone via Bluetooth.  
 - User sends commands from a **Bluetooth Terminal app**.  
-- Arduino reads incoming characters via Serial:
+- Arduino reads incoming characters via **SoftwareSerial (Pins 2 & 3)**:
   - `1` → Relay turns **ON**  
   - `0` → Relay turns **OFF**  
 - The relay switches the connected appliance accordingly.  
