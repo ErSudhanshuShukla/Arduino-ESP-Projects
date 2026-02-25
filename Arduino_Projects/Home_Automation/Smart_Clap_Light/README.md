@@ -6,7 +6,7 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
 ## 🧩 Required Components
 - 1 x Arduino UNO  
 - 1 x Sound Sensor Module (Digital Output)  
-- 1 x Single Channel Relay Module (Active LOW / HIGH)  
+- 1 x Single Channel Relay Module (Active LOW)  
 - 1 x Load (DC bulb / AC appliance via relay)  
 - Breadboard & Jumper Wires  
 - USB Cable / Power Supply  
@@ -74,6 +74,10 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
   </tbody>
 </table>
 
+> ℹ️ **Relay Note:**  
+> This project is configured for an **Active LOW relay module**.  
+> If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
+
 > ⚠️ **Safety Note:**  
 > - Connect the appliance through a relay module, not directly to Arduino.  
 > - Be careful while working with AC loads.
@@ -102,4 +106,5 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
 - Support **single-clap / double-clap** actions.  
 - Integrate IoT control using **ESP8266 / ESP32**.  
 - Add status display using **LED / OLED / LCD**.
+
 
