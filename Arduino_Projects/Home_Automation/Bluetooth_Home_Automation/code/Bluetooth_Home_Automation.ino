@@ -5,36 +5,50 @@
  *  License : Released under MIT License
  **************************************************/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <SoftwareSerial.h>
+
+// HC-05 Bluetooth on SoftwareSerial
+#define BT_RX 2   // Arduino RX  <- HC-05 TX
+#define BT_TX 3   // Arduino TX  -> HC-05 RX (use voltage divider)
+
+SoftwareSerial btSerial(BT_RX, BT_TX);  // RX, TX
+
+int relay = 8;            // Relay control pin
+bool activeLow = true;   // true = Active LOW relay, false = Active HIGH
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  Serial.begin(9600);     // Serial Monitor (debug)
+  btSerial.begin(9600);  // HC-05 default baud rate
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  pinMode(relay, OUTPUT);
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
+  // Turn relay OFF at startup (safety)
   digitalWrite(relay, activeLow ? HIGH : LOW);
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  Serial.println("Bluetooth Home Automation Ready");
+  btSerial.println("Device Connected. Send 1 = ON, 0 = OFF");
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
+  // Check if any data is received from Bluetooth
+  if (btSerial.available()) {
+    char c = btSerial.read();   // Read command
     Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+    Serial.println(c);
 
     // If '1' is received, turn relay ON
     if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
+      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON
+      Serial.println("RELAY ON");
+      btSerial.println("RELAY ON");
     }
     // If '0' is received, turn relay OFF
     else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
+      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF
+      Serial.println("RELAY OFF");
+      btSerial.println("RELAY OFF");
     }
+
+    delay(200);  // Small delay to avoid rapid toggling
   }
 }
