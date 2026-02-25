@@ -59,7 +59,7 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
 > - This project is configured for an **Active LOW relay module**.  
 > - If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
 
-*2. Appliance Connection (DC Water Pump via Relay)*
+*2. Pump Connection (DC Mini Pump via Relay)*  
 <table>
   <thead>
     <tr>
@@ -70,25 +70,27 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
   </thead>
   <tbody>
     <tr>
-      <td align="center"><b>Battery (18650)</b></td>
+      <td align="center"><b>Battery Pack (2 × 18650)</b></td>
       <td align="center">Positive (+)</td>
       <td align="center">Relay COM</td>
     </tr>
     <tr>
-      <td rowspan="2" align="center"><b>Water Pump</b></td>
+      <td rowspan="2" align="center"><b>DC Mini Water Pump</b></td>
       <td align="center">Positive (+)</td>
       <td align="center">Relay NO</td>
     </tr>
     <tr>
       <td align="center">Negative (-)</td>
-      <td align="center">Battery Negative (-)</td>
+      <td align="center">Battery Pack Negative (-)</td>
     </tr>
   </tbody>
 </table>
 
-> ⚠️ **Power Note:**
-> - Power the **DC water pump using 2 × 18650 Li-ion cells**, not from Arduino 5V.  
-> - Keep **Arduino GND and battery negative (–) connected together** (common ground) if required by your relay module.
+> ⚠️ **Safety & Power Notes:**  
+> - Do **not** power the DC mini water pump from Arduino 5V.  
+> - Use **2 × 18650 Li-ion cells** with a proper holder.  
+> - If required by your relay module, connect **Arduino GND and battery negative (–)** together (common ground).  
+> - Be careful while working with liquids and electronics together.
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)
@@ -113,6 +115,7 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
 - Add adjustable dispensing time using a potentiometer.  
 - Add refill level indicator using a float sensor.
 - Integrate ESP8266/ESP32 for usage tracking or alerts.
+
 
 
 
