@@ -54,6 +54,10 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
   </tbody>
 </table>
 
+> ℹ️ **Relay Note:**  
+> - This project is configured for an **Active LOW relay module**.  
+> - If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
+
 *2. Appliance Connection (via Relay)*
 <table>
   <thead>
@@ -73,10 +77,6 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
     </tr>
   </tbody>
 </table>
-
-> ℹ️ **Relay Note:**  
-> This project is configured for an **Active LOW relay module**.  
-> If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
 
 > ⚠️ **Safety Note:**  
 > - Connect the appliance through a relay module, not directly to Arduino.  
@@ -106,5 +106,6 @@ The light toggles **ON/OFF** whenever a clap sound is detected. 🔊💡
 - Support **single-clap / double-clap** actions.  
 - Integrate IoT control using **ESP8266 / ESP32**.  
 - Add status display using **LED / OLED / LCD**.
+
 
 
