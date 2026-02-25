@@ -1,4 +1,4 @@
-# 🧴 Smart Hand Sanitizer 
+# 🧴Smart Hand Sanitizer 
 
 This project demonstrates a simple **Smart Hand Sanitizer Dispenser** using an **IR sensor** and a **relay-controlled water pump** with Arduino.  
 When a **person places their hand near the sensor**, the pump **dispenses sanitizer automatically** for a short duration.
@@ -115,6 +115,7 @@ When a **person places their hand near the sensor**, the pump **dispenses saniti
 - Add adjustable dispensing time using a potentiometer.  
 - Add refill level indicator using a float sensor.
 - Integrate ESP8266/ESP32 for usage tracking or alerts.
+
 
 
 
