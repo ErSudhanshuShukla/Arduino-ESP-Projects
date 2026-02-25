@@ -7,7 +7,7 @@ When the soil becomes **too dry**, the system **alerts the user** with a buzzer 
 - 1 x Arduino UNO  
 - 1 x Soil Moisture Sensor Module  
 - 1 x Buzzer  
-- 1 x LED  
+- 1 x LED (Red)  
 - 1 x 220Ω Resistor (for LED)  
 - Breadboard & Jumper Wires  
 - USB Cable / Power Supply  
@@ -90,3 +90,4 @@ When the soil becomes **too dry**, the system **alerts the user** with a buzzer 
 - Add **SMS alert** using GSM module.  
 - Add **battery power + low power mode**.  
 - Combine with **automatic pump control** for full irrigation automation.
+
