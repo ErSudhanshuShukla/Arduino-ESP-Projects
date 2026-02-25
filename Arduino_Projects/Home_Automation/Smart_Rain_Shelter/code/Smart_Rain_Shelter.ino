@@ -1,40 +1,38 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Rain Shelter
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <Servo.h>    // Library to control servo motor
+
+#define RAIN_PIN 2    // Rain sensor digital output pin
+Servo shelter;       // Servo object for shelter mechanism
+
+// Set angles according to your mechanical setup
+int OPEN_ANGLE  = 20;    // Shelter open position (no rain)
+int CLOSE_ANGLE = 140;  // Shelter closed position (raining)
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
-
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  pinMode(RAIN_PIN, INPUT);   // Configure rain sensor pin as input
+  shelter.attach(9);          // Attach servo motor to pin 9
+  shelter.write(OPEN_ANGLE);  // Start with shelter open
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int rainState = digitalRead(RAIN_PIN);  // Read rain sensor state
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  if (rainState == LOW) {
+    // Rain detected
+    shelter.write(CLOSE_ANGLE);   // Close the shelter to protect from rain
+  } 
+  else {
+    // No rain detected
+    shelter.write(OPEN_ANGLE);    // Open the shelter
   }
+
+  delay(200);  // Small delay to stabilize readings
 }
