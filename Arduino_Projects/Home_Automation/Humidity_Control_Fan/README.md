@@ -52,6 +52,10 @@ This project automatically controls a fan using a relay module based on real-tim
   </tbody>
 </table>
 
+> ℹ️ **Relay Note:**  
+> - This project is configured for an **Active LOW relay module**.  
+> - If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
+
 *2. Appliance Connection (Fan via Relay)*
 <table>
   <thead>
@@ -116,5 +120,6 @@ Install the following libraries from Arduino Library Manager:
 - Integrate IoT connectivity (ESP8266/ESP32) for remote monitoring.  
 - Provide user-configurable thresholds via buttons or potentiometer.  
 - Implement data logging for historical analysis.  
+
 
 
