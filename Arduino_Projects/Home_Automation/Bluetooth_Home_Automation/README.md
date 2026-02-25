@@ -6,7 +6,7 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 ## 🧩 Required Components
 - 1 x Arduino UNO  
 - 1 x HC-05 Bluetooth Module  
-- 1 x Single Channel Relay Module (Active LOW / HIGH)  
+- 1 x Single Channel Relay Module (Active LOW)  
 - 1 x Load (DC bulb / AC appliance via relay)  
 - Breadboard & Jumper Wires
 - USB Cable / Power Supply 
@@ -57,11 +57,13 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
   </tbody>
 </table>
 
-> ⚠️ **Important (HC-05 RX Voltage):**
-> - Use a voltage divider (1kΩ + 2kΩ) to step down Arduino TX (5V) to ~3.3V for HC-05 RX.
+> ⚠️ **HC-05 Wiring & Upload Notes:**  
+> - Use a **voltage divider (1kΩ + 2kΩ)** to step down Arduino TX (5V) to ~3.3V for **HC-05 RX**.  
+> - Temporarily disconnect **TX/RX (Pins 0 & 1)** while uploading code to the Arduino.
 
-> ℹ️ **Note:**
-> - Temporarily disconnect TX and RX (Pins 0 and 1) while uploading code to the Arduino, otherwise upload will fail.
+> ℹ️ **Relay Note:**  
+> - This project is configured for an **Active LOW relay module**.  
+> - If you are using an **Active HIGH relay**, you may need to invert the relay logic in the code.
 
 *2. Appliance Connection (AC / High Power Side)*
 <table>
@@ -113,19 +115,8 @@ A relay-controlled appliance can be turned **ON/OFF wirelessly** from a smartpho
 - The relay switches the connected appliance accordingly.  
 - Serial Monitor displays received commands and relay status.
 
-> ℹ️ **Relay Logic:**  
-> - Active LOW: LOW → ON, HIGH → OFF  
-> - Active HIGH: HIGH → ON, LOW → OFF  
-
 ## 🚀 Future Improvements
 - Control multiple devices (multi-relay board).  
 - Create a custom Android app UI.  
 - Add password/PIN for security.  
-- Add Wi-Fi (ESP8266/ESP32) for internet control.  
-
-
-
-
-
-
-
+- Add Wi-Fi (ESP8266/ESP32) for internet control.
