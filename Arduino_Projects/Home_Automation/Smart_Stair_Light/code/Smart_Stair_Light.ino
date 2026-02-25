@@ -1,6 +1,6 @@
 /*
 ====================================================
- Title   : Smart Stair Light (IR Sensors + LED Strip)
+ Title   : Smart Stair Light
  Author  : Sudhanshu Shukla
  GitHub  : https://github.com/ErSudhanshuShukla
  License : Released under the MIT License
