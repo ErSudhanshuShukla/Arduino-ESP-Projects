@@ -40,7 +40,7 @@ When a **person** comes near the dustbin (within a set distance), the **dustbin 
       <td align="center">Pin 2</td>
     </tr>
     <tr>
-      <td rowspan="3" align="center"><b>Servo Motor</b></td>
+      <td rowspan="3" align="center"><b>Servo Motor (SG90)</b></td>
       <td align="center">Signal</td>
       <td align="center">Pin 4</td>
     </tr>
@@ -87,3 +87,4 @@ When a **person** comes near the dustbin (within a set distance), the **dustbin 
 - Add LED/Buzzer to indicate lid status.  
 - Integrate ESP8266/ESP32 for IoT-based monitoring (fill level alerts).  
 - Add battery power with sleep mode for power saving.
+
