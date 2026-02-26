@@ -1,40 +1,43 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Music Rhythm Light System
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+int sound = A0;    // Sound sensor (microphone module) connected to analog pin A0
+
+int led1 = 9;     // LED 1 (Low beat level)
+int led2 = 10;    // LED 2 (Medium beat level)
+int led3 = 11;    // LED 3 (High beat level)
+int led4 = 12;    // LED 4 (Very high beat level)
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  pinMode(led1, OUTPUT);   // Set LED pins as OUTPUT
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  Serial.begin(9600);     // Start Serial Monitor for debugging
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int val = analogRead(sound);   // Read sound sensor value (0–1023)
+  Serial.println(val);          // Print sound level to Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
-  }
+  // Level 1 (low beat / low sound)
+  digitalWrite(led1, val > 200);
+
+  // Level 2 (medium beat)
+  digitalWrite(led2, val > 250);
+
+  // Level 3 (high beat)
+  digitalWrite(led3, val > 300);
+
+  // Level 4 (very high beat)
+  digitalWrite(led4, val > 350);
+
+  delay(10);   // Small delay for smooth response
 }
