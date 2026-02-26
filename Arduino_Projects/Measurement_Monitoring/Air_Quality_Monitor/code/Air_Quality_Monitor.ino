@@ -1,40 +1,55 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Air Quality Monitor
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);   // 16x2 I2C LCD (Address: 0x27)
+
+int airPin = A0;   // MQ-135 air quality sensor connected to analog pin A0
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
-
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  lcd.init();        // Initialize LCD
+  lcd.backlight();  // Turn ON LCD backlight
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int sensorValue = analogRead(airPin);   // Read raw sensor value (0–1023)
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // Convert MQ135 reading to AQI (approximate mapping for demo purpose)
+  int aqi = map(sensorValue, 0, 1023, 0, 500);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("AQI: ");
+  lcd.print(aqi);
+
+  lcd.setCursor(0, 1);
+
+  // Display air quality category based on AQI value
+  if (aqi <= 50) {
+    lcd.print("GOOD");
   }
+  else if (aqi <= 100) {
+    lcd.print("SATISFACTORY");
+  }
+  else if (aqi <= 200) {
+    lcd.print("MODERATE");
+  }
+  else if (aqi <= 300) {
+    lcd.print("POOR");
+  }
+  else if (aqi <= 400) {
+    lcd.print("VERY POOR");
+  }
+  else {
+    lcd.print("SEVERE");
+  }
+
+  delay(1500);   // Refresh display every 1.5 seconds
 }
