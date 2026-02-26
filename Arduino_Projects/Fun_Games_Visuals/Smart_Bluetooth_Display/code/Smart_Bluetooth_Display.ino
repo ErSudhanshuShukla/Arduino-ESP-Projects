@@ -1,40 +1,93 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Bluetooth Display
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <SoftwareSerial.h>
+
+// HC-05 Bluetooth module connected via SoftwareSerial
+SoftwareSerial bt(10, 11);   // RX, TX (Arduino 10 <- HC-05 TX, Arduino 11 -> HC-05 RX)
+
+// I2C LCD (16x2) display
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+String notice = "";     // Stores the final notice message
+String buffer = "";     // Temporary buffer while receiving message
+
+unsigned long lastScrollTime = 0;  // For non-blocking scroll timing
+int scrollIndex = 0;               // Current scroll position
+const int scrollDelay = 1500;      // Scroll speed (ms) – slow & readable
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  bt.begin(9600);        // Start Bluetooth communication (HC-05 default baud rate)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  lcd.init();            // Initialize LCD
+  lcd.backlight();      // Turn ON LCD backlight
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  // Welcome message
+  lcd.setCursor(0, 0);
+  lcd.print("SMART DISPLAY   ");
+  lcd.setCursor(0, 1);
+  lcd.print("SEND NOTICE     ");
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
+  // 🔹 READ BLUETOOTH MESSAGE CHARACTER BY CHARACTER
+  while (bt.available()) {
+    char ch = bt.read();
+
+    if (ch == '\n') {                 // ENTER key = message complete
+      notice = buffer;               // Replace old notice with new message
+      buffer = "";                   // Clear buffer for next message
+      scrollIndex = 0;               // Reset scrolling index
+
+      lcd.setCursor(0, 0);
+      lcd.print("NOTICE:         ");
+
+      // IF NOTICE <= 16 CHARACTERS → DISPLAY WITHOUT SCROLLING
+      if (notice.length() <= 16) {
+        lcd.setCursor(0, 1);
+        lcd.print("                ");
+        lcd.setCursor(0, 1);
+        lcd.print(notice);
+      }
+      else {
+        // Add spaces at the end to create smooth scrolling effect
+        notice += "                ";
+      }
     }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
+    else if (ch != '\r') {            // Ignore carriage return
+      buffer += ch;                  // Keep building the message
+    }
+  }
+
+  // 🔹 SCROLL ONLY IF NOTICE LENGTH > 16 CHARACTERS
+  if (notice.length() > 16) {
+    unsigned long now = millis();
+
+    if (now - lastScrollTime >= scrollDelay) {
+      lastScrollTime = now;
+
+      lcd.setCursor(0, 0);
+      lcd.print("NOTICE:         ");
+
+      // Display a 16-character window of the notice string
+      lcd.setCursor(0, 1);
+      lcd.print(notice.substring(scrollIndex, scrollIndex + 16));
+
+      scrollIndex++;   // Move window forward
+
+      // Restart scrolling when end is reached
+      if (scrollIndex > notice.length() - 16) {
+        scrollIndex = 0;
+      }
     }
   }
 }
