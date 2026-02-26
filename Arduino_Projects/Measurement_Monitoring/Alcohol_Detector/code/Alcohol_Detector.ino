@@ -1,40 +1,32 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Alcohol Detector
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+int sensorPin = A0;    // MQ-3 alcohol sensor analog output connected to A0
+int led = 13;         // LED connected to digital pin 13
+int threshold = 350; // Alcohol detection threshold (adjust as per calibration)
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
-
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  pinMode(led, OUTPUT);      
+  digitalWrite(led, LOW);   // Keep LED OFF at start
+  Serial.begin(9600);       // Serial Monitor for debugging (optional)
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int value = analogRead(sensorPin);   // Read MQ-3 sensor value (0–1023)
+  Serial.println(value);               // Print value for calibration (optional)
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // Check alcohol level
+  if (value > threshold) {
+    digitalWrite(led, HIGH);   // Alcohol detected → LED ON
+  } else {
+    digitalWrite(led, LOW);    // No alcohol detected → LED OFF
   }
+
+  delay(500);   // Small delay for stable readings
 }
