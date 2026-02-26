@@ -1,40 +1,50 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Piano
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include "pitches.h"   // Note frequency definitions
+
+#define SPEAKER_PIN 13   // Buzzer / speaker connected to pin 13
+
+// Push button pins for piano keys (Active LOW using INPUT_PULLUP)
+const uint8_t buttonPins[] = { 5, 6, 7, 8, 9, 10, 11, 12 };
+
+// Corresponding musical notes for each button
+const int buttonTones[] = {
+  NOTE_C4, NOTE_D4, NOTE_E4, NOTE_F4,
+  NOTE_G4, NOTE_A4, NOTE_B4, NOTE_C5
+};
+
+const int numTones = sizeof(buttonPins) / sizeof(buttonPins[0]);  // Total number of keys
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  // Configure all button pins as INPUT_PULLUP (Active LOW)
+  for (uint8_t i = 0; i < numTones; i++) {
+    pinMode(buttonPins[i], INPUT_PULLUP);
+  }
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  pinMode(SPEAKER_PIN, OUTPUT);   // Set speaker pin as OUTPUT
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  int pitch = 0;   // Stores currently pressed note
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
+  // Check each button
+  for (uint8_t i = 0; i < numTones; i++) {
+    if (digitalRead(buttonPins[i]) == LOW) {   // Button pressed
+      pitch = buttonTones[i];                  // Select corresponding note
     }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  }
+
+  // Play selected note if any button is pressed
+  if (pitch) {
+    tone(SPEAKER_PIN, pitch);   // Play tone on speaker
+  } else {
+    noTone(SPEAKER_PIN);        // Stop sound if no button is pressed
   }
 }
