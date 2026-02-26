@@ -1,40 +1,217 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Dino Game
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+#define IR_PIN 8
+#define BUZZER 11
+
+// ---------------- GAME VARIABLES ----------------
+int dinoRow = 1;          // 1 = ground, 0 = jump
+int obstacleCol = 15;
+int score = 0;
+int gameSpeed = 320;
+bool gameOverFlag = false;
+
+// Obstacle system
+int obstacleType = 0;     
+// 0 = cactus batch
+// 1 = crow batch
+
+int cactusCount = 1;      // 1–3
+int crowCount   = 0;      // 1–2
+
+// ---------------- CUSTOM CHARACTERS ----------------
+
+// 🦖 Dinosaur
+byte dinoChar[8] = {
+  B00100,
+  B01110,
+  B10101,
+  B11111,
+  B00100,
+  B01110,
+  B10100,
+  B00000
+};
+
+// 🌵 Cactus
+byte cactusChar[8] = {
+  B00100,
+  B00100,
+  B10101,
+  B10101,
+  B00100,
+  B00100,
+  B00100,
+  B00000
+};
+
+// 🐦 Crow
+byte crowChar[8] = {
+  B00000,
+  B10101,
+  B01110,
+  B11111,
+  B01110,
+  B00100,
+  B00000,
+  B00000
+};
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  pinMode(IR_PIN, INPUT);     // IR sensor for jump detection
+  pinMode(BUZZER, OUTPUT);   // Buzzer for game over alert
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  lcd.init();                // Initialize LCD
+  lcd.backlight();          // Turn ON LCD backlight
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+  // Load custom characters into LCD
+  lcd.createChar(0, dinoChar);
+  lcd.createChar(1, cactusChar);
+  lcd.createChar(2, crowChar);
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  randomSeed(analogRead(A0));  // Randomize obstacle patterns
+
+  startScreen();   // Show welcome screen
+  resetGame();     // Initialize game variables
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
+  // ---------------- GAME OVER MODE ----------------
+  if (gameOverFlag) {
+    lcd.setCursor(0, 1);
+    lcd.print("Wave IR restart ");
+
+    if (digitalRead(IR_PIN) == LOW) {
+      delay(300);        // Debounce delay
+      resetGame();      // Restart game
     }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
+    return;
+  }
+
+  // ---------------- JUMP LOGIC ----------------
+  if (digitalRead(IR_PIN) == LOW)
+    dinoRow = 0;   // Jump
+  else
+    dinoRow = 1;   // Stay on ground
+
+  lcd.clear();
+
+  // ---------------- DRAW DINO ----------------
+  lcd.setCursor(2, dinoRow);
+  lcd.write(byte(0));   // Draw dinosaur
+
+  // ---------------- DRAW OBSTACLE ----------------
+  if (obstacleType == 0) {             // Cactus batch (ground)
+    for (int i = 0; i < cactusCount; i++) {
+      lcd.setCursor(obstacleCol + i, 1);
+      lcd.write(byte(1));
+    }
+  } 
+  else {                               // Crow batch (air)
+    for (int i = 0; i < crowCount; i++) {
+      lcd.setCursor(obstacleCol + i, 0);
+      lcd.write(byte(2));
     }
   }
+
+  // ---------------- COLLISION CHECK ----------------
+  int width = max(cactusCount, crowCount);
+
+  if (obstacleCol <= 2 && obstacleCol + width > 2) {
+
+    if (obstacleType == 0 && dinoRow == 1) {
+      triggerGameOver();    // Hit cactus
+    }
+
+    if (obstacleType == 1 && dinoRow == 0) {
+      triggerGameOver();    // Hit crow
+    }
+  }
+
+  obstacleCol--;   // Move obstacle left
+
+  // ---------------- NEW OBSTACLE GENERATION ----------------
+  if (obstacleCol < -3) {
+    obstacleCol = 15 + random(2, 6);     // Reset obstacle position
+
+    obstacleType = random(0, 2);        // Random: cactus or crow
+
+    if (obstacleType == 0) {
+      cactusCount = random(1, 4);       // 1–3 cactus
+      crowCount = 0;
+    } else {
+      crowCount = random(1, 3);         // 1–2 crow
+      cactusCount = 0;
+    }
+
+    score++;   // Increase score
+
+    // Increase difficulty gradually
+    if (score % 3 == 0 && gameSpeed > 90)
+      gameSpeed -= 20;
+  }
+
+  // ---------------- SCORE DISPLAY ----------------
+  lcd.setCursor(11, 0);
+  lcd.print("S:");
+  lcd.print(score);
+
+  delay(gameSpeed);   // Control game speed
+}
+
+// ---------------- GAME OVER FUNCTION ----------------
+void triggerGameOver() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("  GAME OVER  ");
+  lcd.setCursor(0, 1);
+  lcd.print("Score: ");
+  lcd.print(score);
+
+  digitalWrite(BUZZER, HIGH);   // Buzzer ON
+  delay(400);
+  digitalWrite(BUZZER, LOW);    // Buzzer OFF
+
+  gameOverFlag = true;
+}
+
+// ---------------- RESET GAME ----------------
+void resetGame() {
+  lcd.clear();
+  score = 0;
+  dinoRow = 1;
+  obstacleCol = 15;
+  gameSpeed = 320;
+  gameOverFlag = false;
+
+  obstacleType = random(0, 2);
+  if (obstacleType == 0) {
+    cactusCount = random(1, 4);
+    crowCount = 0;
+  } else {
+    crowCount = random(1, 3);
+    cactusCount = 0;
+  }
+}
+
+// ---------------- START SCREEN ----------------
+void startScreen() {
+  lcd.setCursor(0, 0);
+  lcd.print("  DINO GAME  ");
+  lcd.setCursor(0, 1);
+  lcd.print("Think & Jump!");
+  delay(2000);
+  lcd.clear();
 }
