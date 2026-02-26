@@ -1,40 +1,44 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Blind Stick
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#define trig 3     // Ultrasonic sensor Trigger pin connected to D3
+#define echo 2     // Ultrasonic sensor Echo pin connected to D2
+int buzzer = 11;   // Buzzer connected to digital pin 11
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
-
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  pinMode(trig, OUTPUT);   // Set Trigger pin as OUTPUT
+  pinMode(echo, INPUT);   // Set Echo pin as INPUT
+  pinMode(buzzer, OUTPUT); // Set Buzzer pin as OUTPUT
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+  // 🔊 Send ultrasonic pulse
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // 📏 Measure echo pulse duration (timeout set to 25ms ~ 4m range)
+  long duration = pulseIn(echo, HIGH, 25000);
+
+  // 📐 Convert duration to distance in centimeters
+  int distance = duration * 0.034 / 2;
+
+  // 🔔 Beep ONLY when object is very close (within 30 cm)
+  if (distance > 0 && distance < 30) {
+    digitalWrite(buzzer, HIGH);   // Buzzer ON
+    delay(100);
+    digitalWrite(buzzer, LOW);    // Buzzer OFF
+    delay(100);
+  } else {
+    digitalWrite(buzzer, LOW);    // Silent when no obstacle nearby
+    delay(200);
   }
 }
