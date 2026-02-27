@@ -1,6 +1,6 @@
 /*
 ====================================================
- Title   : Weather Forecast System
+ Title   : Rain_Predictor_System
  Author  : Sudhanshu Shukla
  GitHub  : https://github.com/ErSudhanshuShukla
  License : Released under the MIT License
