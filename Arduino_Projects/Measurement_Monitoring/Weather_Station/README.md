@@ -55,9 +55,7 @@ The system reads real-time temperature and humidity values and displays them on 
   </tbody>
 </table>
 
-> ℹ️ **Note:**  
-> - This project uses the **DHT11 module**, which already has a built-in pull-up resistor.  
-> - No external resistor is required.  
+> ℹ️ **Note:** 
 > - I2C LCD address is usually **0x27** or **0x3F**.
 
 ## 💻 Software Used
@@ -95,3 +93,4 @@ Install from Arduino Library Manager:
 - Add **BMP280** for pressure monitoring.  
 - Add **ESP8266/ESP32** for IoT weather dashboard.  
 - Add **SD card module** for data logging.
+
