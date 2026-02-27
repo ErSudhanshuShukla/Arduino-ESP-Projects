@@ -11,7 +11,7 @@ This version uses a **4x4 chassis (4 DC motors)** for better traction and stabil
 - 1 x 4-Wheel Drive Chassis Kit (Wheels, Motors)  
 - 1 x Buzzer (Horn)  
 - 2 x LEDs (Headlights)
-- 2 x 220Ω resistor 
+- 2 x 220Ω Resistors 
 - 3 x 18650 Li-ion Cells with Holder  
 - Breadboard & Jumper Wires  
 - USB Cable / Power Supply  
@@ -186,4 +186,5 @@ The car responds to the following Bluetooth commands:
 - Add speed control slider.  
 - Upgrade to ESP32 for Wi-Fi control.  
 - Add rechargeable charging module (TP4056).
+
 
