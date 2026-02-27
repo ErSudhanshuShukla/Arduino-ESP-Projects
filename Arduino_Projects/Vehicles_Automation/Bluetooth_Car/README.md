@@ -105,43 +105,37 @@ This version uses a **4x4 chassis (4 DC motors)** for better traction and stabil
 </table>
 
 *3. Power Connections*
+
 <table>
   <thead>
     <tr>
       <th align="center">Component</th>
-      <th align="center">Connection</th>
+      <th align="center">L298N Power Terminal</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="center"><b>3 × 18650 Battery Pack (+)</b></td>
-      <td align="center">L298N 12V</td>
+      <td align="center"><b> 3 × 18650 Battery Pack (+)</b></td>
+      <td align="center">12V</td>
     </tr>
     <tr>
       <td align="center"><b>Battery Pack (-)</b></td>
-      <td align="center">L298N GND</td>
+      <td align="center">GND</td>
     </tr>
     <tr>
       <td align="center"><b>Arduino GND</b></td>
-      <td align="center">L298N GND (Common Ground Required)</td>
+      <td align="center">GND</td>
     </tr>
     <tr>
-      <td align="center"><b>Arduino 5V (Option A)</b></td>
-      <td align="center">L298N 5V (Jumper ON)</td>
-    </tr>
-    <tr>
-      <td align="center"><b>Arduino VIN (Option B)</b></td>
-      <td align="center">Battery Pack (+)</td>
+      <td align="center"><b>Arduino Vin</b></td>
+      <td align="center">5V</td>
     </tr>
   </tbody>
 </table>
 
-> ⚠️ **Important Power Notes:**  
-> - Arduino GND and L298N GND must be connected (common ground).  
-> - Use 3×18650 battery pack for motors.  
-> - **Option A:** If using L298N 5V output → keep 5V jumper ON.  
-> - **Option B:** If powering Arduino via VIN → connect battery (+) to VIN (NOT 5V).  
-> - Never connect VIN to 5V directly.
+> ⚠️ **Power Note:**
+> - Arduino is powered using the L298N 5V output (5V-EN jumper ON).
+> - Arduino GND and L298N GND must be connected (common ground).
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)  
@@ -186,5 +180,6 @@ The car responds to the following Bluetooth commands:
 - Add speed control slider.  
 - Upgrade to ESP32 for Wi-Fi control.  
 - Add rechargeable charging module (TP4056).
+
 
 
