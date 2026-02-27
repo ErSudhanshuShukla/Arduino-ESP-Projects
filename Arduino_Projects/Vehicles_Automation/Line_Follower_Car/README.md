@@ -13,6 +13,7 @@ This version uses a **2-wheel drive chassis**.
 - Breadboard & Jumper Wires
 - USB Cable / Power Supply 
 - Black Electrical Tape (4.5 – 5 cm width)
+- 3D Model (Reference): [**Thingiverse**](https://www.thingiverse.com)
 
 ## 📐 Mechanical Setup Requirements
 For proper working:
@@ -89,7 +90,7 @@ For proper working:
   <tbody>
     <tr>
       <td align="center"><b>2 × 18650 Battery Pack (+)</b></td>
-      <td align="center">EXT_PWR</td>
+      <td align="center">EXT_PWR (M+)</td>
     </tr>
     <tr>
       <td align="center"><b>Battery Pack (-)</b></td>
@@ -102,6 +103,12 @@ For proper working:
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)
+
+## 📚 Dependencies
+
+Install from Arduino Library Manager or official sources:
+
+- [**Adafruit Motor Shield Library V1 (AFMotor)**](https://github.com/adafruit/Adafruit-Motor-Shield-library) 
 
 ## 📁 Project Files
 - 💻 [**Source Code**](./code/Line_Follower_Car.ino)  
@@ -127,5 +134,6 @@ For proper working:
 - Add Bluetooth monitoring  
 - Upgrade to ESP32  
 - Add OLED display for sensor values  
+
 
 
