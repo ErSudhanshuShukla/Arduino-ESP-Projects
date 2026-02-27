@@ -1,40 +1,119 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Motion Detection Alarm
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// =============================
+// Pin Definitions
+// =============================
+int pirPin = 2;      // PIR OUT → Digital Pin 2
+int buzzer = 11;     // Buzzer → Pin 11
+int led = 13;        // LED → Pin 13
+
+// =============================
+// System Configuration
+// =============================
+unsigned long alarmDuration = 5000UL;  // Alarm ON time (5 seconds)
+unsigned long resetLowSecs = 2UL;      // PIR must stay LOW for 2 seconds before reset
+
+// =============================
+// State Variables
+// =============================
+bool alarmActive = false;
+unsigned long alarmStart = 0;
+
+bool waitingForLow = false;
+unsigned long lowStart = 0;
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  Serial.begin(9600);
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+  pinMode(pirPin, INPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(led, OUTPUT);
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  digitalWrite(buzzer, LOW);
+  digitalWrite(led, LOW);
+
+  Serial.println("PIR Robust Motion Detection System Started");
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
+  int v = digitalRead(pirPin);   // Read PIR state (HIGH / LOW)
+  unsigned long now = millis();
+
+  // =========================================
+  // If Alarm is Active → Check Timeout
+  // =========================================
+  if (alarmActive) {
+
+    if (now - alarmStart >= alarmDuration) {
+
+      // Stop alarm after duration
+      alarmActive = false;
+      digitalWrite(buzzer, LOW);
+      digitalWrite(led, LOW);
+
+      // Enter reset phase
+      waitingForLow = true;
+      lowStart = 0;
+
+      Serial.println("Alarm OFF (timeout). Waiting for PIR LOW reset...");
+    } 
+    else {
+      // Alarm still active
+      delay(20);
+      return;
     }
   }
+
+  // =========================================
+  // Waiting for PIR to stay LOW for reset
+  // =========================================
+  if (waitingForLow) {
+
+    if (v == LOW) {
+
+      if (lowStart == 0) lowStart = now;
+
+      unsigned long lowDur = now - lowStart;
+
+      if (lowDur >= resetLowSecs * 1000UL) {
+        waitingForLow = false;
+        Serial.println("Reset complete. Ready for next trigger.");
+      }
+    } 
+    else {
+      // PIR went HIGH again → restart timer
+      lowStart = 0;
+    }
+
+    delay(200);
+    return;
+  }
+
+  // =========================================
+  // Normal Motion Detection
+  // =========================================
+  if (v == HIGH) {
+
+    Serial.println("Motion Detected → Alarm ON");
+
+    alarmActive = true;
+    alarmStart = now;
+
+    digitalWrite(buzzer, HIGH);
+    digitalWrite(led, HIGH);
+  } 
+  else {
+    Serial.println("No Motion");
+  }
+
+  delay(200);
 }
