@@ -98,8 +98,8 @@ Install from Arduino Library Manager:
   - Forecast Alert Message  
 
 ## 🚀 Future Improvements
-- Add **DHT22** for temperature & humidity monitoring  
-- Add **ESP8266/ESP32** for IoT weather dashboard  
-- Add **SD Card module** for pressure data logging  
-- Add **RTC module** for time-based tracking  
-- Add **Buzzer alert** for rain notification  
+- Add **DHT22** for temperature & humidity monitoring.  
+- Add **ESP8266/ESP32** for IoT weather dashboard.  
+- Add **SD Card module** for pressure data logging.  
+- Add **RTC module** for time-based tracking.  
+- Add **Buzzer alert** for rain notification.
