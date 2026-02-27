@@ -1,40 +1,117 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Object Counter
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Initialize I2C LCD (Address: 0x27, 16x2 Display)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Define Pin Connections
+#define TRIG 8
+#define ECHO 9
+#define BUZZER 11
+
+long duration;              // Stores echo pulse duration
+int distance;               // Calculated distance (cm)
+int count = 0;              // Object count
+bool objectDetected = false; // Flag to avoid multiple counts
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  lcd.init();          // Initialize LCD
+  lcd.backlight();     // Turn ON backlight
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(BUZZER, OUTPUT);
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  // Welcome Message
+  lcd.setCursor(0,0);
+  lcd.print("Object Counter");
+  delay(1000);
+  lcd.clear();
+
+  // Initial Screen
+  lcd.setCursor(0,0);
+  lcd.print("No Object");
+  lcd.setCursor(0,1);
+  lcd.print("Count: 0");
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // ==============================
+  // Send Ultrasonic Trigger Pulse
+  // ==============================
+
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  // ==============================
+  // Read Echo with Timeout
+  // ==============================
+
+  duration = pulseIn(ECHO, HIGH, 25000); // 25ms timeout
+
+  if (duration == 0) {
+    distance = 999;   // No object detected
+  } 
+  else {
+    distance = duration * 0.034 / 2;  // Distance formula
+  }
+
+  // ==============================
+  // Object Detection Logic
+  // ==============================
+
+  // If object is very close (< 3 cm) and not already counted
+  if (distance < 3 && !objectDetected) {
+
+    objectDetected = true;  // Prevent double counting
+    count++;                // Increase object count
+
+    // Buzzer Alert
+    digitalWrite(BUZZER, HIGH);
+    delay(200);
+    digitalWrite(BUZZER, LOW);
+
+    // Display Detection
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("Object Detected");
+
+    lcd.setCursor(0,1);
+    lcd.print("Count: ");
+    lcd.print(count);
+
+    delay(2000);
+  }
+
+  // ==============================
+  // Reset When Object Leaves
+  // ==============================
+
+  if (distance > 6 && objectDetected) {
+
+    objectDetected = false;  // Ready for next object
+
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("No Object");
+
+    lcd.setCursor(0,1);
+    lcd.print("Count: ");
+    lcd.print(count);
   }
 }
