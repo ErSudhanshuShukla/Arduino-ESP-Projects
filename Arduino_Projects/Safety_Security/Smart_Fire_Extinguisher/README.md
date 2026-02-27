@@ -7,7 +7,7 @@ When fire is detected, the pump **automatically turns ON** to spray water, and t
 - 1 x Arduino UNO  
 - 1 x Flame Sensor Module  
 - 1 x Single Channel Relay Module (Active LOW)  
-- 1 x DC Water Pump  
+- 1 x DC Mini Water Pump  
 - 2 x 18650 Li-ion Cells with Holder  
 - Pipes / Tubes for water flow  
 - Breadboard & Jumper Wires  
@@ -119,4 +119,5 @@ When fire is detected, the pump **automatically turns ON** to spray water, and t
 - Add **ESP8266/ESP32** for IoT fire alerts.  
 - Add **automatic sprinkler distribution system**.  
 - Add **GSM module** for emergency SMS notification.
+
 
