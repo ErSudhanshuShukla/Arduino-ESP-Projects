@@ -91,7 +91,7 @@ This version uses a **2-wheel drive chassis**.
   </thead>
   <tbody>
     <tr>
-      <td align="center"><b>Battery Pack (+)</b></td>
+      <td align="center"><b>2 × 18650 Battery Pack (+)</b></td>
       <td align="center">12V</td>
     </tr>
     <tr>
@@ -138,3 +138,4 @@ This version uses a **2-wheel drive chassis**.
 - Add LED headlights  
 - Upgrade to ESP32.
 - Add battery level monitoring.
+
