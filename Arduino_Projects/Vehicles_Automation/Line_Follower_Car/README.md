@@ -128,12 +128,8 @@ Install from Arduino Library Manager or official sources:
 - If both detect black → Stop.
 - The robot adjusts turning speed automatically for smoother tracking.
 
-## 🚀 Future Improvements
-- Implement PID control  
+## 🚀 Future Improvements  
 - Add speed tuning via potentiometer  
 - Add Bluetooth monitoring  
 - Upgrade to ESP32  
-- Add OLED display for sensor values  
-
-
-
+- Add OLED display for sensor values
