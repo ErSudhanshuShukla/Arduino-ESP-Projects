@@ -91,7 +91,6 @@ When fire is detected, the pump **automatically turns ON** to spray water, and t
 > - Use **2 × 18650 Li-ion cells** with a proper holder.  
 > - If required by your relay module, connect **Arduino GND and battery negative (–)** together (common ground).  
 > - Keep water away from electronic components while testing.  
-> - This is a prototype and not a certified fire safety device.
 
 ## 💻 Software Used
 - [**Arduino IDE**](https://www.arduino.cc/en/software/)
@@ -120,3 +119,4 @@ When fire is detected, the pump **automatically turns ON** to spray water, and t
 - Add **ESP8266/ESP32** for IoT fire alerts.  
 - Add **automatic sprinkler distribution system**.  
 - Add **GSM module** for emergency SMS notification.
+
