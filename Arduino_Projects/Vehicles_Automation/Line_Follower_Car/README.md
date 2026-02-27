@@ -1,12 +1,12 @@
 # 🚗 Line Follower Car
 
-This project demonstrates an intelligent **Line Follower Car** using **Arduino UNO**, an **L293D motor driver**, and **two analog IR sensors**.  
-The Car follows a black line on a white surface using sensor-based decision logic and differential motor control.
+This project demonstrates an intelligent **Line follower Car** using **Arduino UNO**, an **L293D motor driver**, and **two analog IR sensors**.  
+The car follows a black line on a white surface using sensor-based decision logic and differential motor control.
 This version uses a **2-wheel drive chassis**.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
-- 1 x L293D Motor Driver Module
+- 1 x L293D Motor Shield
 - 1 x 2-Wheel Drive Chassis Kit (Wheels, Motors) 
 - 2 x IR Sensors Modules   
 - 2 x 18650 Li-ion Cells with Holder  
@@ -28,7 +28,7 @@ For proper working:
   <thead>
     <tr>
       <th align="center">Component</th>
-      <th align="center">L293D Motor Terminal</th>
+      <th align="center">Shield Motor Terminal</th>
     </tr>
   </thead>
   <tbody>
@@ -52,7 +52,7 @@ For proper working:
   <thead>
     <tr>
       <th align="center">Sensor</th>
-      <th align="center">L293D Pin</th>
+      <th align="center">Shield Header Pin</th>
     </tr>
   </thead>
   <tbody>
@@ -75,8 +75,7 @@ For proper working:
   </tbody>
 </table>
 
->- The IR sensors are connected to the shield header pins,  
->- which are internally connected to the corresponding Arduino pins.
+> - The IR sensors are connected to the shield header pins, which are internally connected to the corresponding Arduino pins.
 
 *3. Power Connections*
 
@@ -84,7 +83,7 @@ For proper working:
   <thead>
     <tr>
       <th align="center">Component</th>
-      <th align="center">L293D Pin</th>
+      <th align="center">Shield Power Terminal</th>
     </tr>
   </thead>
   <tbody>
@@ -128,4 +127,5 @@ For proper working:
 - Add Bluetooth monitoring  
 - Upgrade to ESP32  
 - Add OLED display for sensor values  
+
 
