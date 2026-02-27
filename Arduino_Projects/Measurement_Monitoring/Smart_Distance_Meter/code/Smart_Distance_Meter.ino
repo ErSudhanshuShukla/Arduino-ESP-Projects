@@ -1,40 +1,72 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Distance Meter
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <LiquidCrystal_I2C.h>
+
+// Initialize I2C LCD (Address: 0x27, 16 columns, 2 rows)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Define Ultrasonic Sensor Pins
+#define trig 2
+#define echo 3
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+  Serial.begin(9600);      // Start Serial Monitor at 9600 baud rate
+  
+  lcd.init();              // Initialize LCD
+  lcd.backlight();         // Turn ON LCD backlight
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
-
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  pinMode(trig, OUTPUT);   // Set Trigger pin as OUTPUT
+  pinMode(echo, INPUT);    // Set Echo pin as INPUT
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
-  }
+  // ==============================
+  // Send Ultrasonic Pulse
+  // ==============================
+
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trig, HIGH);      // Send 10µs pulse
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+
+  // ==============================
+  // Measure Echo Duration
+  // ==============================
+
+  long duration = pulseIn(echo, HIGH);   // Time taken for echo to return
+
+  // Calculate Distance (Speed of sound = 0.034 cm/µs)
+  int distance = duration * 0.034 / 2;
+
+  // ==============================
+  // Display on Serial Monitor
+  // ==============================
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // ==============================
+  // Display on LCD
+  // ==============================
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Distance:");
+  
+  lcd.setCursor(0, 1);
+  lcd.print(distance);
+  lcd.print(" cm");
+
+  delay(500);   // Small delay for stable readings
 }
