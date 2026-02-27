@@ -1,7 +1,7 @@
 # 🚗 Line Follower Car
 
 This project demonstrates an intelligent **Line Follower Car** using **Arduino UNO**, an **L293D motor driver**, and **two analog IR sensors**.  
-The robot follows a black line on a white surface using sensor-based decision logic and differential motor control.
+The Car follows a black line on a white surface using sensor-based decision logic and differential motor control.
 This version uses a **2-wheel drive chassis**.
 
 ## 🧩 Required Components
@@ -128,4 +128,5 @@ For proper working:
 - Add Bluetooth monitoring  
 - Upgrade to ESP32  
 - Add OLED display for sensor values  
+
 
