@@ -7,9 +7,8 @@ This version uses a **4x4 chassis (4 DC motors)** for better traction and stabil
 ## 🧩 Required Components
 - 1 x Arduino UNO  
 - 1 x L298N Motor Driver Module  
-- 1 x HC-05 Bluetooth Module  
-- 4 x DC Motors (4x4 chassis)  
-- 1 x 4x4 Car Chassis  
+- 1 x HC-05 Bluetooth Module
+- 1 x 4-Wheel Drive Chassis Kit (Wheels, Motors)  
 - 1 x Buzzer (Horn)  
 - 2 x LEDs (Headlights)
 - 2 x 220Ω resistor 
@@ -87,20 +86,20 @@ This version uses a **4x4 chassis (4 DC motors)** for better traction and stabil
   <thead>
     <tr>
       <th align="center">Motor Group</th>
-      <th align="center">Connected To</th>
-      <th align="center">L298N Outputs</th>
+      <th align="center">Connection Type</th>
+      <th align="center">L298N Motor Terminals</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td align="center"><b>Left Front + Left Rear</b></td>
       <td align="center">Connected in Parallel</td>
-      <td align="center">OUT1</td>
+      <td align="center">OUT1 & OUT2</td>
     </tr>
     <tr>
       <td align="center"><b>Right Front + Right Rear</b></td>
       <td align="center">Connected in Parallel</td>
-      <td align="center">OUT2</td>
+      <td align="center">OUT3 & OUT4</td>
     </tr>
   </tbody>
 </table>
@@ -187,3 +186,4 @@ The car responds to the following Bluetooth commands:
 - Add speed control slider.  
 - Upgrade to ESP32 for Wi-Fi control.  
 - Add rechargeable charging module (TP4056).
+
