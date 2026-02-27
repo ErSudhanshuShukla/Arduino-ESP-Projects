@@ -1,40 +1,66 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Sound Level Meter
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// =============================
+// LCD Initialization
+// =============================
+// I2C Address: 0x27 (change to 0x3F if not working)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// =============================
+// Pin Definition
+// =============================
+int mic = A0;   // Microphone analog output connected to A0
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  // Initialize LCD
+  lcd.init();
+  lcd.backlight();
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+  // Welcome Message
+  lcd.setCursor(0, 0);
+  lcd.print("Sound Meter");
+  lcd.setCursor(0, 1);
+  lcd.print("Initializing");
+  delay(1500);
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  lcd.clear();
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
-  }
+  // =============================
+  // Read Microphone Value
+  // =============================
+  int raw = analogRead(mic);   // Read analog signal (0–1023)
+
+  // =============================
+  // Convert to Approximate dB
+  // =============================
+  // Mapping 0–1023 → 30–120 dB (approximation only)
+  int dB = map(raw, 0, 1023, 30, 120);
+
+  // =============================
+  // Display on LCD
+  // =============================
+  lcd.clear();
+
+  lcd.setCursor(0, 0);
+  lcd.print("Sound Level:");
+
+  lcd.setCursor(0, 1);
+  lcd.print(dB);
+  lcd.print(" dB");
+
+  delay(300);   // Small delay for stable reading
 }
