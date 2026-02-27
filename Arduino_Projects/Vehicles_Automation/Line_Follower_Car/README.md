@@ -28,7 +28,7 @@ For proper working:
   <thead>
     <tr>
       <th align="center">Component</th>
-      <th align="center">L293D Terminal</th>
+      <th align="center">L293D Motor Terminal</th>
     </tr>
   </thead>
   <tbody>
@@ -128,3 +128,4 @@ For proper working:
 - Add Bluetooth monitoring  
 - Upgrade to ESP32  
 - Add OLED display for sensor values  
+
