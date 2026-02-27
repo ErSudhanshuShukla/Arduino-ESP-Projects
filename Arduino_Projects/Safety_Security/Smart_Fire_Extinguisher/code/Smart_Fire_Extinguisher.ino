@@ -1,40 +1,49 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Fire Extinguisher
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// =============================
+// Pin Definitions
+// =============================
+int flame = 9;    // Flame sensor digital output connected to Pin 9
+int pump = 8;     // Relay module controlling water pump connected to Pin 8
 
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  // Configure pin modes
+  pinMode(flame, INPUT);
+  pinMode(pump, OUTPUT);
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  // Ensure pump is OFF initially (Active LOW relay)
+  digitalWrite(pump, HIGH);
 }
 
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // Read flame sensor state
+  int flameState = digitalRead(flame);
+
+  // =============================
+  // Fire Detection Logic
+  // =============================
+  // Most flame sensor modules are Active LOW:
+  // LOW  → Fire detected
+  // HIGH → No fire
+
+  if (flameState == LOW) {
+
+    // Fire detected → Turn ON pump
+    // Relay is Active LOW
+    digitalWrite(pump, LOW);
+  } 
+  else {
+
+    // No fire → Turn OFF pump
+    digitalWrite(pump, HIGH);
   }
 }
