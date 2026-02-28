@@ -17,7 +17,7 @@ The LEDs run through **multiple lighting patterns** like forward chase, reverse 
   <thead>
     <tr>
       <th align="center">Component</th>
-      <th align="center">Wire / Pin</th>
+      <th align="center">Component Pin</th>
       <th align="center">Arduino Pin</th>
     </tr>
   </thead>
@@ -139,4 +139,5 @@ The LEDs run through **multiple lighting patterns** like forward chase, reverse 
 - Add **mode button** to change effects manually.  
 - Add **Bluetooth control** to switch patterns from mobile.  
 - Add **potentiometer** to control speed in real-time.
+
 
