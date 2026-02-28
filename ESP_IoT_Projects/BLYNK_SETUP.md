@@ -76,7 +76,7 @@ Replace:
 - `Your_WiFi_Name` → Your WiFi SSID  
 - `Your_WiFi_Password` → Your WiFi Password  
 
-⚠️ Never upload real credentials to public GitHub repositories.
+⚠️ Never upload real credentials to public repositories.
 
 ---
 
