@@ -11,21 +11,21 @@
 #include <NewPing.h>
 #include <Servo.h>
 
-// ================= SENSOR PINS =================
+// SENSOR PINS
 #define TRIG_PIN A0
 #define ECHO_PIN A1
 #define MAX_DISTANCE 200   // Maximum sensing distance (cm)
 
-// ================= SPEED SETTINGS =================
+// SPEED SETTINGS
 #define CRUISE_SPEED 120   // Forward speed
 #define TURN_SPEED    90   // Turning speed
 
-// ================= SERVO ANGLES =================
+// SERVO ANGLES
 #define SERVO_CENTER 90
 #define SERVO_RIGHT  40
 #define SERVO_LEFT   140
 
-// ================= OBJECTS =================
+// OBJECTS
 NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE);  // Ultrasonic object
 Servo myservo;                                   // Servo object
 
@@ -35,12 +35,12 @@ AF_DCMotor motor2(2, MOTOR12_1KHZ);
 AF_DCMotor motor3(3, MOTOR34_1KHZ);
 AF_DCMotor motor4(4, MOTOR34_1KHZ);
 
-// ================= VARIABLES =================
+// VARIABLES
 boolean goesForward = false;   // Track forward state
 int distance = 100;            // Store distance
 int speedSet = 0;              // Speed ramp variable
 
-// ================= SETUP =================
+// SETUP
 void setup() {
 
   myservo.attach(9);           // Attach servo to D9
@@ -52,7 +52,7 @@ void setup() {
   distance = readPing();       // Initial distance read
 }
 
-// ================= LOOP =================
+// LOOP
 void loop() {
 
   // Obstacle detected within 30 cm
@@ -88,7 +88,7 @@ void loop() {
   distance = readPing();       // Update distance
 }
 
-// ================= SENSOR FUNCTIONS =================
+// SENSOR FUNCTIONS
 
 // Measure distance using ultrasonic sensor
 int readPing() {
@@ -116,7 +116,7 @@ int lookLeft() {
   return d;
 }
 
-// ================= MOTOR FUNCTIONS =================
+// MOTOR FUNCTIONS
 
 // Stop all motors
 void moveStop() {
