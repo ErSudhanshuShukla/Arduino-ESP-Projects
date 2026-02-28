@@ -1,7 +1,8 @@
 # 🎵 Music Rhythm Light System
 
-This project demonstrates a simple **music-reactive LED system** using **Arduino** and a **sound sensor (microphone module)**.  
-The LEDs glow in **different levels based on sound intensity**, creating a rhythm light effect for music and beats.
+This project implements a sound-reactive LED lighting system using Arduino and a microphone-based sound sensor module.  
+The system reads analog audio intensity levels and dynamically controls multiple LEDs based on predefined threshold ranges.  
+It demonstrates real-time signal processing, analog data acquisition, and intensity-based visual feedback generation in embedded systems.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -112,4 +113,5 @@ The LEDs glow in **different levels based on sound intensity**, creating a rhyth
 - Add **PWM brightness control** for smooth fading.  
 - Add **sensitivity adjustment knob** using potentiometer.  
 - Integrate **Bluetooth control** to change modes.
+
 
