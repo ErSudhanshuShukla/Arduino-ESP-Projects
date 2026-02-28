@@ -18,7 +18,7 @@ The system simulates real-world traffic signal behavior with timed transitions b
   <thead>
     <tr>
       <th align="center">Component</th>
-      <th align="center">Wire / Pin</th>
+      <th align="center">Component Pin</th>
       <th align="center">Arduino Pin</th>
     </tr>
   </thead>
@@ -80,3 +80,4 @@ The system simulates real-world traffic signal behavior with timed transitions b
 - Add IR vehicle detection.  
 - Add smart traffic density control.  
 - Upgrade to IoT-based traffic monitoring.
+
