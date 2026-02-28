@@ -1,7 +1,8 @@
 # 💡 LED Blinking
 
-This project demonstrates a simple **LED blinking program** using **Arduino**.  
-The LED turns **ON and OFF every 1 second**, making it the perfect beginner project to test your setup.
+This project demonstrates basic digital output control by blinking an LED using timed delays.  
+It introduces fundamental concepts such as pin configuration, digitalWrite operations, and timing using delay functions.  
+This serves as an entry-level project for understanding microcontroller output control.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -60,3 +61,4 @@ The LED turns **ON and OFF every 1 second**, making it the perfect beginner proj
 - Change blink speed using a **potentiometer**.  
 - Use **multiple LEDs** for patterns.  
 - Control LED using **Bluetooth/Wi-Fi**.
+
