@@ -1,7 +1,8 @@
 # 🗳️ Electronic Voting System (EVM)
 
-This project demonstrates a simple **Electronic Voting System (EVM)** using **Arduino**, **push buttons**, and an **I2C LCD display**.  
-Users can cast votes for **four candidates (A, B, C, D)**, and the system displays **live vote counts** and the **winner** on demand.
+This project implements a digital electronic voting system using push buttons for candidate selection and an LCD display for real-time vote visualization.  
+Each button represents a candidate, and the system records votes using structured input logic while preventing multiple voting attempts.  
+The LCD module displays voting status and final results, ensuring transparency and reliability in the counting process.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -107,4 +108,5 @@ Install from Arduino Library Manager:
 - Add **buzzer feedback** on each vote.  
 - Add **SD card logging** for audit trail.  
 - Integrate **ESP8266/ESP32** for remote result monitoring.
+
 
