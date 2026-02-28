@@ -53,7 +53,7 @@ The system reads the water level from an analog sensor and indicates whether the
     </tr>
     <tr>
       <td colspan="3" align="center">
-        All LED Cathodes (–) → GND
+        All LED Cathodes (–) → Arduino GND
       </td>
     </tr>
   </tbody>
@@ -91,3 +91,4 @@ The system reads the water level from an analog sensor and indicates whether the
 - Add **automatic motor control** using relay module.  
 - Add **ESP8266/ESP32** for IoT-based tank monitoring.  
 - Add **SMS alert system** using GSM module.
+
