@@ -23,6 +23,7 @@ The LEDs glow in **different levels based on sound intensity**, creating a rhyth
     </tr>
   </thead>
   <tbody>
+    <!-- Sound Sensor -->
     <tr>
       <td rowspan="3" align="center"><b>Sound Sensor Module</b></td>
       <td align="center">VCC</td>
@@ -36,26 +37,47 @@ The LEDs glow in **different levels based on sound intensity**, creating a rhyth
       <td align="center">AO (Analog Out)</td>
       <td align="center">A0</td>
     </tr>
+    <!-- LED 1 -->
     <tr>
-      <td rowspan="4" align="center"><b>LEDs</b></td>
-      <td align="center">LED 1 (Anode + via 220Ω)</td>
+      <td rowspan="2" align="center"><b>LED 1</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 9</td>
     </tr>
     <tr>
-      <td align="center">LED 2 (Anode + via 220Ω)</td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- LED 2 -->
+    <tr>
+      <td rowspan="2" align="center"><b>LED 2</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 10</td>
     </tr>
     <tr>
-      <td align="center">LED 3 (Anode + via 220Ω)</td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- LED 3 -->
+    <tr>
+      <td rowspan="2" align="center"><b>LED 3</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td align="center">LED 4 (Anode + via 220Ω)</td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- LED 4 -->
+    <tr>
+      <td rowspan="2" align="center"><b>LED 4</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 12</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">All LED cathodes (–) → GND</td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
     </tr>
+
   </tbody>
 </table>
 
@@ -90,3 +112,4 @@ The LEDs glow in **different levels based on sound intensity**, creating a rhyth
 - Add **PWM brightness control** for smooth fading.  
 - Add **sensitivity adjustment knob** using potentiometer.  
 - Integrate **Bluetooth control** to change modes.
+
