@@ -1,7 +1,8 @@
 # 📱 Smart Bluetooth Display
 
-This project demonstrates a simple **Bluetooth-based notice display system** using **Arduino**, an **HC-05 Bluetooth module**, and a **16x2 I2C LCD**.  
-Users can send a **text notice from a smartphone** (via a Bluetooth Terminal app), and the message is **displayed and auto-scrolled** on the LCD.
+This project implements a Bluetooth-based wireless notice display system using Arduino, an HC-05 Bluetooth module, and a 16x2 I2C LCD.  
+Text messages transmitted from a smartphone via a Bluetooth terminal application are received through serial communication and displayed with automatic scrolling on the LCD.  
+The system demonstrates wireless serial interfacing, real-time data handling, and dynamic text rendering in embedded systems.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -103,3 +104,4 @@ Install from Arduino Library Manager:
 - Add **auto-clear timer** for temporary messages.  
 - Add **Wi-Fi (ESP8266/ESP32)** for internet-based notices.  
 - Add **buzzer alert** for new message arrival.
+
