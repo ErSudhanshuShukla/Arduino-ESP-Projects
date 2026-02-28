@@ -23,6 +23,7 @@ When the laser beam is interrupted, the system activates a **buzzer alarm** to i
     </tr>
   </thead>
   <tbody>
+    <!-- LDR Module -->
     <tr>
       <td rowspan="3" align="center"><b>LDR Module</b></td>
       <td align="center">VCC</td>
@@ -36,20 +37,25 @@ When the laser beam is interrupted, the system activates a **buzzer alarm** to i
       <td align="center">DO (Digital Out)</td>
       <td align="center">Pin 2</td>
     </tr>
+    <!-- Laser Module -->
     <tr>
-      <td align="center"><b>Laser Module</b></td>
-      <td align="center">VCC</td>
+      <td rowspan="2" align="center"><b>Laser Module</b></td>
+      <td align="center">VCC (+)</td>
       <td align="center">5V</td>
     </tr>
     <tr>
-      <td align="center"><b>Buzzer</b></td>
+      <td align="center">GND (–)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- Buzzer -->
+    <tr>
+      <td rowspan="2" align="center"><b>Buzzer</b></td>
       <td align="center">+ (Signal)</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
-        All GND connections → Arduino GND
-      </td>
+      <td align="center">– (GND)</td>
+      <td align="center">GND</td>
     </tr>
   </tbody>
 </table>
@@ -85,3 +91,4 @@ When the laser beam is interrupted, the system activates a **buzzer alarm** to i
 - Add **LCD display** for intrusion message.  
 - Add **GSM module** for SMS alert.  
 - Add **ESP8266/ESP32** for IoT-based monitoring.
+
