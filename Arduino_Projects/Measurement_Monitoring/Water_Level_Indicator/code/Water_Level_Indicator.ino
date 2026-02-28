@@ -7,9 +7,7 @@
 ====================================================
 */
 
-// =============================
 // Pin Definitions
-// =============================
 int sensor = A2;          // Water level sensor connected to Analog Pin A2
 int led1 = 11;            // Low Level Indicator
 int led2 = 12;            // Medium Level Indicator
@@ -28,16 +26,11 @@ void setup() {
 
 void loop() {
 
-  // =============================
   // Read Water Level Sensor
-  // =============================
   int val = analogRead(sensor);   // Read analog value (0–1023)
   Serial.println(val);            // Print value for monitoring
 
-  // =============================
   // Water Level Conditions
-  // =============================
-
   if (val < 200) {                
     // Very Low Water Level
     digitalWrite(led1, LOW);
