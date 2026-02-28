@@ -10,9 +10,7 @@
 #include <DHT.h>
 #include <LiquidCrystal_I2C.h>
 
-// =============================
 // Sensor Configuration
-// =============================
 #define DHTPIN 13        // DHT11 Data Pin connected to Digital Pin 13
 #define DHTTYPE DHT11    // Define sensor type (DHT11)
 
@@ -38,15 +36,11 @@ void setup() {
 
 void loop() {
 
-  // =============================
   // Read Sensor Data
-  // =============================
   float h = dht.readHumidity();      // Read Humidity (%)
   float t = dht.readTemperature();   // Read Temperature (°C)
 
-  // =============================
   // Display on LCD
-  // =============================
   lcd.clear();
 
   lcd.setCursor(0, 0);
@@ -59,9 +53,7 @@ void loop() {
   lcd.print(h);
   lcd.print(" %");
 
-  // =============================
   // Display on Serial Monitor
-  // =============================
   Serial.print("Temperature: ");
   Serial.print(t);
   Serial.print(" C   Humidity: ");
