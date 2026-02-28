@@ -7,7 +7,6 @@ This category contains IoT-based projects built using ESP8266 (NodeMCU) for real
 - [IoT Water Level Monitor](./IoT_Water_Level_Monitor/)
 
 ## 🌍 Real-world Use Cases
-- Live monitoring of temperature and humidity in rooms, labs, or offices  
-- Remote water tank level monitoring to prevent overflow or dry run  
-- Environmental data logging for analysis and alerts  
-
+- Live monitoring of temperature and humidity in rooms, labs, or offices.  
+- Remote water tank level monitoring to prevent overflow or dry run.  
+- Environmental data logging for analysis and alerts.  
