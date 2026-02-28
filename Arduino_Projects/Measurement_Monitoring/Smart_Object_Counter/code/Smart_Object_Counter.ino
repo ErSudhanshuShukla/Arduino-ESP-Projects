@@ -47,10 +47,7 @@ void setup() {
 
 void loop() {
 
-  // ==============================
   // Send Ultrasonic Trigger Pulse
-  // ==============================
-
   digitalWrite(TRIG, LOW);
   delayMicroseconds(2);
 
@@ -58,10 +55,7 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(TRIG, LOW);
 
-  // ==============================
   // Read Echo with Timeout
-  // ==============================
-
   duration = pulseIn(ECHO, HIGH, 25000); // 25ms timeout
 
   if (duration == 0) {
@@ -71,10 +65,7 @@ void loop() {
     distance = duration * 0.034 / 2;  // Distance formula
   }
 
-  // ==============================
   // Object Detection Logic
-  // ==============================
-
   // If object is very close (< 3 cm) and not already counted
   if (distance < 3 && !objectDetected) {
 
@@ -98,10 +89,7 @@ void loop() {
     delay(2000);
   }
 
-  // ==============================
   // Reset When Object Leaves
-  // ==============================
-
   if (distance > 6 && objectDetected) {
 
     objectDetected = false;  // Ready for next object
