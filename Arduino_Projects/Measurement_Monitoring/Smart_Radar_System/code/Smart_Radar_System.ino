@@ -11,9 +11,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 
-// =============================
 // Pin Definitions
-// =============================
 #define TRIG 9
 #define ECHO 10
 #define SERVO_PIN 8
@@ -21,15 +19,11 @@
 
 #define ALERT_DISTANCE 20   // Alert distance in cm
 
-// =============================
 // Object Initialization
-// =============================
 Servo radarServo;                     // Servo object
 LiquidCrystal_I2C lcd(0x27, 16, 2);    // I2C LCD (16x2, address 0x27)
 
-// =============================
 // Function: Get Distance
-// =============================
 long getDistance() {
 
   // Send trigger pulse (10 microseconds)
@@ -75,24 +69,18 @@ void setup() {
 
 void loop() {
 
-  // =============================
   // Sweep Left to Right
-  // =============================
   for (int angle = 0; angle <= 180; angle += 3) {
     scan(angle);
   }
 
-  // =============================
   // Sweep Right to Left
-  // =============================
   for (int angle = 180; angle >= 0; angle -= 3) {
     scan(angle);
   }
 }
 
-// =============================
 // Function: Scan at Given Angle
-// =============================
 void scan(int angle) {
 
   // Rotate servo to given angle
