@@ -28,10 +28,7 @@ void setup() {
 
 void loop() {
 
-  // ==============================
   // Send Ultrasonic Pulse
-  // ==============================
-
   digitalWrite(trig, LOW);
   delayMicroseconds(2);
 
@@ -39,27 +36,19 @@ void loop() {
   delayMicroseconds(10);
   digitalWrite(trig, LOW);
 
-  // ==============================
-  // Measure Echo Duration
-  // ==============================
 
+  // Measure Echo Duration
   long duration = pulseIn(echo, HIGH);   // Time taken for echo to return
 
   // Calculate Distance (Speed of sound = 0.034 cm/µs)
   int distance = duration * 0.034 / 2;
 
-  // ==============================
   // Display on Serial Monitor
-  // ==============================
-
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.println(" cm");
 
-  // ==============================
   // Display on LCD
-  // ==============================
-
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Distance:");
