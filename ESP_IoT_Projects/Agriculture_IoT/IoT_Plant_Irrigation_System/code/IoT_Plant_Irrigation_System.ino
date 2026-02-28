@@ -1,40 +1,98 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : IoT Plant Irrigation System 
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// -------- Blynk Configuration (Keep Credentials Private) --------
+#define BLYNK_TEMPLATE_ID   "YOUR_TEMPLATE_ID"
+#define BLYNK_TEMPLATE_NAME "YOUR_TEMPLATE_NAME"
+#define BLYNK_AUTH_TOKEN    "YOUR_AUTH_TOKEN"
 
-void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+#define BLYNK_PRINT Serial   // Enable Blynk debug messages
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+// -------- Pin Definitions --------
+#define SOIL_PIN  A0   // Soil moisture sensor analog output
+#define RELAY_PIN D5   // Relay control pin (Water Pump)
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+// -------- Blynk Virtual Pins --------
+#define VP_RELAY V1    // Relay control from Blynk app
+#define VP_SOIL  V4    // Soil moisture percentage display
+
+// -------- WiFi Credentials (Replace Before Upload) --------
+char ssid[] = "YOUR_WIFI_NAME";
+char pass[] = "YOUR_WIFI_PASSWORD";
+
+// -------- Calibration & Settings --------
+int soilWet = 425;           // Sensor value when soil is fully wet
+int soilDry = 900;           // Sensor value when soil is completely dry
+float moistureThreshold = 40.0;  // Moisture % below which pump turns ON
+bool RELAY_ACTIVE_LOW = true;    // Set true for Active LOW relay
+
+bool relayState = false;     // Stores current relay state
+BlynkTimer timer;            // Timer for periodic updates
+
+
+// Convert raw soil value (0–1023) into percentage (0–100%)
+float soilPercent() {
+  int raw = analogRead(SOIL_PIN);
+  float pct = (soilDry - raw) * 100.0 / (soilDry - soilWet);
+  return constrain(pct, 0, 100);
 }
 
-void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+// Relay Control Function
+void setRelay(bool on) {
+  relayState = on;
+  digitalWrite(RELAY_PIN, (RELAY_ACTIVE_LOW ? !on : on));
+}
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
-  }
+// Manual Relay Control from Blynk App (V1)
+BLYNK_WRITE(VP_RELAY) {
+  setRelay(param.asInt());
+}
+
+// Send Soil Data & Automatic Irrigation Logic
+void sendSoilData() {
+
+  float moisture = soilPercent();
+
+  Serial.print("Soil Moisture: ");
+  Serial.print(moisture);
+  Serial.println("%");
+
+  // Send values to Blynk dashboard
+  Blynk.virtualWrite(VP_SOIL, moisture);
+  Blynk.virtualWrite(VP_RELAY, relayState);
+
+  // Automatic pump control
+  if (moisture < moistureThreshold)
+    setRelay(true);     // Dry soil → Pump ON
+  else
+    setRelay(false);    // Wet soil → Pump OFF
+}
+
+// Setup Function
+void setup() {
+
+  Serial.begin(115200);
+
+  pinMode(RELAY_PIN, OUTPUT);
+  setRelay(false);   // Ensure pump OFF at startup
+
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+
+  // Run soil monitoring every 5 seconds
+  timer.setInterval(5000L, sendSoilData);
+}
+
+// Loop Function
+void loop() {
+  Blynk.run();
+  timer.run();
 }
