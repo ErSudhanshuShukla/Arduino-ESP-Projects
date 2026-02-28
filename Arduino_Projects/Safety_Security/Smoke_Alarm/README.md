@@ -39,15 +39,15 @@ When smoke or gas concentration exceeds a defined threshold, the system activate
       <td align="center">DO (Optional)</td>
       <td align="center">Not Used</td>
     </tr>
+     <!-- Buzzer -->
     <tr>
-      <td align="center"><b>Buzzer</b></td>
+      <td rowspan="2" align="center"><b>Buzzer</b></td>
       <td align="center">+ (Signal)</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
-        All GND connections → Arduino GND
-      </td>
+      <td align="center">– (GND)</td>
+      <td align="center">GND</td>
     </tr>
   </tbody>
 </table>
@@ -84,3 +84,4 @@ When smoke or gas concentration exceeds a defined threshold, the system activate
 - Add **GSM module** for SMS notification.  
 - Add **automatic ventilation system using relay**.  
 - Add **temperature sensor** for fire confirmation.
+
