@@ -65,6 +65,41 @@ This project implements an IoT-based water level monitoring system using an ESP8
 > - Always use 220Ω resistors in series with LEDs.  
 > - Mount the ultrasonic sensor securely above the tank for accurate readings.
 
+<details>
+<summary><b>🎯 Calibration (Click to Expand)</b></summary>
+
+<br>
+
+To ensure accurate water level measurement, follow these calibration steps:
+
+- Measure the **total height of the tank (in cm)** from the ultrasonic sensor position to the bottom of the tank.
+- Update the value in the code:
+
+```cpp
+int tankHeightCm = 30;   // Replace 30 with your tank height
+```
+
+- Mount the ultrasonic sensor:
+  - Perpendicular to the water surface  
+  - Firmly fixed (no vibration)  
+  - Free from obstructions  
+
+### 📏 Fine Tuning
+
+- If percentage reading is slightly inaccurate:
+  - Adjust `tankHeightCm` by ±1–2 cm.
+  - Check for echo reflection issues inside the tank.
+
+### ⚠️ Important
+
+- HC-SR04 minimum measurable distance ≈ 2 cm.
+- Test readings at:
+  - Empty tank (0%)
+  - Half-filled tank (~50%)
+  - Full tank (~100%)
+
+</details>
+
 ## 💻 Software Used
 - [Arduino IDE](https://www.arduino.cc/en/software)  
 - [Blynk IoT Platform](https://blynk.io/)
@@ -126,3 +161,4 @@ Install the following libraries from **Arduino Library Manager**:
 - Add buzzer alert for low water level.  
 - Add OLED display for local monitoring.  
 - Add cloud data logging.
+
