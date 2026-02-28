@@ -23,6 +23,7 @@ The system reads the water level from an analog sensor and indicates whether the
     </tr>
   </thead>
   <tbody>
+    <!-- Water Level Sensor -->
     <tr>
       <td rowspan="3" align="center"><b>Water Level Sensor</b></td>
       <td align="center">VCC</td>
@@ -36,25 +37,35 @@ The system reads the water level from an analog sensor and indicates whether the
       <td align="center">AO (Analog Out)</td>
       <td align="center">A2</td>
     </tr>
+    <!-- LED 1 -->
     <tr>
-      <td align="center"><b>LED 1 (Low)</b></td>
-      <td align="center">Anode (+) via 220Ω</td>
+      <td rowspan="2" align="center"><b>LED 1 (Low)</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td align="center"><b>LED 2 (Medium)</b></td>
-      <td align="center">Anode (+) via 220Ω</td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- LED 2 -->
+    <tr>
+      <td rowspan="2" align="center"><b>LED 2 (Medium)</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 12</td>
     </tr>
     <tr>
-      <td align="center"><b>LED 3 (High/Full)</b></td>
-      <td align="center">Anode (+) via 220Ω</td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- LED 3 -->
+    <tr>
+      <td rowspan="2" align="center"><b>LED 3 (High / Full)</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 13</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
-        All LED Cathodes (–) → Arduino GND
-      </td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
     </tr>
   </tbody>
 </table>
@@ -91,4 +102,5 @@ The system reads the water level from an analog sensor and indicates whether the
 - Add **automatic motor control** using relay module.  
 - Add **ESP8266/ESP32** for IoT-based tank monitoring.  
 - Add **SMS alert system** using GSM module.
+
 
