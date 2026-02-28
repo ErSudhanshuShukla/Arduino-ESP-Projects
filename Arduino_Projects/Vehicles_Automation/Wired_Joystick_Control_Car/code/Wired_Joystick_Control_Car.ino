@@ -41,9 +41,7 @@ void setup() {
   pinMode(buzzer, OUTPUT);
 }
 
-// =============================
 // Main Loop
-// =============================
 void loop() {
 
   // Read joystick analog values
@@ -63,7 +61,7 @@ void loop() {
   analogWrite(ENA, speedVal);
   analogWrite(ENB, speedVal);
 
-  // ===== Direction Control Logic =====
+  // Direction Control Logic
 
   // Forward
   if (yVal > 600) {
@@ -87,9 +85,7 @@ void loop() {
   }
 }
 
-// =============================
 // Motor Control Functions
-// =============================
 
 // Move car forward
 void moveForward() {
