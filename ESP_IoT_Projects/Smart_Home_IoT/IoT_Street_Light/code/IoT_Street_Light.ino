@@ -1,40 +1,109 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : IoT_Street_Light
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// -------- Blynk Configuration (Keep Credentials Private) --------
+#define BLYNK_TEMPLATE_ID   "YOUR_TEMPLATE_ID"
+#define BLYNK_TEMPLATE_NAME "YOUR_TEMPLATE_NAME"
+#define BLYNK_AUTH_TOKEN    "YOUR_AUTH_TOKEN"
 
+#define BLYNK_PRINT Serial
+
+// -------- Libraries --------
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+
+// -------- WiFi Credentials (Replace Before Upload) --------
+char ssid[] = "YOUR_WIFI_NAME";
+char pass[] = "YOUR_WIFI_PASSWORD";
+
+// -------- Pin Definitions --------
+const int LDR_PIN   = A0;   // LDR connected to analog pin
+const int RELAY_PIN = D5;   // Relay controlling street light
+
+// -------- Relay Logic (Active LOW) --------
+const int RELAY_ON  = LOW;
+const int RELAY_OFF = HIGH;
+
+// -------- Control Variables --------
+bool manualMode = false;     // false = AUTO (LDR), true = MANUAL (Blynk)
+int ldrThreshold = 400;      // Adjust based on light conditions
+
+// Setup Function
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  Serial.begin(9600);
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+  pinMode(RELAY_PIN, OUTPUT);
+  digitalWrite(RELAY_PIN, RELAY_OFF);  // Ensure light OFF initially
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
 }
 
+// Main Loop
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
+  Blynk.run();
+
+  // -------- AUTO MODE (LDR Based Control) --------
+  if (!manualMode) {
+
+    int ldrValue = analogRead(LDR_PIN);
+
+    Serial.print("LDR Value = ");
+    Serial.println(ldrValue);
+
+    if (ldrValue > ldrThreshold) {
+      digitalWrite(RELAY_PIN, RELAY_ON);     // Dark → Light ON
+      Blynk.virtualWrite(V1, 1);             // Sync app
+    } else {
+      digitalWrite(RELAY_PIN, RELAY_OFF);    // Bright → Light OFF
+      Blynk.virtualWrite(V1, 0);             // Sync app
     }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
+  }
+}
+
+
+
+// Mode Control (Virtual Pin V0)
+// 0 = AUTO MODE
+// 1 = MANUAL MODE
+BLYNK_WRITE(V0) {
+
+  int mode = param.asInt();
+
+  if (mode == 1) {
+    manualMode = true;
+    Serial.println("MODE: MANUAL");
+  } else {
+    manualMode = false;
+    Serial.println("MODE: AUTO");
+  }
+}
+
+// Relay Control (Virtual Pin V1)
+// Works only in MANUAL MODE
+BLYNK_WRITE(V1) {
+
+  int relayState = param.asInt();
+
+  if (manualMode) {
+
+    if (relayState == 1) {
+      digitalWrite(RELAY_PIN, RELAY_ON);
+      Serial.println("Relay ON (Manual)");
+    } else {
+      digitalWrite(RELAY_PIN, RELAY_OFF);
+      Serial.println("Relay OFF (Manual)");
     }
+
+  } else {
+    // Prevent manual override in AUTO mode
+    Blynk.virtualWrite(V1, digitalRead(RELAY_PIN) == RELAY_ON ? 1 : 0);
   }
 }
