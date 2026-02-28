@@ -24,6 +24,7 @@ When motion is detected, the system activates an alarm for a fixed duration and 
     </tr>
   </thead>
   <tbody>
+    <!-- PIR Sensor -->
     <tr>
       <td rowspan="3" align="center"><b>PIR Sensor</b></td>
       <td align="center">VCC</td>
@@ -37,21 +38,27 @@ When motion is detected, the system activates an alarm for a fixed duration and 
       <td align="center">OUT</td>
       <td align="center">Pin 2</td>
     </tr>
+    <!-- Buzzer -->
     <tr>
-      <td align="center"><b>Buzzer</b></td>
+      <td rowspan="2" align="center"><b>Buzzer</b></td>
       <td align="center">+ (Signal)</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td align="center"><b>LED</b></td>
-      <td align="center">Anode (+) via 220Ω</td>
+      <td align="center">– (GND)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- LED -->
+    <tr>
+      <td rowspan="2" align="center"><b>LED</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 13</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
-        All GND connections → Arduino GND
-      </td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
     </tr>
+
   </tbody>
 </table>
 
@@ -87,3 +94,4 @@ When motion is detected, the system activates an alarm for a fixed duration and 
 - Add **GSM module** for SMS alerts.  
 - Add **ESP8266/ESP32** for IoT monitoring.  
 - Add **Camera module** for intrusion capture.  
+
