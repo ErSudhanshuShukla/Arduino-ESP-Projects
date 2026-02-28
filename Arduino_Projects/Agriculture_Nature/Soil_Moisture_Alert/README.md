@@ -1,7 +1,8 @@
 # 💧 Soil Moisture Alert
 
-This project demonstrates a simple **soil moisture alert system** using an **Arduino**, a **soil moisture sensor**, an **LED**, and a **buzzer**.  
-When the soil becomes **too dry**, the system **alerts the user** with a buzzer sound and LED indication.
+This project implements a soil moisture monitoring system using a moisture sensor and real-time detection logic.  
+The system alerts the user when the soil moisture level drops below a predefined threshold, indicating the need for watering.  
+It is useful for smart agriculture applications and water conservation systems.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -90,4 +91,5 @@ When the soil becomes **too dry**, the system **alerts the user** with a buzzer 
 - Add **SMS alert** using GSM module.  
 - Add **battery power + low power mode**.  
 - Combine with **automatic pump control** for full irrigation automation.
+
 
