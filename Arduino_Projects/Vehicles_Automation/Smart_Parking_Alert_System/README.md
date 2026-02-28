@@ -69,8 +69,8 @@ This simulates a basic **reverse parking assistance system**.
   - Buzzer turns OFF.
 
 ## 🚀 Future Enhancements
-- Add LCD display for distance indication  
-- Add multi-level buzzer frequency based on distance  
-- Add LED distance indicators (Green, Yellow, Red)  
-- Add automatic braking relay system  
-- Upgrade to ESP32 for IoT parking monitoring
+- Add LCD display for distance indication.  
+- Add multi-level buzzer frequency based on distance.  
+- Add LED distance indicators (Green, Yellow, Red).  
+- Add automatic braking relay system. 
+- Upgrade to ESP32 for IoT parking monitoring.
