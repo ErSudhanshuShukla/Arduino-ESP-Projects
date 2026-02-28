@@ -1,40 +1,117 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : IoT_Water_Level_Monitor
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// -------- Blynk Configuration (Keep Credentials Private) --------
+#define BLYNK_TEMPLATE_ID   "YOUR_TEMPLATE_ID"
+#define BLYNK_TEMPLATE_NAME "YOUR_TEMPLATE_NAME"
+#define BLYNK_AUTH_TOKEN    "YOUR_AUTH_TOKEN"
 
-void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+#define BLYNK_PRINT Serial
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+// -------- WiFi Credentials (Replace Before Upload) --------
+char ssid[] = "YOUR_WIFI_NAME";
+char pass[] = "YOUR_WIFI_PASSWORD";
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+// -------- Pin Definitions --------
+#define TRIG D5       // Ultrasonic Trigger Pin
+#define ECHO D6       // Ultrasonic Echo Pin
+
+#define RED_LED   D7  // Low Water Indicator
+#define GREEN_LED D8  // Full Water Indicator
+
+// -------- Tank Settings --------
+int tankHeightCm = 30;   // Total tank height in cm
+
+long duration;
+int distanceCm;
+int waterLevelPercent;
+
+BlynkTimer timer;
+
+// Function: Measure Water Level & Send to Blynk
+void sendWaterLevel() {
+
+  // Generate ultrasonic pulse
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  // Measure echo duration (timeout: 30ms)
+  duration = pulseIn(ECHO, HIGH, 30000);
+
+  // If no echo received, assume tank empty
+  if (duration == 0) {
+    distanceCm = tankHeightCm;
+  } else {
+    distanceCm = (int)(duration * 0.034 / 2.0);
+  }
+
+  // Calculate water height
+  int waterHeightCm = tankHeightCm - distanceCm;
+
+  // Convert to percentage
+  waterLevelPercent = map(waterHeightCm, 0, tankHeightCm, 0, 100);
+
+  // Limit between 0–100%
+  if (waterLevelPercent < 0) waterLevelPercent = 0;
+  if (waterLevelPercent > 100) waterLevelPercent = 100;
+
+  // Send data to Blynk (Virtual Pin V7)
+  Blynk.virtualWrite(V7, waterLevelPercent);
+
+  // -------- LED Indicator Logic --------
+  if (waterLevelPercent < 20) {
+    digitalWrite(RED_LED, HIGH);     // Low water
+    digitalWrite(GREEN_LED, LOW);
+  }
+  else if (waterLevelPercent > 80) {
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(GREEN_LED, HIGH);   // Tank almost full
+  }
+  else {
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(GREEN_LED, LOW);    // Medium level
+  }
+
+  // Serial Output
+  Serial.print("Water Level: ");
+  Serial.print(waterLevelPercent);
+  Serial.println("%");
 }
 
-void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+// Setup Function
+void setup() {
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
-  }
+  Serial.begin(9600);
+
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT);
+
+  digitalWrite(RED_LED, LOW);
+  digitalWrite(GREEN_LED, LOW);
+
+  // Connect to WiFi & Blynk
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+
+  // Update water level every 1 second
+  timer.setInterval(1000L, sendWaterLevel);
+}
+
+// Main Loop
+void loop() {
+  Blynk.run();
+  timer.run();
 }
