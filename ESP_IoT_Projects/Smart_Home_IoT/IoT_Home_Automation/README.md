@@ -121,7 +121,7 @@ Install the following libraries from **Arduino Library Manager**:
 - Debug information is printed to the **Serial Monitor**.
 
 ## 🚀 Future Improvements
-- Add multiple relay channels  
-- Add device status sync on startup
-- Add scheduling feature  
-- Add voice assistant integration (Google / Alexa)
+- Add multiple relay channels.  
+- Add device status sync on startup.
+- Add scheduling feature.  
+- Add voice assistant integration (Google / Alexa).
