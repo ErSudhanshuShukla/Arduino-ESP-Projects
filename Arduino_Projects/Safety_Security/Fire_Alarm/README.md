@@ -35,15 +35,15 @@ When a flame is detected, the system immediately activates a **buzzer alarm** to
       <td align="center">DO (Digital Out)</td>
       <td align="center">Pin 2</td>
     </tr>
+    <!-- Buzzer -->
     <tr>
-      <td align="center"><b>Buzzer</b></td>
+      <td rowspan="2" align="center"><b>Buzzer</b></td>
       <td align="center">+ (Signal)</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
-        All GND connections → Arduino GND
-      </td>
+      <td align="center">– (GND)</td>
+      <td align="center">GND</td>
     </tr>
   </tbody>
 </table>
@@ -79,3 +79,4 @@ When a flame is detected, the system immediately activates a **buzzer alarm** to
 - Add **GSM module** for SMS fire alerts.  
 - Add **ESP8266/ESP32** for IoT-based fire monitoring.  
 - Add **automatic water sprinkler system** using relay.
+
