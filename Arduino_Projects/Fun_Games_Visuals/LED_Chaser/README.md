@@ -1,7 +1,8 @@
 # ✨ LED Chaser
 
-This project demonstrates a **multi-effect LED chaser system** using **Arduino** and **9 LEDs**.  
-The LEDs run through **multiple lighting patterns** like forward chase, reverse chase, ping-pong, breathing, Knight Rider, sparkle, and meteor tail effects.
+This project implements a multi-pattern LED chaser system using Arduino and nine digital output channels.  
+The system generates various dynamic lighting effects such as forward chase, reverse chase, ping-pong, breathing, Knight Rider, sparkle, and meteor tail patterns using structured timing logic.  
+It demonstrates sequential output control, pattern generation algorithms, and timing-based visual effects in embedded systems.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -139,5 +140,6 @@ The LEDs run through **multiple lighting patterns** like forward chase, reverse 
 - Add **mode button** to change effects manually.  
 - Add **Bluetooth control** to switch patterns from mobile.  
 - Add **potentiometer** to control speed in real-time.
+
 
 
