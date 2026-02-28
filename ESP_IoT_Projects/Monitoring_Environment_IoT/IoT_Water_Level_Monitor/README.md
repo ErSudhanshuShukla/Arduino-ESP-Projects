@@ -110,7 +110,15 @@ Install the following libraries from **Arduino Library Manager**:
 </p>
 
 ## ⚙️ Working
-
+- The ultrasonic sensor measures the distance between the sensor and the water surface.  
+- The measured distance is converted into **water height** based on tank height.  
+- Water height is mapped into **percentage (0–100%)**.  
+- The percentage value is sent to **Virtual Pin V7** every second.  
+- LED Indicators:
+  - 🔴 Red LED → Water level below 20% (Low Level)  
+  - 🟢 Green LED → Water level above 80% (Tank Full)  
+  - Both OFF → Medium water level  
+- Live water level can be monitored on both the **Blynk App** and the **Serial Monitor**.
 <details>
 <summary><b>🎯 Calibration (Click to Expand)</b></summary>
 
@@ -146,22 +154,9 @@ int tankHeightCm = 30;   // Replace 30 with your tank height
 
 </details>
 
-- The ultrasonic sensor measures the distance between the sensor and the water surface.  
-- The measured distance is converted into **water height** based on tank height.  
-- Water height is mapped into **percentage (0–100%)**.  
-- The percentage value is sent to **Virtual Pin V7** every second.  
-- LED Indicators:
-  - 🔴 Red LED → Water level below 20% (Low Level)  
-  - 🟢 Green LED → Water level above 80% (Tank Full)  
-  - Both OFF → Medium water level  
-- Live water level can be monitored on both the **Blynk App** and the **Serial Monitor**.
-
 ## 🚀 Future Improvements
 - Add automatic motor control for tank filling.  
 - Add push notification when tank is full/empty.  
 - Add buzzer alert for low water level.  
 - Add OLED display for local monitoring.  
 - Add cloud data logging.
-
-
-
