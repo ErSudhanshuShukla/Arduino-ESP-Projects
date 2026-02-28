@@ -24,6 +24,7 @@ When vibration or movement is detected, the system triggers a **buzzer alarm** a
     </tr>
   </thead>
   <tbody>
+    <!-- Tilt / Vibration Sensor -->
     <tr>
       <td rowspan="3" align="center"><b>Tilt / Vibration Sensor</b></td>
       <td align="center">VCC</td>
@@ -37,21 +38,27 @@ When vibration or movement is detected, the system triggers a **buzzer alarm** a
       <td align="center">OUT</td>
       <td align="center">Pin 8</td>
     </tr>
+    <!-- Buzzer -->
     <tr>
-      <td align="center"><b>Buzzer</b></td>
+      <td rowspan="2" align="center"><b>Buzzer</b></td>
       <td align="center">+ (Signal)</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td align="center"><b>LED</b></td>
-      <td align="center">Anode (+) via 220Ω</td>
+      <td align="center">– (GND)</td>
+      <td align="center">GND</td>
+    </tr>
+    <!-- LED -->
+    <tr>
+      <td rowspan="2" align="center"><b>LED</b></td>
+      <td align="center">Anode (+) via 220Ω resistor</td>
       <td align="center">Pin 12</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
-        All GND connections → Arduino GND
-      </td>
+      <td align="center">Cathode (–)</td>
+      <td align="center">GND</td>
     </tr>
+
   </tbody>
 </table>
 
@@ -84,3 +91,4 @@ When vibration or movement is detected, the system triggers a **buzzer alarm** a
 - Add **ESP8266/ESP32** for IoT emergency notification.  
 - Add **GSM module** for SMS alerts.  
 - Add **adjustable sensitivity control**.
+
