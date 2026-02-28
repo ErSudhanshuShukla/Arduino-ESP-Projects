@@ -1,7 +1,8 @@
 # 🌱 Plant Irrigation System
 
-This project demonstrates a simple **automatic plant irrigation system** using an **Arduino**, a **soil moisture sensor**, and a **relay-controlled DC mini water pump**.  
-When the soil becomes **dry**, the pump **automatically turns ON** to water the plant, and turns **OFF** when the soil is sufficiently moist.
+This project implements an automated plant irrigation system using soil moisture sensing and threshold-based control logic.  
+The system continuously monitors soil moisture levels and activates a water pump when the soil becomes dry.  
+It helps optimize water usage, reduce manual effort, and improve plant health through automated irrigation management.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -120,3 +121,4 @@ When the soil becomes **dry**, the pump **automatically turns ON** to water the 
 - Integrate **ESP8266/ESP32** for IoT monitoring & alerts.  
 - Add **water level sensor** for tank empty protection.  
 - Add **timer-based watering schedule**.
+
