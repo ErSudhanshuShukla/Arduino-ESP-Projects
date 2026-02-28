@@ -1,7 +1,8 @@
 # 🦯 Blind Stick
 
-This project demonstrates a simple **ultrasonic-based obstacle detection system** for visually impaired assistance using **Arduino** and a **buzzer alert**.  
-When an obstacle is detected **within a short distance**, the buzzer **beeps to warn the user**.
+This project implements an assistive smart blind stick using ultrasonic distance sensing for obstacle detection.  
+The system continuously scans the surrounding environment and alerts the user through buzzer feedback when an obstacle is detected within a predefined range.  
+It enhances mobility, safety, and independence for visually impaired individuals.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -82,3 +83,4 @@ When an obstacle is detected **within a short distance**, the buzzer **beeps to 
 - Add **LED indicator** for visual debugging.  
 - Integrate **GPS module** for location tracking.  
 - Use **ESP32** for IoT-based emergency alerts.
+
