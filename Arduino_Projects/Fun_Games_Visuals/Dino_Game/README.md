@@ -1,7 +1,8 @@
 # 🦖 Dino Game
 
-This project demonstrates a simple **LCD-based Dino Game** using **Arduino**, an **IR sensor** for jump control, and a **buzzer** for game-over alert.  
-The player must **jump over obstacles** (cactus or crow) to score points, similar to the classic Chrome Dino game.
+This project implements an interactive Dino game using Arduino, an LCD display, and an IR sensor for motion-based input control.  
+The IR sensor detects hand movement to trigger the jump action, while the system manages obstacle generation, collision detection, and score tracking logic.  
+It demonstrates real-time input processing, timing control, and state-based game programming in embedded systems.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -100,3 +101,4 @@ Install from Arduino Library Manager:
 - Add **sound effects** during jump and scoring.  
 - Add **difficulty selection** at start.  
 - Replace IR with **ultrasonic sensor** for more reliable gesture input.
+
