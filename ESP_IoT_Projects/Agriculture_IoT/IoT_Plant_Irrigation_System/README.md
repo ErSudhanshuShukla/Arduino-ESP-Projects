@@ -12,6 +12,7 @@ This project implements an automated plant irrigation system using soil moisture
 - Pipes / Tubes for liquid flow  
 - Breadboard & Jumper Wires  
 - USB Cable / Power Supply  
+- 3D Model (Reference): [**Thingiverse**](https://www.thingiverse.com) 
 
 ## 🔌 Connections
 
@@ -157,3 +158,4 @@ Install the following libraries from **Arduino Library Manager**:
 - Add OLED display for local monitoring.  
 - Add cloud data logging.  
 - Add solar power integration.
+
