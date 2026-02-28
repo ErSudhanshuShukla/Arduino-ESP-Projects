@@ -1,40 +1,122 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Speed Measurement System
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+#include <Wire.h>                  // I2C communication
+#include <LiquidCrystal_I2C.h>     // I2C LCD library
 
+// Initialize I2C LCD (Address 0x27, 16 columns, 2 rows)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Time & Speed Variables
+unsigned long timer1;   // Time when first sensor triggers
+unsigned long timer2;   // Time when second sensor triggers
+
+float Time;             // Time difference (seconds)
+float distance = 5.0;   // Distance between sensors (meters)
+float speed;            // Calculated speed (km/h)
+
+// Sensor Flags
+int flag1 = 0;          // Sensor 1 triggered flag
+int flag2 = 0;          // Sensor 2 triggered flag
+
+// Pin Definitions
+int ir_s1 = A0;         // IR Sensor 1
+int ir_s2 = A1;         // IR Sensor 2
+int buzzer = 11;        // Buzzer pin
+
+// Setup Function
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  pinMode(ir_s1, INPUT);       // IR sensor 1 input
+  pinMode(ir_s2, INPUT);       // IR sensor 2 input
+  pinMode(buzzer, OUTPUT);     // Buzzer output
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+  lcd.init();                  // Initialize LCD
+  lcd.backlight();             // Turn on backlight
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  // Display welcome message
+  lcd.setCursor(0, 0);
+  lcd.print("     Speed     ");
+  lcd.setCursor(0, 1);
+  lcd.print("    Detector    ");
+  delay(2000);
+  lcd.clear();
 }
 
+// Main Loop
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
+  // When first IR sensor detects vehicle
+  if (digitalRead(ir_s1) == LOW && flag1 == 0) {
+    timer1 = millis();     // Store current time
+    flag1 = 1;             // Mark sensor 1 triggered
+  }
+
+  // When second IR sensor detects vehicle
+  if (digitalRead(ir_s2) == LOW && flag2 == 0) {
+    timer2 = millis();     // Store current time
+    flag2 = 1;             // Mark sensor 2 triggered
+  }
+
+  // If both sensors are triggered
+  if (flag1 == 1 && flag2 == 1) {
+
+    // Calculate time difference
+    if (timer1 > timer2)
+      Time = timer1 - timer2;
+    else
+      Time = timer2 - timer1;
+
+    Time = Time / 1000.0;      // Convert milliseconds to seconds
+
+    // Calculate speed
+    speed = distance / Time;   // m/s
+    speed = speed * 3.6;       // Convert to km/h
+  }
+
+  // LCD Display Logic
+
+  // If speed not calculated yet
+  if (speed == 0) {
+    lcd.setCursor(0, 1);
+    if (flag1 == 0 && flag2 == 0)
+      lcd.print("No car detected ");
+    else
+      lcd.print("Searching...    ");
+  }
+  else {
+    lcd.clear();
+
+    // Display speed
+    lcd.setCursor(0, 0);
+    lcd.print("Speed: ");
+    lcd.print(speed, 1);
+    lcd.print(" Km/H");
+
+    lcd.setCursor(0, 1);
+
+    // Overspeed alert
+    if (speed > 60) {
+      lcd.print("Over Speeding!");
+      digitalWrite(buzzer, HIGH);   // Activate buzzer
+    } 
+    else {
+      lcd.print("Normal Speed  ");
     }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+
+    delay(3000);   // Show result for 3 seconds
+
+    // Reset values for next measurement
+    digitalWrite(buzzer, LOW);
+    speed = 0;
+    flag1 = 0;
+    flag2 = 0;
+    lcd.clear();
   }
 }
