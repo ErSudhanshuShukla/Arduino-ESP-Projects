@@ -71,9 +71,7 @@ void loop() {
     pressureOld = pressureNow;  // Update old pressure value
   }
 
-  // ============================
   // Screen 1: Pressure Display
-  // ============================
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("PRESSURE LEVEL");
@@ -82,9 +80,7 @@ void loop() {
   lcd.print(" hPa");
   delay(2000);
 
-  // ============================
   // Screen 2: Weather Status
-  // ============================
   lcd.clear();
   lcd.setCursor(1, 0);
   lcd.print("WEATHER STATUS");
@@ -92,9 +88,7 @@ void loop() {
   lcd.print(forecast);
   delay(2000);
 
-  // ============================
   // Screen 3: Alert Message
-  // ============================
   lcd.clear();
   lcd.setCursor(2, 0);
   lcd.print("FORECAST:");
