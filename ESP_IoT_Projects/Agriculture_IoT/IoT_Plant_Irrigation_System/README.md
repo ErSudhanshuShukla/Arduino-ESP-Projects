@@ -112,9 +112,9 @@ Install the following libraries from **Arduino Library Manager**:
 
 ### 📱 Blynk Configuration
 
-- 🔗 **Setup Guide:**  
-- [Blynk Setup Guide](../BLYNK_SETUP.md)
-
+- 🔗 **Setup Guide:**
+  - [Blynk Setup Guide](../../BLYNK_SETUP.md)
+  
 - **Required Virtual Pins**  
   - V1 → Relay Control (Manual + Auto Sync)  
   - V4 → Soil Moisture Percentage  
@@ -158,6 +158,7 @@ Install the following libraries from **Arduino Library Manager**:
 - Add OLED display for local monitoring.  
 - Add cloud data logging.  
 - Add solar power integration.
+
 
 
 
