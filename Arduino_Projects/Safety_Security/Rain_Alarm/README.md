@@ -35,15 +35,15 @@ When rain is detected, the system activates a **buzzer alert** to notify the use
       <td align="center">DO (Digital Out)</td>
       <td align="center">Pin 8</td>
     </tr>
+     <!-- Buzzer -->
     <tr>
-      <td align="center"><b>Buzzer</b></td>
+      <td rowspan="2" align="center"><b>Buzzer</b></td>
       <td align="center">+ (Signal)</td>
       <td align="center">Pin 11</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">
-        All GND connections → Arduino GND
-      </td>
+      <td align="center">– (GND)</td>
+      <td align="center">GND</td>
     </tr>
   </tbody>
 </table>
@@ -79,3 +79,4 @@ When rain is detected, the system activates a **buzzer alert** to notify the use
 - Add **SMS notification system** using GSM module.  
 - Integrate with **automatic roof or window control system**.  
 - Add **water intensity level detection** using analog output.
+
