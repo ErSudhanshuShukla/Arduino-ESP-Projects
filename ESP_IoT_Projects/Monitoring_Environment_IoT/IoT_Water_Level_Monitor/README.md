@@ -85,8 +85,7 @@ Install the following libraries from **Arduino Library Manager**:
 
 ## 📱 Blynk Configuration
 
-- 🔗 **Setup Guide:**  
-  - [Blynk Setup Guide](../../BLYNK_SETUP.md)
+🔗 [**Blynk Setup Guide**](../../BLYNK_SETUP.md)
 
 - **Required Virtual Pins**  
   - V7 → Water Level Percentage  
@@ -160,3 +159,4 @@ int tankHeightCm = 30;   // Replace 30 with your tank height
 - Add buzzer alert for low water level.  
 - Add OLED display for local monitoring.  
 - Add cloud data logging.
+
