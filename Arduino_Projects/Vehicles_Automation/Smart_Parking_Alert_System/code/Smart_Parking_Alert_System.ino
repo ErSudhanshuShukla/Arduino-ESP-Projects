@@ -1,40 +1,55 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : Smart Parking Alert System
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// Pin Definitions
+#define trig 3        // Ultrasonic Trigger Pin
+#define echo 2        // Ultrasonic Echo Pin
+int buzzer = 11;      // Buzzer Output Pin
 
+// Setup Function
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  pinMode(trig, OUTPUT);   // Set trigger as output
+  pinMode(echo, INPUT);    // Set echo as input
+  pinMode(buzzer, OUTPUT); // Set buzzer as output
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
-
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  Serial.begin(9600);      // Start Serial Monitor
 }
 
+// Main Loop
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  // Send 10µs pulse to trigger ultrasonic wave
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+
+  digitalWrite(trig, LOW);
+
+  // Measure echo return time
+  long duration = pulseIn(echo, HIGH);
+
+  // Convert time to distance in centimeters
+  int distance = duration * 0.034 / 2;
+
+  // Print distance to Serial Monitor
+  Serial.println(distance);
+
+  // Parking Alert Logic
+
+  // If object is closer than 10 cm
+  if (distance < 10) {
+    digitalWrite(buzzer, HIGH);   // Turn ON buzzer
+  } 
+  else {
+    digitalWrite(buzzer, LOW);    // Turn OFF buzzer
   }
 }
