@@ -1,7 +1,8 @@
 # 🎹 Piano
 
-This project demonstrates a simple **Arduino-based mini piano** using **push buttons** and a **buzzer/speaker**.  
-Each button acts as a **piano key**, producing a different musical note when pressed.
+This project implements a simple Arduino-based mini piano using push buttons as input keys and a buzzer/speaker for sound generation.  
+Each button corresponds to a specific frequency, producing distinct musical notes using tone-based signal generation.  
+The system demonstrates digital input handling, frequency control, and interactive sound synthesis in embedded systems.
 
 ## 🧩 Required Components
 - 1 x Arduino UNO  
@@ -104,3 +105,4 @@ Each button acts as a **piano key**, producing a different musical note when pre
 - Add **record & playback** feature.  
 - Use **capacitive touch pads** instead of buttons.  
 - Add **Bluetooth MIDI output** for music apps.
+
