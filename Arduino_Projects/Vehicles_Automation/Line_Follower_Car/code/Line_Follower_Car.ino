@@ -15,20 +15,14 @@ Hardware Setup Requirements:
 
 #include <AFMotor.h>
 
-// =============================
 // Debug Macro (Set 1 to enable)
-// =============================
 #define DEBUG_PRINT 0
 
-// =============================
 // IR Sensor Pins
-// =============================
 #define LEFT_IR  A4
 #define RIGHT_IR A5
 
-// =============================
 // Robot Control Parameters
-// =============================
 #define DETECT_LIMIT        300
 #define FORWARD_SPEED       60
 #define TURN_SHARP_SPEED    150
@@ -41,6 +35,7 @@ Hardware Setup Requirements:
 // M3 → Left Motor
 // M4 → Right Motor
 // =============================
+
 AF_DCMotor motorL(3);
 AF_DCMotor motorR(4);
 
