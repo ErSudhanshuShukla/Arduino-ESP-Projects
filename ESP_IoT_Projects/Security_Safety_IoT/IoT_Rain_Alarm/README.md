@@ -82,12 +82,12 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
 - 🔗 [**Telegram Bot Setup Guide**](../../TELEGRAM_BOT_SETUP.md)
 
-### Required Credentials
+*Required Credentials*
 
 - BOT_TOKEN → From @BotFather  
 - CHAT_ID → Your personal Telegram chat ID  
 
-### Bot Behavior
+*Bot Behavior*
 
 - Sends alert when rain starts  
 - Activates buzzer for 3 seconds  
@@ -139,3 +139,4 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 - Add soil moisture integration
 - Add cloud data logging
 - Add weather dashboard integration
+
