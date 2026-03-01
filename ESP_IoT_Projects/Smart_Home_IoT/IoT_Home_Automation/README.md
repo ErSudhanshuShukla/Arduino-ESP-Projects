@@ -86,7 +86,7 @@ Install the following libraries from **Arduino Library Manager**:
 
 ## 📱 Blynk Configuration
 
-🔗 [**Blynk Setup Guide**](../../BLYNK_SETUP.md)
+- 🔗 [**Blynk Setup Guide**](../../BLYNK_SETUP.md)
 
 - **Required Virtual Pins**  
   - V1 → Relay Control  
