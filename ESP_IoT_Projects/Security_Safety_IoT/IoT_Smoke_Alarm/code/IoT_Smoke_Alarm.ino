@@ -1,40 +1,116 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : IoT_Smoke_Alarm
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// -------- Libraries --------
+#include <ESP8266WiFi.h>
+#include <WiFiClientSecure.h>
 
-void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+// -------- WiFi Credentials (Replace Before Upload) --------
+const char* ssid = "YOUR_WIFI_NAME";
+const char* pass = "YOUR_WIFI_PASSWORD";
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+// -------- Telegram Bot Credentials (Keep Private) --------
+String BOT_TOKEN = "YOUR_BOT_TOKEN";
+String CHAT_ID   = "YOUR_CHAT_ID";
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+// -------- Pin Configuration --------
+#define SMOKE_PIN A0    // MQ2 analog output
+#define BUZZER    D5    // Buzzer output
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+// -------- Threshold Settings --------
+int threshold  = 400;   // Smoke detected level
+int clearLevel = 350;   // Smoke cleared level
+
+// -------- State Variables --------
+unsigned long lastAlertTime = 0;
+bool smokeWasHigh = false;
+
+WiFiClientSecure client;
+
+// -------- Send Telegram Message --------
+void sendTelegram(String msg) {
+
+  client.setInsecure();
+
+  if (!client.connect("api.telegram.org", 443)) {
+    Serial.println("❌ Telegram connection failed");
+    return;
+  }
+
+  String url = "/bot" + BOT_TOKEN +
+               "/sendMessage?chat_id=" + CHAT_ID +
+               "&text=" + msg;
+
+  client.println("GET " + url + " HTTP/1.1");
+  client.println("Host: api.telegram.org");
+  client.println("Connection: close");
+  client.println();
+
+  Serial.println("📤 Telegram Message Sent: " + msg);
 }
 
-void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+// -------- Setup --------
+void setup() {
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  Serial.begin(9600);
+  Serial.println("🔥 MQ2 Smoke Detector + Telegram");
+
+  pinMode(BUZZER, OUTPUT);
+  digitalWrite(BUZZER, LOW);
+
+  // Connect to WiFi
+  Serial.print("📶 Connecting WiFi");
+  WiFi.begin(ssid, pass);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(200);
+    Serial.print(".");
   }
+
+  Serial.println("\n✅ WiFi Connected!");
+  Serial.println(WiFi.localIP());
+}
+
+// -------- Main Loop --------
+void loop() {
+
+  int smoke = analogRead(SMOKE_PIN);
+
+  // Always show smoke value
+  Serial.print("Smoke Value: ");
+  Serial.println(smoke);
+
+  unsigned long now = millis();
+
+  // -------- 🚨 SMOKE DETECTED --------
+  if (smoke > threshold && (now - lastAlertTime > 60000)) {
+
+    Serial.println("🚨 Smoke Detected!");
+    sendTelegram("🚨 Smoke Detected!");
+
+    Serial.println("🔊 Buzzer ON (10 sec)");
+    digitalWrite(BUZZER, HIGH);
+    delay(10000);
+    digitalWrite(BUZZER, LOW);
+    Serial.println("🔇 Buzzer OFF");
+
+    lastAlertTime = now;
+    smokeWasHigh = true;
+  }
+
+  // -------- ✅ SMOKE CLEARED --------
+  if (smokeWasHigh && smoke < clearLevel) {
+
+    Serial.println("✅ Smoke Cleared!");
+    sendTelegram("✅ Smoke Cleared!");
+    smokeWasHigh = false;
+  }
+
+  delay(500);
 }
