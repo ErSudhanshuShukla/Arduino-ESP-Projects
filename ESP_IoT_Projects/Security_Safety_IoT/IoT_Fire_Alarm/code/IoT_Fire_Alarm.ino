@@ -1,40 +1,101 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : IoT_Fire_Alarm
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// -------- Libraries --------
+#include <ESP8266WiFi.h>
+#include <WiFiClientSecure.h>
 
+// -------- WiFi Credentials (Replace Before Upload) --------
+const char* ssid = "YOUR_WIFI_NAME";
+const char* pass = "YOUR_WIFI_PASSWORD";
+
+// -------- Telegram Bot Credentials (Keep Private) --------
+String BOT_TOKEN = "YOUR_BOT_TOKEN";
+String CHAT_ID   = "YOUR_CHAT_ID";
+
+// -------- Pin Configuration --------
+#define FIRE_PIN D5   // Fire sensor digital output (LOW = Fire)
+#define BUZZER   D6   // Buzzer output
+
+WiFiClientSecure client;
+
+// -------- Alert Control Variables --------
+int lastState = HIGH;                // HIGH = No fire detected
+unsigned long lastAlert = 0;
+const unsigned long repeatTime = 30000UL;  // 30 seconds
+
+// Setup
 void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+  Serial.begin(115200);
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+  pinMode(FIRE_PIN, INPUT);
+  pinMode(BUZZER, OUTPUT);
+  digitalWrite(BUZZER, LOW);
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+  // Connect to WiFi
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+  }
+
+  // Skip certificate validation (for simplicity)
+  client.setInsecure();
+
+  Serial.println("System Ready");
 }
 
+// Main Loop
 void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  int state = digitalRead(FIRE_PIN);   // LOW = Fire detected
+  unsigned long now = millis();
+
+  // -------- Fire Detected (Transition HIGH → LOW) --------
+  if (state == LOW && lastState == HIGH) {
+
+    digitalWrite(BUZZER, HIGH);   // Continuous alarm
+    sendMsg("🔥 Fire Detected!");
+    lastAlert = now;
   }
+
+  // -------- Repeat Alert Every 30 Seconds --------
+  if (state == LOW && (now - lastAlert >= repeatTime)) {
+
+    sendMsg("🔥 Fire Still Detected!");
+    lastAlert = now;
+  }
+
+  // -------- Fire Cleared (Transition LOW → HIGH) --------
+  if (state == HIGH && lastState == LOW) {
+
+    digitalWrite(BUZZER, LOW);
+    sendMsg("✅ Fire Cleared.");
+    lastAlert = 0;
+  }
+
+  lastState = state;
+  delay(200);   // Small debounce delay
+}
+
+// Send Telegram Message
+void sendMsg(String txt) {
+
+  if (!client.connect("api.telegram.org", 443)) {
+    return;
+  }
+
+  String url = "/bot" + BOT_TOKEN +
+               "/sendMessage?chat_id=" + CHAT_ID +
+               "&text=" + txt;
+
+  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+               "Host: api.telegram.org\r\n" +
+               "Connection: close\r\n\r\n");
 }
