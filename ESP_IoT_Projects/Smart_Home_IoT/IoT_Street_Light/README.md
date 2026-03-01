@@ -100,7 +100,7 @@ Install the following libraries from **Arduino Library Manager**:
 
 ## 📱 Blynk Configuration
 
-🔗 [**Blynk Setup Guide**](../../BLYNK_SETUP.md)
+- 🔗 [**Blynk Setup Guide**](../../BLYNK_SETUP.md)
 
 - **Required Virtual Pins**  
   - V0 → Mode Selection (AUTO / MANUAL)  
@@ -163,4 +163,3 @@ int ldrThreshold = 400;
 - Add solar panel integration.  
 - Add cloud-based data logging.  
 - Add multiple street light network control.
-
