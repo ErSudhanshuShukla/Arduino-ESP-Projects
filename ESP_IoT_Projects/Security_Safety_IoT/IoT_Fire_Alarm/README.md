@@ -62,17 +62,17 @@ This project is suitable for home safety, labs, server rooms, and industrial mon
 
 ## 📚 Dependencies
 
-Install from **Arduino Library Manager**:
+- Install **ESP8266 Board Package**:
 
-- [ESP8266WiFi (ESP8266 Core)](https://github.com/esp8266/Arduino)
+  - Arduino IDE → Preferences → Additional Boards Manager URLs
 
-> ℹ️ **Make sure you have installed the ESP8266 Board Package from:**
->
-> Arduino IDE → Preferences → Additional Boards Manager URLs  
->
-> ```
-> http://arduino.esp8266.com/stable/package_esp8266com_index.json
-> ```
+```
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
+```
+
+- Then install from Boards Manager:
+
+  - Tools → Board → Boards Manager → [ESP8266 by ESP8266 Community](https://github.com/esp8266/Arduino)
 
 ## 🤖 Telegram Bot Configuration
 
@@ -132,3 +132,4 @@ Install from **Arduino Library Manager**:
 - Add cloud data logging
 - Add LCD display for local status
 - Add fire location detection (multiple sensors)
+
