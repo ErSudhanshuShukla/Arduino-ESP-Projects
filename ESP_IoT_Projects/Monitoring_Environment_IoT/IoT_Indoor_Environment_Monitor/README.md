@@ -57,7 +57,7 @@ Install the following libraries from **Arduino Library Manager**:
 
 ## 📱 Blynk Configuration
 
-🔗 [**Blynk Setup Guide**](../../BLYNK_SETUP.md)
+- 🔗 [**Blynk Setup Guide**](../../BLYNK_SETUP.md)
 
 - **Required Virtual Pins**  
   - V2 → Temperature (°C)  
@@ -98,4 +98,3 @@ Install the following libraries from **Arduino Library Manager**:
 - Add OLED display for local monitoring.  
 - Add fan/AC automatic control based on temperature. 
 - Upgrade to DHT22 for better accuracy.
-
