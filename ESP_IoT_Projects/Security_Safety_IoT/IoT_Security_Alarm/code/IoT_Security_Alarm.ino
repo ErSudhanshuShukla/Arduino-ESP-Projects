@@ -1,40 +1,122 @@
-/**************************************************
- *  Title   : Home Automation (Bluetooth)
- *  Author  : Sudhanshu Shukla
- *  GitHub  : https://github.com/ErSudhanshuShukla
- *  License : Released under MIT License
- **************************************************/
+/*
+====================================================
+ Title   : IoT_Security_Alarm
+ Author  : Sudhanshu Shukla
+ GitHub  : https://github.com/ErSudhanshuShukla
+ License : Released under the MIT License
+====================================================
+*/
 
-int relay = 8;           // Relay control pin connected to Arduino pin 8
-bool activeLow = true;  // Set true if relay module is Active LOW, false if Active HIGH
+// -------- Libraries --------
+#include <ESP8266WiFi.h>
+#include <WiFiClientSecure.h>
 
-void setup() {
-  Serial.begin(9600);   // Start serial communication (same baud rate as HC-05 Bluetooth module)
+// -------- WiFi Credentials (Replace Before Upload) --------
+const char* ssid = "YOUR_WIFI_NAME";
+const char* pass = "YOUR_WIFI_PASSWORD";
 
-  pinMode(relay, OUTPUT);  // Set relay pin as output
+// -------- Telegram Bot Credentials (Keep Private) --------
+String BOT_TOKEN = "YOUR_BOT_TOKEN";
+String CHAT_ID   = "YOUR_CHAT_ID";
 
-  // Turn relay OFF at startup (safety: device remains OFF when Arduino powers on)
-  digitalWrite(relay, activeLow ? HIGH : LOW);
+// -------- Pin Configuration --------
+#define TRIG   D5   // Ultrasonic Trigger pin
+#define ECHO   D6   // Ultrasonic Echo pin
+#define BUZZER D7   // Alarm buzzer
+#define LED    D8   // Visual indicator LED
 
-  Serial.println("Bluetooth Home Automation Ready"); // Status message
+WiFiClientSecure client;
+
+// -------- Intruder Control Variable --------
+bool intruderSent = false;   // Prevent repeated alerts
+
+// -------- Distance Measurement Function --------
+int measureDistance() {
+
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  long duration = pulseIn(ECHO, HIGH, 30000);
+
+  if (duration == 0) return 999;  // No object detected
+
+  return duration * 0.034 / 2;    // Convert to cm
 }
 
-void loop() {
-  // Check if any data is received from Bluetooth (via Serial)
-  if (Serial.available()) {
-    char c = Serial.read();    // Read one character sent from Bluetooth app
-    Serial.print("Received: ");
-    Serial.println(c);        // Print received command on Serial Monitor
+// -------- Send Telegram Message --------
+void sendTelegram(String msg) {
 
-    // If '1' is received, turn relay ON
-    if (c == '1') {
-      digitalWrite(relay, activeLow ? LOW : HIGH);  // Relay ON (depends on relay type)
-      Serial.println("RELAY ON");                   // Debug message
-    }
-    // If '0' is received, turn relay OFF
-    else if (c == '0') {
-      digitalWrite(relay, activeLow ? HIGH : LOW);  // Relay OFF (depends on relay type)
-      Serial.println("RELAY OFF");                  // Debug message
-    }
+  if (WiFi.status() != WL_CONNECTED) return;
+
+  client.setInsecure();
+
+  if (!client.connect("api.telegram.org", 443)) return;
+
+  String url = "/bot" + BOT_TOKEN +
+               "/sendMessage?chat_id=" + CHAT_ID +
+               "&text=" + msg;
+
+  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+               "Host: api.telegram.org\r\n" +
+               "Connection: close\r\n\r\n");
+
+  delay(200);
+  client.stop();
+}
+
+// -------- Setup --------
+void setup() {
+
+  Serial.begin(115200);
+
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(BUZZER, OUTPUT);
+  pinMode(LED, OUTPUT);
+
+  digitalWrite(BUZZER, LOW);
+  digitalWrite(LED, LOW);
+
+  // Connect to WiFi
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
   }
+
+  Serial.println("Security Alarm System Ready");
+}
+
+// -------- Main Loop --------
+void loop() {
+
+  int dist = measureDistance();
+  Serial.println(dist);
+
+  // -------- INTRUDER DETECTED --------
+  if (dist < 10 && !intruderSent) {
+
+    sendTelegram("🚨 Someone is Nearby 🦹");
+
+    // Activate buzzer + LED for 5 seconds
+    digitalWrite(BUZZER, HIGH);
+    digitalWrite(LED, HIGH);
+    delay(5000);
+    digitalWrite(BUZZER, LOW);
+    digitalWrite(LED, LOW);
+
+    intruderSent = true;
+  }
+
+  // -------- AREA CLEAR --------
+  if (intruderSent && dist > 10) {
+
+    sendTelegram("✅ Area Clear.");
+    intruderSent = false;
+  }
+
+  delay(300);   // Small polling delay
 }
